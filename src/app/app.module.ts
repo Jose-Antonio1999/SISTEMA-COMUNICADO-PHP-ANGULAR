@@ -6,11 +6,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
+import { DocenteTutorComponent } from './docente-tutor/docente-tutor.component';
+import { MenuComponent } from './menu/menu.component';
+import { PanelControlComponent } from './panel-control/panel-control.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    DocenteTutorComponent,
+    MenuComponent,
+    PanelControlComponent
   ],
   imports: [
     BrowserModule,
