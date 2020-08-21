@@ -1,14 +1,38 @@
 
 .inputBuscar{
-  width: 80%;
+  width: 55%;
 }
 #titleP{
   margin-top: -10px;
   font-size: 20px;
 }
-#titleE{
-  font-size: 18px;
-}
 #icon{
   font-size: 19px;
+}
+#izquierdoRow{
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+}
+.conteedorLista{
+  padding: 0px 5px 5px 0px;
+  height: 75vh;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+.conteedorLista::-webkit-scrollbar{
+  height: 2px;
+  width: 7px;
+  margin:5px;
+}
+.conteedorLista::-webkit-scrollbar-thumb{
+  cursor: pointer;
+  background:#265B8C;
+  border-radius: 10px;
+}
+
+@media (max-width:760px){
+  #buttonRedactar{
+    width: 150px;
+  }
 }

@@ -61,3 +61,10 @@ section {
   justify-content: center;
   width: 120px;
 }
+
+.ventanaEmergente{
+  height:100px;
+  width: 200px;
+  margin: 0 auto;
+  background:red;
+}

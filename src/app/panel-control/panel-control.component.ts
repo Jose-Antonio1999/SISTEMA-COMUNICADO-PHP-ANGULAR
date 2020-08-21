@@ -7,7 +7,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PanelControlComponent implements OnInit {
 
-  constructor() { }
+  listaAlumnos = new Array<number>()
+  constructor() {
+    this.listaAlumnos.push(1)
+    this.listaAlumnos.push(1)
+    this.listaAlumnos.push(1)
+    this.listaAlumnos.push(1)
+    this.listaAlumnos.push(1)
+    this.listaAlumnos.push(1)
+    this.listaAlumnos.push(1)
+    this.listaAlumnos.push(1)
+    this.listaAlumnos.push(1)
+    this.listaAlumnos.push(1)
+    this.listaAlumnos.push(1)
+    this.listaAlumnos.push(1)
+    this.listaAlumnos.push(1)
+    this.listaAlumnos.push(1)
+    this.listaAlumnos.push(1)
+    this.listaAlumnos.push(1)
+  }
 
   ngOnInit(): void {
   }
