@@ -1,0 +1,28 @@
+.contenedorMenu{
+  height: 100%;
+  width: 350px;
+  margin-left:0;
+  animation: 1s;
+  transition: 0.5s;
+  animation-duration: 4s;
+}
+.contenPrincipal{
+  margin: 0 auto;
+  height: auto;
+  width: 100%;
+}
+#contenedorGeneral{
+  width: 100%;
+  height: 92vh;
+  display: flex;
+  flex-direction: row;
+}
+
+@media (max-width:760px){
+  .contenedorMenu{
+    position: absolute;
+    width: 70%;
+    height: 92vh;
+  }
+
+}
