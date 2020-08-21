@@ -17,24 +17,35 @@
       </div>
     </div>
   </div>
+
   <div class="container">
-    <div class="row">
-      <div class="col-md-4">
-        <div class="card">
-          <h5 class="card-header" id="titleE" >Estudiante: Rojas Carrasco Irineo</h5>
-          <div class="card-body">
-            <h5 class="text-center" id="titleP">Apoderado(a) <i class="fas fa-user-tie" style="font-size: 24px;"></i></h5>
-            <div><i id="icon" class="fas fa-user"></i> Quispe Vargas Ronal</div>
-            <div><i id="icon" class="fas fa-envelope"></i> QuispeRonal@gmail.com</div>
-            <div><i id="icon" class="fas fa-mobile-alt"></i> 932347569</div>
-            <div class="mt-3">
-              <a href="#" class="btn btn-primary">Llamar atención</a>
-              <a href="#" class="btn btn-primary ml-1">Enviar comunicado</a>
+    <div class="contenedor">
+
+      <div class="row">
+
+        <div class="col-sm-6" *ngFor="let item of listaAlumnos">
+          <div class="card">
+            <h3 class="m-2 ml-4"><i class="fas fa-user-graduate"></i> Luis miranda Ramos</h3>
+            <h2 class="text-center" style="color:#0C1E2E">Apoderado(a) <i class="fas fa-user-tie" style="font-size: 24px;"></i></h2>
+            <div class="card-body">
+
+              <div id="itemNombre">
+                <i style="font-size:19px" class="fas fa-address-card"></i> Quispe Vargas Ronal
+              </div>
+              <div class="m-1">
+                <i id="icon" style="font-size:19px" class="fas fa-envelope"></i> QuispeRonal@gmail.com
+              </div>
+              <div class="m-1">
+                <i id="icon" style="font-size:20px" class="fas fa-mobile-alt"></i> 932347569
+              </div>
+
+              <div>
+                <a href="#"  class="btn btn-dark mt-2">somewhere <i class="fas fa-phone-volume"></i></a>
+                <a href="#" class="btn btn-primary ml-2 mt-2">Go somewhere <i class="far fa-comment-alt"></i></a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
     </div>
   </div>
-</div>

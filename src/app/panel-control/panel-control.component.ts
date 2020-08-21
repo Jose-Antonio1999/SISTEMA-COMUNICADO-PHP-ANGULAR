@@ -6,8 +6,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./panel-control.component.css']
 })
 export class PanelControlComponent implements OnInit {
+  listaAlumnos = Array<number>();
+  constructor() {
+    this.listaAlumnos.push(1)
+    this.listaAlumnos.push(1)
+    this.listaAlumnos.push(1)
+    this.listaAlumnos.push(1)
+    this.listaAlumnos.push(1)
+    this.listaAlumnos.push(1)
+    this.listaAlumnos.push(1)
+    this.listaAlumnos.push(1)
+    this.listaAlumnos.push(1)
+    this.listaAlumnos.push(1)
+    this.listaAlumnos.push(1)
+    this.listaAlumnos.push(1)
+    this.listaAlumnos.push(1)
+    this.listaAlumnos.push(1)
+    this.listaAlumnos.push(1)
+    this.listaAlumnos.push(1)
+    this.listaAlumnos.push(1)
+    this.listaAlumnos.push(1)
+    this.listaAlumnos.push(1)
+    this.listaAlumnos.push(1)
 
-  constructor() { }
+  }
 
   ngOnInit(): void {
   }
