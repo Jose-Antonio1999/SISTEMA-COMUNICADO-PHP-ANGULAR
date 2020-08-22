@@ -19,9 +19,11 @@
   background: #1C5890;
   border-radius: 10px;
 }
-
 #imgBell{
   margin-left: 15px;
+}
+#menu{
+  cursor: pointer;
 }
 h3{
   margin-top: 23px;

@@ -15,6 +15,8 @@ import { AlumnadoComponent } from './alumnado/alumnado.component';
 import { ListaAlumnadoComponent } from './lista-alumnado/lista-alumnado.component';
 import { ListaPadresComponent } from './lista-padres/lista-padres.component';
 import { ListaDocentesComponent } from './lista-docentes/lista-docentes.component';
+import { RedactarComunicadoComponent } from './redactar-comunicado/redactar-comunicado.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,13 +30,16 @@ import { ListaDocentesComponent } from './lista-docentes/lista-docentes.componen
     AlumnadoComponent,
     ListaAlumnadoComponent,
     ListaPadresComponent,
-    ListaDocentesComponent
+    ListaDocentesComponent,
+    RedactarComunicadoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

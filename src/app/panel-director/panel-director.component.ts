@@ -20,6 +20,9 @@ export class PanelDirectorComponent implements OnInit {
   Ldocentes(){
     this.opcionEscogida = "Ldocentes"
   }
+  Rcomunicado(){
+    this.opcionEscogida = "Rcomunicado"
+  }
 
 
 }

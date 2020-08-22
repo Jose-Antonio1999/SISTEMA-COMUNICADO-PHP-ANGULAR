@@ -16,19 +16,19 @@
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
 
-      <div (click)="BanSalida()">
+      <div id="menu" (click)="BanSalida()">
         <h3><i class="fas fa-file-upload"></i> Bandeja de salida</h3>
       </div>
-      <div (click)="Lalumnos()">
-        <h3><i class="fas fa-file-upload"></i> Alumnos</h3>
+      <div id="menu"  (click)="Lalumnos()">
+        <h3><i class="fas fa-user-graduate"></i> Alumnos</h3>
       </div>
-      <div (click)="Ldocentes()">
+      <div id="menu"  (click)="Ldocentes()">
         <h3><i class="fas fa-chalkboard-teacher"></i> Docentes</h3>
       </div>
-      <div>
+      <div (click)="Rcomunicado()" id="menu"  >
         <h3><i class="fas fa-pen-square"></i> Redactar</h3>
       </div>
-      <div>
+      <div id="menu" >
         <h3><i class="fas fa-eraser"></i> Borradores</h3>
       </div>
     </ul>
@@ -55,6 +55,9 @@
         </div>
         <div *ngSwitchCase="'Ldocentes'">
           <app-lista-docentes></app-lista-docentes>
+        </div>
+        <div *ngSwitchCase="'Rcomunicado'">
+          <app-redactar-comunicado></app-redactar-comunicado>
         </div>
       </div>
 
