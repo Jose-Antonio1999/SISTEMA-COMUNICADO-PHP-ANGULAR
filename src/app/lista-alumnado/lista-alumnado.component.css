@@ -1,0 +1,18 @@
+#contenedorAlumnos{
+  height: 65vh;
+  width: 100%;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+#contenedorAlumnos::-webkit-scrollbar{
+  height: 7px;
+  width: 7px;
+}
+#contenedorAlumnos::-webkit-scrollbar-thumb{
+  background: gray;
+  border-radius: 10px;
+}
+.card{
+  margin-right: 10px;
+  margin-top: 5px;
+}

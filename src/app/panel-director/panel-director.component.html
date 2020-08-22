@@ -1,35 +1,63 @@
-<nav class="navbar navbar-expand-lg" style="background:#265B8C;">
-  <a class="navbar-brand" href="#" (click)="SideBar()"><i class="fas fa-bars"></i></a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand">
+    <div class="dropdown">
+      <h3 style="cursor: pointer;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle"></i> Emerson</h3>
+      <div class="dropdown-menu">
+        <button class="dropdown-item" type="button"><i class="fas fa-power-off"></i> Cerrar sesión </button>
+        <button class="dropdown-item" type="button"><i class="fas fa-cog"></i> Configuración</button>
+        <button class="dropdown-item" type="button"><i class="fas fa-id-badge"></i> Perfil</button>
+      </div>
+    </div>
+  </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
-      </li>
+
+      <div (click)="BanSalida()">
+        <h3><i class="fas fa-file-upload"></i> Bandeja de salida</h3>
+      </div>
+      <div (click)="Lalumnos()">
+        <h3><i class="fas fa-file-upload"></i> Alumnos</h3>
+      </div>
+      <div (click)="Ldocentes()">
+        <h3><i class="fas fa-chalkboard-teacher"></i> Docentes</h3>
+      </div>
+      <div>
+        <h3><i class="fas fa-pen-square"></i> Redactar</h3>
+      </div>
+      <div>
+        <h3><i class="fas fa-eraser"></i> Borradores</h3>
+      </div>
     </ul>
     <span class="navbar-text">
-      Navbar text with an inline element
+      <div>
+        <mat-icon matBadge="10" matBadgeColor="warn">notifications</mat-icon>
+        <span id="imgBell" class="material-icons">settings</span>
+      </div>
     </span>
   </div>
 </nav>
 
-<div id="contenedorGeneral">
-  <div #sideBar class="contenedorMenu">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, et! Corporis aliquam minus quod? Libero, doloremque beatae numquam
-    tenetur nam eveniet nemo voluptatum tempore quibusdam possimus at officiis. Beatae, quas.
-  </div>
-  <div class="contenPrincipal">
-    <div class="container">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Non consequatur amet repellat, nam nesciunt facere modi excepturi officiis atque
-      itaque cupiditate eaque accusantium mollitia aliquam cum, ratione rem, obcaecati ea.
+<div id="contenG" class="container-fluit m-3">
+  <div class="row">
+
+    <div id="contenCuerpo" class="col-md-12">
+
+      <div [ngSwitch]="opcionEscogida">
+        <div *ngSwitchCase="'Bsalida'">
+          <app-bandeja-entrada></app-bandeja-entrada>
+        </div>
+        <div *ngSwitchCase="'Lalumnos'">
+          <app-alumnado></app-alumnado>
+        </div>
+        <div *ngSwitchCase="'Ldocentes'">
+          <app-lista-docentes></app-lista-docentes>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

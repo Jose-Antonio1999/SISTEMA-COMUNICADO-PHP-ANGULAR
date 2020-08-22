@@ -10,6 +10,11 @@ import { DocenteTutorComponent } from './docente-tutor/docente-tutor.component';
 import { MenuComponent } from './menu/menu.component';
 import { PanelControlComponent } from './panel-control/panel-control.component';
 import { PanelDirectorComponent } from './panel-director/panel-director.component';
+import { BandejaEntradaComponent } from './bandeja-entrada/bandeja-entrada.component';
+import { AlumnadoComponent } from './alumnado/alumnado.component';
+import { ListaAlumnadoComponent } from './lista-alumnado/lista-alumnado.component';
+import { ListaPadresComponent } from './lista-padres/lista-padres.component';
+import { ListaDocentesComponent } from './lista-docentes/lista-docentes.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +23,12 @@ import { PanelDirectorComponent } from './panel-director/panel-director.componen
     DocenteTutorComponent,
     MenuComponent,
     PanelControlComponent,
-    PanelDirectorComponent
+    PanelDirectorComponent,
+    BandejaEntradaComponent,
+    AlumnadoComponent,
+    ListaAlumnadoComponent,
+    ListaPadresComponent,
+    ListaDocentesComponent
   ],
   imports: [
     BrowserModule,
