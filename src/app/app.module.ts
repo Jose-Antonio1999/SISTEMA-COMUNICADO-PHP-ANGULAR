@@ -17,6 +17,8 @@ import { ListaPadresComponent } from './lista-padres/lista-padres.component';
 import { ListaDocentesComponent } from './lista-docentes/lista-docentes.component';
 import { RedactarComunicadoComponent } from './redactar-comunicado/redactar-comunicado.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ListGradoSeccionComponent } from './list-grado-seccion/list-grado-seccion.component';
+import { ValidarDatosComponent } from './validar-datos/validar-datos.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ListaAlumnadoComponent,
     ListaPadresComponent,
     ListaDocentesComponent,
-    RedactarComunicadoComponent
+    RedactarComunicadoComponent,
+    ListGradoSeccionComponent,
+    ValidarDatosComponent
   ],
   imports: [
     BrowserModule,

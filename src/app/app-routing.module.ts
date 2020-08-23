@@ -5,7 +5,7 @@ import { PanelDirectorComponent } from './panel-director/panel-director.componen
 
 const routes: Routes = [
   {
-    path:"",component:PanelDirectorComponent
+    path:"Panel-Director",component:PanelDirectorComponent
   }
 ];
 

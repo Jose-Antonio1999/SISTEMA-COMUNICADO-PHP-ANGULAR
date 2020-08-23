@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-alumnado',
-  templateUrl: './alumnado.component.html',
-  styleUrls: ['./alumnado.component.css']
+  selector: 'app-list-grado-seccion',
+  templateUrl: './list-grado-seccion.component.html',
+  styleUrls: ['./list-grado-seccion.component.css']
 })
-export class AlumnadoComponent implements OnInit {
-
-  escogeOption:boolean = true
+export class ListGradoSeccionComponent implements OnInit {
   listatutores = new Array<number>();
   tipoComunicado = new Array<string>();
   constructor() {
@@ -26,14 +24,5 @@ export class AlumnadoComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  optionPadres(){
-    this.escogeOption = false
-  }
-  optionAlumnos(){
-    this.escogeOption = true
-  }
-
-
 
 }
