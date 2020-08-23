@@ -1,13 +1,38 @@
 
 .inputBuscar{
+<<<<<<< HEAD
   width: 55%;
+=======
+  margin-left: 18px;
+  width: 80%;
+>>>>>>> formularioRegistroEstudiante
 }
-#titleP{
-  margin-top: -10px;
-  font-size: 20px;
+.contenedor{
+  height:75vh ;
+  padding: 5px;
+  overflow: hidden;
+  overflow-y: scroll;
+  cursor: pointer;
 }
+<<<<<<< HEAD
 #icon{
   font-size: 19px;
+=======
+.contenedor::-webkit-scrollbar{
+  height: 5px;
+  width: 5px;
+}
+.contenedor::-webkit-scrollbar-thumb{
+  background:#265B8C;
+  border-radius: 10px;
+}
+.card{
+  margin: 10px;
+}
+#itemNombre{
+  margin-top: -25px;
+  margin-left: 5px;
+>>>>>>> formularioRegistroEstudiante
 }
 #izquierdoRow{
   display: flex;

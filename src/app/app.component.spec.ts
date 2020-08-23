@@ -20,7 +20,7 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'SISTEMA-COMUNICADO-ANGULAR-PHP'`, () => {
+  it( +should have as title 'SISTEMA-COMUNICADO-ANGULAR-PHP' +, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app.title).toEqual('SISTEMA-COMUNICADO-ANGULAR-PHP');

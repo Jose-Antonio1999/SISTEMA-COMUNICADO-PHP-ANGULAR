@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="row">
+    <div id="formComunicado" class="col-md-4">
+      <form class="formulario">
+        <div style="font-size:25px;margin-bottom: 10px;margin-top: 10px;">
+          <i class="fas fa-pen-square"></i> Redactar Comunicado
+        </div>
+
+        <mat-form-field class="inputRedactar" appearance="fill">
+          <mat-label>Tipo de reunion</mat-label>
+          <mat-select>
+            <div *ngFor="let item of tipoComunicado">
+              <mat-option value="option1">{{item}}</mat-option>
+            </div>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="form-group">
+          <mat-form-field class="inputRedactar">
+            <mat-label>Usuario/Correo</mat-label>
+            <input  matInput autocomplete="off">
+          </mat-form-field>
+        </div>
+
+        <mat-form-field class="inputRedactar">
+          <mat-label>Favorite food</mat-label>
+          <input matInput placeholder="Ex. Pizza">
+        </mat-form-field>
+
+        <mat-form-field class="inputRedactar">
+          <mat-label>Cuerpo del Comunicado</mat-label>
+          <textarea rows="10" matInput></textarea>
+        </mat-form-field>
+        <div class="form-inline">
+          <button type="button" class="btn btn-dark">Ingresar</button>
+          <p class="ml-5 mt-3"><a href="#">Olvide mi password</a></p>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-8">
+      <div class="container">
+        <div class="previewComunicado">
+          <div class="logo">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1TPq0M2DsFf0dGDwSaMugb396gG1g52xotA&usqp=CAU" alt="">
+            <p class="titulo">Colegio Belén de Osma y Pardo</p>
+          </div>
+          <div class="tipo text-center">
+            <p>COMUNICADO</p>
+          </div>
+          <div class="cuerpo">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur placeat itaque veniam unde minima! Ad qui fugit officiis iure deleniti veritatis ex ipsam fuga, dolor natus labore ullam, ut distinctio!
+            Esse delectus reiciendis minus ratione et vitae dolorum. Nisi atque delectus quas. Minus, est! Harum fugit a id, labore, corporis placeat ea aut ratione, error accusantium rem eaque vel odit?
+            Cupiditate aliquam excepturi deserunt a non eius , itaaboriosam ratione veritatis! Ea quasi impedit vitae, ratione, perspiciatis beatae ab, aliquid saepe id veniam possimus.
+          </div>
+          <div class="fecha">
+            fecha 22/08/2020
+          </div>
+          <div class="texto">
+            Atentamente: Josen Antonio Rojas Cusi
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

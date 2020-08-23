@@ -1,0 +1,52 @@
+#menuItems{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 83vh;
+  background: #FFFF;
+  border-radius: 5px;
+}
+#contenCuerpo{
+  height: 80vh;
+  background: #FFF;
+  overflow-y: scroll;
+}
+#contenCuerpo::-webkit-scrollbar{
+  height: 5px;
+  width: 8px;
+}
+#contenCuerpo::-webkit-scrollbar-thumb{
+  background: #1C5890;
+  border-radius: 10px;
+}
+#imgBell{
+  margin-left: 15px;
+}
+#menu{
+  cursor: pointer;
+}
+h3{
+  margin-top: 23px;
+  margin-left: 35px;
+  font-size: 17px;
+  color: #1C5890;
+}
+h3 i{
+  font-size: 22px;
+}
+.bandejaEntrada, .bandejaSalida, .alumnos, .docentes, .Redactar, .borradores{
+  height: 70px;
+  width: 90%;
+  background:#FFF;
+  margin: 0 auto;
+  margin-top: 15px;
+  cursor: pointer;
+  border-radius: 10px;
+  border:1px solid #1C5890;
+}
+
+@media (max-width:990px){
+  #menuItems{
+    display: none;
+  }
+}

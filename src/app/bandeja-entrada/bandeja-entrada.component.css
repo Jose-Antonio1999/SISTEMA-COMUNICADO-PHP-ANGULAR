@@ -1,0 +1,12 @@
+.headerMessage{
+  display: flex;
+  justify-content: space-between;
+}
+.userEnviador{
+  margin:10px;
+}
+#option{
+  margin: 10px;
+  font-size: 22px;
+  cursor: pointer;
+}
