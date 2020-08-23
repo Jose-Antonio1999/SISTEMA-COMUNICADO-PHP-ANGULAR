@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { DocenteTutorComponent } from './docente-tutor/docente-tutor.component';
 import { MenuComponent } from './menu/menu.component';
 import { PanelControlComponent } from './panel-control/panel-control.component';
+<<<<<<< HEAD
 import { PanelDirectorComponent } from './panel-director/panel-director.component';
 import { BandejaEntradaComponent } from './bandeja-entrada/bandeja-entrada.component';
 import { AlumnadoComponent } from './alumnado/alumnado.component';
@@ -19,6 +20,9 @@ import { RedactarComunicadoComponent } from './redactar-comunicado/redactar-comu
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListGradoSeccionComponent } from './list-grado-seccion/list-grado-seccion.component';
 import { ValidarDatosComponent } from './validar-datos/validar-datos.component';
+=======
+import { RegistroEstudianteApoderadoComponent } from './registro-estudiante-apoderado/registro-estudiante-apoderado.component';
+>>>>>>> formularioRegistroEstudiante
 
 @NgModule({
   declarations: [
@@ -27,6 +31,7 @@ import { ValidarDatosComponent } from './validar-datos/validar-datos.component';
     DocenteTutorComponent,
     MenuComponent,
     PanelControlComponent,
+<<<<<<< HEAD
     PanelDirectorComponent,
     BandejaEntradaComponent,
     AlumnadoComponent,
@@ -36,6 +41,9 @@ import { ValidarDatosComponent } from './validar-datos/validar-datos.component';
     RedactarComunicadoComponent,
     ListGradoSeccionComponent,
     ValidarDatosComponent
+=======
+    RegistroEstudianteApoderadoComponent
+>>>>>>> formularioRegistroEstudiante
   ],
   imports: [
     BrowserModule,
