@@ -8,9 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  UsuarioDatoCorrecto:boolean = false
   title = 'SISTEMA-COMUNICADO-ANGULAR-PHP';
-  usuario:string = "joseantonio"
   existeUsuario:boolean
   constructor(private inject:PeticionService, private ruta: Router){
     this.inject.verPersonalInicio().subscribe((res)=>{

@@ -11,6 +11,7 @@ const routes: Routes = [
   { path:"Panel-Director",component:PanelDirectorComponent},
   { path:"Login",component:LoginComponent},
   { path:"Panel-Docente",component:MenuComponent},
+  { path:"Registro-Personal",component:RegistroPersonalComponent}
 
 ];
 

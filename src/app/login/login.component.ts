@@ -15,15 +15,24 @@ export class LoginComponent implements OnInit {
 
   FormularioCreado:FormGroup
   ingreso:boolean
+  existeUsuario:boolean
   data = new Array<Data>()
   constructor(formBuilder:FormBuilder,
     private inject:PeticionService,
     private ruta:Router,
     private spinner: NgxSpinnerService) {
 
-    if(localStorage.getItem('user')!=null){
-      this.ruta.navigateByUrl('Panel-Director');
-    }
+    this.inject.verPersonalInicio().subscribe((res)=>{
+        if(res == ""){
+          this.ruta.navigateByUrl('Registro-Personal')
+        }
+
+        if(localStorage.getItem('user')!=null){
+          this.ruta.navigateByUrl('Panel-Director');
+        }
+
+    })
+
 
     this.FormularioCreado = formBuilder.group({
       tipo:["",Validators.required],

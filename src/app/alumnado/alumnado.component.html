@@ -19,7 +19,7 @@
     <div class="col-md-2">
 
     </div>
-    <div id="contenIcon" class="col-md-1">
+    <div (click)="optionAddAlumno()" id="contenIcon" class="col-md-1">
       <i id="icono" class="fas fa-user-plus"></i>
     </div>
     <div id="contenIcon"  class="col-md-1">
@@ -32,11 +32,16 @@
 
 <div [ngSwitch]="escogeOption">
 
-  <div *ngSwitchCase="true">
+  <div *ngSwitchCase="'listaAlumno'">
     <app-lista-alumnado></app-lista-alumnado>
   </div>
-  <div *ngSwitchCase="false">
+  <div *ngSwitchCase="'listaPadres'">
     <app-lista-padres></app-lista-padres>
+  </div>
+  <div *ngSwitchCase="'AddAlumnos'">
+    <div class="container">
+      <app-registro-estudiante></app-registro-estudiante>
+    </div>
   </div>
 
 </div>

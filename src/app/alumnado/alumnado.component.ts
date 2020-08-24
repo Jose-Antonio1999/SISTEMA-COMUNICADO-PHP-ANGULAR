@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AlumnadoComponent implements OnInit {
 
-  escogeOption:boolean = true
+  escogeOption:String = "listaAlumno"
   listatutores = new Array<number>();
   tipoComunicado = new Array<string>();
   constructor() {
@@ -28,10 +28,13 @@ export class AlumnadoComponent implements OnInit {
   }
 
   optionPadres(){
-    this.escogeOption = false
+    this.escogeOption = "listaPadres"
   }
   optionAlumnos(){
-    this.escogeOption = true
+    this.escogeOption = "listaAlumno"
+  }
+  optionAddAlumno(){
+    this.escogeOption = "AddAlumnos"
   }
 
 

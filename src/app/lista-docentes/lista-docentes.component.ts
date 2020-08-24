@@ -22,6 +22,7 @@ export class ListaDocentesComponent implements OnInit {
   crearFormulario: FormGroup
   primerRegistro:boolean
   nuevoRegistro:boolean = false
+  anio:number
   constructor(private inject:PeticionService, private formbuilder:FormBuilder, private ruta:Router) {
       this.listadoDocentes.push(1)
       this.listadoDocentes.push(1)
