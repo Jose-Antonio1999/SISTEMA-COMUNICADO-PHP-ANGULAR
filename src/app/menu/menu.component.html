@@ -1,8 +1,11 @@
 <div class="fixed-top">
   <div class="collapse" id="navbarToggleExternalContent">
     <div class="p-4" style="background:#265B8C;">
-      <h5 class="text-white h4">Collapsed content</h5>
-      <span class="text-muted">Toggleable via the navbar brand.</span>
+      <h5 class="text-white h4">WillanaApp</h5>
+      <span class="text-muted">Perfil</span>
+      <div>
+        <span (click)="salir()" class="text-muted">Cerrar Sesión</span>
+      </div>
     </div>
   </div>
   <nav class="navbar navbar-dark" id="menu" style="background:#265B8C;">
@@ -18,14 +21,15 @@
     </div>
   </nav>
 </div>
-
+<!--Mensaje al salir-->
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#1c5890" type = "ball-clip-rotate-multiple" [fullScreen] = "true"><p style="color: white" > Cerrando Sesión </p></ngx-spinner>
 <!--Panel control-->
 <app-panel-control></app-panel-control>
 
 <div class="fixed-bottom">
   <nav class="navbar">
     <div></div>
-    <button (click)="openDialog()" id="newMessge" mat-fab color="warn" aria-label="Example icon button with a home icon">
+    <button id="newMessge" mat-fab color="warn" aria-label="Example icon button with a home icon">
       <span class="material-icons">
         chat_bubble
         </span>

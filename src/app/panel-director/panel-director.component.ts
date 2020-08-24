@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-panel-director',
@@ -7,7 +9,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 })
 export class PanelDirectorComponent implements OnInit {
   opcionEscogida:string = "Bsalida"
-  constructor() { }
+  constructor(private ruta:Router,private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
   }
@@ -22,6 +24,15 @@ export class PanelDirectorComponent implements OnInit {
   }
   Rcomunicado(){
     this.opcionEscogida = "Rcomunicado"
+  }
+
+  salir(){
+    this.spinner.show();
+      setTimeout(() => {
+        this.spinner.hide();
+        localStorage.removeItem('user');
+        this.ruta.navigateByUrl('')
+      }, 2000);
   }
 
 

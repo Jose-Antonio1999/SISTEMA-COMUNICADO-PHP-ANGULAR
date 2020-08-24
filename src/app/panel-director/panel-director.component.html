@@ -3,7 +3,7 @@
     <div class="dropdown">
       <h3 style="cursor: pointer;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle"></i> Emerson</h3>
       <div class="dropdown-menu">
-        <button class="dropdown-item" type="button"><i class="fas fa-power-off"></i> Cerrar sesión </button>
+        <button (click)="salir()" class="dropdown-item" type="button"><i class="fas fa-power-off"></i> Cerrar sesión </button>
         <button class="dropdown-item" type="button"><i class="fas fa-cog"></i> Configuración</button>
         <button class="dropdown-item" type="button"><i class="fas fa-id-badge"></i> Perfil</button>
       </div>
@@ -64,3 +64,6 @@
     </div>
   </div>
 </div>
+
+<!--Mensaje al salir-->
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#1c5890" type = "ball-clip-rotate-multiple" [fullScreen] = "true"><p style="color: white" > Cerrando Sesión </p></ngx-spinner>

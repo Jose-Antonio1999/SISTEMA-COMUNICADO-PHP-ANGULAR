@@ -37,3 +37,15 @@ h2{
   background:#FFFF;
   border-radius: 0px 5px 5px 0px;
 }
+
+@media (max-width:760px){
+  .imgDecore{
+    display: none;
+  }
+  #conten-form{
+    margin-top: -8%;
+  }
+  .row{
+    box-shadow: none;
+  }
+}

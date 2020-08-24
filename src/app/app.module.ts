@@ -22,7 +22,7 @@ import { ValidarDatosComponent } from './validar-datos/validar-datos.component';
 import { RegistroEstudianteComponent } from './registro-estudiante/registro-estudiante.component';
 import { RegistroPersonalComponent } from './registro-personal/registro-personal.component';
 import { HttpClientModule } from '@angular/common/http';
-
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [
@@ -50,7 +50,8 @@ import { HttpClientModule } from '@angular/common/http';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

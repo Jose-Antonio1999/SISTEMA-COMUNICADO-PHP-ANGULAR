@@ -21,9 +21,13 @@ if(isset($data)){
   $lista = [];
   $sql = "SELECT * FROM usuario WHERE Perfil='$tipo' and Correo='$user' and Contrasenia='$pass'";
   $query = mysqli_query($conexion,$sql);
+  $i = 0;
   while($filas = mysqli_fetch_array($query)){
-    echo json_encode($filas);
+    $lista[$i]['Correo'] = $filas['Correo'];
+    $lista[$i]['Perfil'] = $filas['Perfil'];
+    $i++;
   }
+  echo json_encode($lista);
 
 }
 
