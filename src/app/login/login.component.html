@@ -12,9 +12,21 @@
           <div class="text-center" style="font-size:35px;">
             <i class="fas fa-user-tie"></i>
           </div>
+
+          <mat-form-field style="width: 100%;">
+            <mat-label>Tipo de personal</mat-label>
+            <mat-select formControlName="tipo">
+              <div>
+                <mat-option value="1">Director</mat-option>
+                <mat-option value="2">Docente</mat-option>
+                <mat-option value="3">Secretaria</mat-option>
+              </div>
+            </mat-select>
+          </mat-form-field>
+
           <div class="form-group">
             <mat-form-field class="correo">
-              <mat-label>Usuario/Correo</mat-label>
+              <mat-label>Correo</mat-label>
               <input  matInput autocomplete="off" formControlName="user">
             </mat-form-field>
           </div>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { PeticionService } from '../Service/peticion.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,23 +10,27 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  usuarioP:string = "joseantonio"
-  contraseniaP:string = "joseantonio"
-  usuario:string
-  contrasenia:string
   FormularioCreado:FormGroup
-  acceso:boolean = false
-  constructor(formBuilder:FormBuilder) {
+  ingreso:boolean
+  constructor(formBuilder:FormBuilder, private inject:PeticionService, private ruta:Router) {
     this.FormularioCreado = formBuilder.group({
+      tipo:["",Validators.required],
       user:["",Validators.required],
       pass:["", Validators.required]
     })
   }
 
   Ingresar(){
-    if(this.FormularioCreado.value.user == this.usuarioP && this.FormularioCreado.value.pass == this.contraseniaP){
-      this.acceso = true
-    }
+    this.inject.login(this.FormularioCreado.value).subscribe((res)=>{
+      if(res==null){
+        console.log("no ingreso")
+        this.ingreso = false
+      }else{
+        console.log("ingreso")
+        this.ruta.navigateByUrl('Panel-Director')
+        this.ingreso = true
+      }
+    })
   }
 
   ngOnInit(): void {
