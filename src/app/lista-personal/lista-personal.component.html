@@ -1,0 +1,30 @@
+<div class="row">
+
+  <div class="col-md-6" *ngFor="let data of listaPersonal">
+    <div class="card">
+      <div class="menuOption">
+        <div class="iconoOption">
+
+          <div class="btn-group dropleft">
+            <i class="fas fa-caret-down" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+            <div class="dropdown-menu">
+              <p class="m-2"><i class="fas fa-pen-alt"></i> Actualizar</p>
+              <p class="m-2"><i class="fas fa-trash"></i> Desactivar</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="card-body">
+        <h3 class="text-center" id="titleP">{{data.tipoPersonal}} <i class="fas fa-chalkboard-teacher" style="font-size: 24px;"></i></h3>
+        <div><i id="icon" class="far fa-id-card"></i> {{data.nombre_personal}} {{data.apellidoPaterno_personal}} {{data.apellidoMaterno_personal}}</div>
+        <div><i id="icon" class="fas fa-envelope"></i> {{data.email_personal}}</div>
+        <div><i id="icon" class="fas fa-mobile-alt"></i> {{data.celular_personal}}</div>
+        <div class="mt-3">
+          <a href="#" class="btn btn-success ml-1">nuevo <i class="fas fa-comment-dots"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

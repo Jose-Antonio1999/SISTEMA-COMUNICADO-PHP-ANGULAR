@@ -12,52 +12,48 @@ $data = file_get_contents("php://input");
 if(isset($data)){
 
     //decodificamos al formato JSON
-  $personal = json_decode($data);
-  //obtenemos los dartos
+  $Alumnado = json_decode($data);
+  //obtenemos los datos
+  $grado = mysqli_real_escape_string($conexion,trim($Alumnado->grado));
+  $seccion = mysqli_real_escape_string($conexion,$Alumnado->seccion);
+  $dni_apoderado = mysqli_real_escape_string($conexion,$Alumnado->dni_apoderado);
+  $nombre_apoderado = mysqli_real_escape_string($conexion,$Alumnado->nombre_apoderado);
+  $apellidoP_apoderado = mysqli_real_escape_string($conexion,$Alumnado->apellidoP_apoderado);
+  $apellidoM_apoderado = mysqli_real_escape_string($conexion,$Alumnado->apellidoM_apoderado);
+  $correo_apoderado  = mysqli_real_escape_string($conexion,$Alumnado->correo_apoderado);
+  $celular_apoderado = mysqli_real_escape_string($conexion,$Alumnado->celular_apoderado);
 
-  $grado = mysqli_real_escape_string($conexion,trim($personal->grado));
-  $seccion = mysqli_real_escape_string($conexion,$personal->seccion);
-  $tipoPersonal = mysqli_real_escape_string($conexion,$personal->tipoPersonal);
-  $DNI_personal = mysqli_real_escape_string($conexion,$personal->dni);
-  $nombre_personal = mysqli_real_escape_string($conexion,$personal->nombre);
-  $apellidoPaterno_personal = mysqli_real_escape_string($conexion,$personal->apellidoP);
-  $apellidoMaterno_personal  = mysqli_real_escape_string($conexion,$personal->apellidoM);
-  $email_personal = mysqli_real_escape_string($conexion,$personal->correo);
-  $celular_personal = mysqli_real_escape_string($conexion,$personal->celular);
+  $dni_estudiante = mysqli_real_escape_string($conexion,trim($Alumnado->dni_estudiante));
+  $nombre_estudiante = mysqli_real_escape_string($conexion,$Alumnado->nombre_estudiante);
+  $apellidoP_estudiante = mysqli_real_escape_string($conexion,$Alumnado->apellidoP_estudiante);
+  $apellidoM_estudiante = mysqli_real_escape_string($conexion,$Alumnado->apellidoM_estudiante);
+  $correo_estudiante = mysqli_real_escape_string($conexion,$Alumnado->correo_estudiante);
+  $celular_estudiante = mysqli_real_escape_string($conexion,$Alumnado->celular_estudiante);
 
-  //query
-  $sql = "INSERT INTO Personal VALUES(NULL,'$DNI_personal','$nombre_personal','$apellidoPaterno_personal','$apellidoMaterno_personal','$email_personal','$celular_personal','1','$tipoPersonal')";
-  $sql2 = "INSERT INTO usuario VALUES(NULL,'$tipoPersonal','$email_personal','$DNI_personal')";
+  $sql = "INSERT INTO apoderado VALUES(NULL,'$dni_apoderado','$nombre_apoderado','$apellidoP_apoderado','$apellidoM_apoderado','$correo_apoderado','$celular_apoderado');";
   $query = mysqli_query($conexion,$sql);
+
+  $sql1 = "SELECT id_apoderado FROM apoderado WHERE DNI_apoderado='$dni_apoderado' and email_apoderado='$correo_apoderado' ";
+  $query1 = mysqli_query($conexion,$sql1);
+
+  while($fila = mysqli_fetch_array($query1)){
+    $idApoderado = $fila['id_apoderado'];
+  }
+
+  $sql2 = "SELECT id_grado_seccion FROM gradoseccion WHERE grado='$grado' and seccion='$seccion' ";
   $query2 = mysqli_query($conexion,$sql2);
 
-  if($grado != null || $seccion !=null || $grado !="" || $seccion !=""){
-    //Query obtener id
-    $sql3 = "SELECT id_personal FROM Personal WHERE DNI_personal='$DNI_personal' and email_personal='$email_personal' ";
-    $query3 = mysqli_query($conexion,$sql3);
-    $sql4 = "SELECT id_grado_seccion FROM gradoseccion WHERE grado='$grado' and seccion='$seccion' ";
-    $query4 = mysqli_query($conexion,$sql4);
+  while($filas2 = mysqli_fetch_array($query2)){
+    $idGradoSeccion = $filas2['id_grado_seccion'];
+  }
+  $anio = date("Y") + 5;
+  $sql3 = "INSERT INTO alumno VALUES(NULL,'$dni_estudiante','$nombre_estudiante','$apellidoP_estudiante','$apellidoM_estudiante','$anio','1','$idGradoSeccion','$idApoderado') ";
+  $query3 = mysqli_query($conexion,$sql3);
 
-    while($filaDoc = mysqli_fetch_array($query3)){
-      $idDocente = $filaDoc['id_personal'];
-    }
-    while($filaGrad = mysqli_fetch_array($query4)){
-      $idGrados = $filaGrad['id_grado_seccion'];
-    }
-
-    if($idDocente!="" and $idGrados!=""){
-      $anio = date("Y");
-      $sql5 = "INSERT INTO tutor VALUES(null,'$anio','$idDocente','$idGrados')";
-      $query5 = mysqli_query($conexion,$sql5);
-    }
-
+  if(!$sql3){
+    echo json_encode("Algo salió mal");
+  }else{
+    echo json_encode("Registro exitoso");
   }
 
 }
-
-if(!$query){
-  echo json_encode('ERROR: al insertar los datos');
-}else{
-  echo json_encode('SUCCESSFULL: insertado correctamente');
-}
-

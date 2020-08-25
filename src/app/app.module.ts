@@ -23,6 +23,9 @@ import { RegistroEstudianteComponent } from './registro-estudiante/registro-estu
 import { RegistroPersonalComponent } from './registro-personal/registro-personal.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { ListaPersonalComponent } from './lista-personal/lista-personal.component';
+import { ListaDocentesTutoresComponent } from './lista-docentes-tutores/lista-docentes-tutores.component';
+import { RegistroDocenteComponent } from './registro-docente/registro-docente.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,10 @@ import { NgxSpinnerModule } from "ngx-spinner";
     ListGradoSeccionComponent,
     ValidarDatosComponent,
     RegistroEstudianteComponent,
-    RegistroPersonalComponent
+    RegistroPersonalComponent,
+    ListaPersonalComponent,
+    ListaDocentesTutoresComponent,
+    RegistroDocenteComponent
   ],
   imports: [
     BrowserModule,

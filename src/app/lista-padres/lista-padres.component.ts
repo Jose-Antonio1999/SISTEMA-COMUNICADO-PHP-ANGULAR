@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PeticionService } from '../Service/peticion.service';
+import { Alumnado } from '../class/Alumnado';
 
 @Component({
   selector: 'app-lista-padres',
@@ -6,21 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./lista-padres.component.css']
 })
 export class ListaPadresComponent implements OnInit {
-  listadoPadres = new Array<number>();
-  constructor() {
-    this.listadoPadres.push(1)
-    this.listadoPadres.push(1)
-    this.listadoPadres.push(1)
-    this.listadoPadres.push(1)
-    this.listadoPadres.push(1)
-    this.listadoPadres.push(1)
-    this.listadoPadres.push(1)
-    this.listadoPadres.push(1)
-    this.listadoPadres.push(1)
-    this.listadoPadres.push(1)
-    this.listadoPadres.push(1)
-    this.listadoPadres.push(1)
-    this.listadoPadres.push(1)
+  listaPadres = new Array<Alumnado>();
+  constructor(private inject:PeticionService) {
+
+    this.inject.PeticionGeneral().subscribe((resp)=>{
+      this.listaPadres = resp
+    })
+
   }
 
   ngOnInit(): void {

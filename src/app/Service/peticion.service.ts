@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Personal } from '../class/personal'
 import { GradoSeccion } from '../class/grados'
 import { Consulta } from '../class/Consulta'
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Alumnado } from '../class/Alumnado';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,14 @@ export class PeticionService {
   login(usuario:any):Observable<any>{
     return this.http.post<Personal>(this.URL+'/Login.php',JSON.stringify(usuario));
   }
-
+  insertarEstudiante(Alumnado:any):Observable<any>{
+    return this.http.post<any>(this.URL+'/RegistroAlumnado.php',JSON.stringify(Alumnado));
+  }
+  PeticionGeneral():Observable<any>{
+    return this.http.get<any>(this.URL+'/listaGeneral.php');
+  }
+  ListaPersonal():Observable<any>{
+    return this.http.get<any>(this.URL+'/listaPersonal.php');
+  }
 
 }

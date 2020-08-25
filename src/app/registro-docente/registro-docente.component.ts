@@ -1,18 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { PeticionService } from '../Service/peticion.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { GradoSeccion } from '../class/grados';
 import { Consulta } from '../class/Consulta';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Alumnado } from '../class/Alumnado';
 import { Personal } from '../class/personal';
+import { PeticionService } from '../Service/peticion.service';
+import { Route } from '@angular/compiler/src/core';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-lista-docentes',
-  templateUrl: './lista-docentes.component.html',
-  styleUrls: ['./lista-docentes.component.css']
+  selector: 'app-registro-docente',
+  templateUrl: './registro-docente.component.html',
+  styleUrls: ['./registro-docente.component.css']
 })
-export class ListaDocentesComponent implements OnInit {
+export class RegistroDocenteComponent implements OnInit {
+
   listadoDocentes = new Array<number>();
   estutor:boolean = false
   GradoSeccion = new Array<GradoSeccion>()
@@ -29,7 +32,13 @@ export class ListaDocentesComponent implements OnInit {
   anio:number
   constructor(private inject:PeticionService,
     private formbuilder:FormBuilder,
-    private ruta:Router) {
+    private ruta:Router,
+    private snackBar: MatSnackBar) {
+
+      this.listadoDocentes.push(1)
+      this.listadoDocentes.push(1)
+      this.listadoDocentes.push(1)
+      this.listadoDocentes.push(1)
       this.crearFormulario = this.formbuilder.group({
         grado:['',Validators.required],
         seccion:['',Validators.required],
@@ -80,6 +89,11 @@ export class ListaDocentesComponent implements OnInit {
     this.inject.insertarPersonal(this.crearFormulario.value).subscribe((res)=>{
       console.log(res)
       this.crearFormulario.reset()
+      this.snackBar.open("Datos registrados correctamente", "", {
+        duration: 2000,
+        horizontalPosition: "right",
+        verticalPosition: "bottom",
+      });
     })
   }
   opNuevoDocente(){

@@ -25,6 +25,7 @@
 }
 #menu{
   cursor: pointer;
+  color: #FFF;
 }
 #contenG{
   margin-right: 30px;
@@ -35,7 +36,6 @@ h3{
   margin-top: 23px;
   margin-left: 35px;
   font-size: 17px;
-  color: #1C5890;
 }
 h3 i{
   font-size: 22px;

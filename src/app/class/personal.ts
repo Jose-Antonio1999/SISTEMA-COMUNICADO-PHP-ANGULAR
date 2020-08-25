@@ -9,6 +9,7 @@ export class Personal{
   celular_personal
   estadoPersonal
   id_tipo_personal
+  tipoPersonal
 
   constructor(){
     this.id_personal=this.id_personal
@@ -21,5 +22,6 @@ export class Personal{
     this.celular_personal = this.celular_personal
     this.estadoPersonal = this.estadoPersonal
     this.id_tipo_personal = this.id_tipo_personal
+    this.tipoPersonal = this.tipoPersonal
   }
 }

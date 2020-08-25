@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PeticionService } from '../Service/peticion.service';
 import { Router, Data } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
   constructor(formBuilder:FormBuilder,
     private inject:PeticionService,
     private ruta:Router,
-    private spinner: NgxSpinnerService) {
+    private spinner: NgxSpinnerService,
+    private snackBar: MatSnackBar) {
 
     this.inject.verPersonalInicio().subscribe((res)=>{
         if(res == ""){
@@ -47,6 +49,11 @@ export class LoginComponent implements OnInit {
       setTimeout(() => {
         if(res==0 || res == null || res ==""){
           this.ingreso = false
+          this.snackBar.open("Datos incorrectos, Intente nuevamente", "", {
+            duration: 2000,
+            horizontalPosition: "center",
+            verticalPosition: "bottom",
+          });
         }else{
           if(res[0].Perfil==1){
             localStorage.setItem('user',this.FormularioCreado.value.usuario);

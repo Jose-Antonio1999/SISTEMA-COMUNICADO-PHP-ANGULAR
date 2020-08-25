@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { GradoSeccion } from '../class/grados';
 import { PeticionService } from '../Service/peticion.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-registro-estudiante',
@@ -13,7 +14,7 @@ export class RegistroEstudianteComponent implements OnInit {
   listaSeccion = new Array<string>();
   listaGrado = new Array<string>();
   GradoSeccion = new Array<GradoSeccion>()
-  constructor(private formBuilder:FormBuilder,private inject:PeticionService) {
+  constructor(private formBuilder:FormBuilder,private inject:PeticionService,private snackBar: MatSnackBar) {
     this.crearFormulario = formBuilder.group({
       grado:['',Validators.required],
       seccion:['',Validators.required],
@@ -55,7 +56,15 @@ export class RegistroEstudianteComponent implements OnInit {
   }
 
   registrar(){
-    console.log(this.crearFormulario.value)
+    this.inject.insertarEstudiante(this.crearFormulario.value).subscribe((res)=>{
+      console.log(res)
+      this.crearFormulario.reset()
+      this.snackBar.open("Registro guardado con éxito", "", {
+        duration: 3000,
+        horizontalPosition: "right",
+        verticalPosition: "bottom",
+      });
+    })
   }
 
 }
