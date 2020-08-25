@@ -1,47 +1,59 @@
-<br>
-<div class="container">
-  <div class="row">
-    <div class="col-md-6">
-      <mat-form-field style="width: 80%;" class="example-full-width">
-        <mat-label>Buscar</mat-label>
-        <input matInput placeholder="Buscar">
-        <mat-icon matSuffix><span class="material-icons">
-          search
-          </span></mat-icon>
-      </mat-form-field>
-    </div>
-    <div (click)="optionAlumnos()" id="contenIcon" class="col-md-1" style="background: yellowgreen;">
-      <i id="icono" class="fas fa-graduation-cap"></i>
-    </div>
-    <div (click)="optionPadres()" id="contenIcon" class="col-md-1">
-      <span id="icono" class="material-icons">supervised_user_circle</span>
-    </div>
-    <div class="col-md-2">
+<div [ngSwitch]="vistaAlumnos">
+  <div *ngSwitchCase="true">
+          <br>
+      <div class="container">
+        <div class="row">
+          <div (click)="volverListaGradoSeccion()" id="contenIcon"  class="col-md-1">
+            <i id="icono" class="fas fa-arrow-alt-circle-left"></i>
+          </div>
+          <div class="col-md-5">
+            <mat-form-field style="width: 80%;" class="example-full-width">
+              <mat-label>Buscar</mat-label>
+              <input matInput placeholder="Buscar">
+              <mat-icon matSuffix><span class="material-icons">
+                search
+                </span></mat-icon>
+            </mat-form-field>
+          </div>
+          <div (click)="optionAlumnos()" id="contenIcon" class="col-md-1" style="background: yellowgreen;">
+            <i id="icono" class="fas fa-graduation-cap"></i>
+          </div>
+          <div (click)="optionPadres()" id="contenIcon" class="col-md-1">
+            <span id="icono" class="material-icons">supervised_user_circle</span>
+          </div>
+          <div class="col-md-2">
 
-    </div>
-    <div (click)="optionAddAlumno()" id="contenIcon" class="col-md-1">
-      <i id="icono" class="fas fa-user-plus"></i>
-    </div>
-    <div id="contenIcon"  class="col-md-1">
-      <i id="icono" class="fas fa-comment-dots"></i>
-    </div>
+          </div>
+          <div (click)="optionAddAlumno()" id="contenIcon" class="col-md-1">
+            <i id="icono" class="fas fa-user-plus"></i>
+          </div>
+          <div id="contenIcon"  class="col-md-1">
+            <i id="icono" class="fas fa-comment-dots"></i>
+          </div>
+        </div>
+      </div>
+
+      <br>
+
+      <div [ngSwitch]="escogeOption">
+
+        <div *ngSwitchCase="'listaAlumno'">
+          <app-lista-alumnado></app-lista-alumnado>
+        </div>
+        <div *ngSwitchCase="'listaPadres'">
+          <app-lista-padres></app-lista-padres>
+        </div>
+        <div *ngSwitchCase="'AddAlumnos'">
+          <div class="container">
+            <app-registro-estudiante></app-registro-estudiante>
+          </div>
+        </div>
+
+      </div>
+
   </div>
-</div>
-
-<br>
-
-<div [ngSwitch]="escogeOption">
-
-  <div *ngSwitchCase="'listaAlumno'">
-    <app-lista-alumnado></app-lista-alumnado>
-  </div>
-  <div *ngSwitchCase="'listaPadres'">
-    <app-lista-padres></app-lista-padres>
-  </div>
-  <div *ngSwitchCase="'AddAlumnos'">
-    <div class="container">
-      <app-registro-estudiante></app-registro-estudiante>
-    </div>
+  <div *ngSwitchCase="false">
+    <app-list-grado-seccion></app-list-grado-seccion>
   </div>
 
 </div>

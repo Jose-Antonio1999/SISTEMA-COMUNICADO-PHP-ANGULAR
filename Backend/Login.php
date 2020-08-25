@@ -24,7 +24,6 @@ if(isset($data)){
   $i = 0;
   while($filas = mysqli_fetch_array($query)){
     $lista[$i]['Correo'] = $filas['Correo'];
-    $lista[$i]['Correo'] = $filas['Correo'];
     $lista[$i]['Perfil'] = $filas['Perfil'];
     $i++;
   }

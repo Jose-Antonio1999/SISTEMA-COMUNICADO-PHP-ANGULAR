@@ -9,10 +9,17 @@ import { Alumnado } from '../class/Alumnado';
 })
 export class ListaAlumnadoComponent implements OnInit {
   listaGeneral = new Array<Alumnado>();
+  gradoSeccion = new Array<String>();
+  listaVacia:boolean = false
   constructor(private inject:PeticionService) {
-    this.inject.PeticionGeneral().subscribe((res)=>{
+    this.gradoSeccion.push(localStorage.getItem('seccionAlumno'))
+    this.gradoSeccion.push(localStorage.getItem('gradoAlumno'))
+    this.inject.listaPorGradoSeccion(this.gradoSeccion).subscribe((res)=>{
       this.listaGeneral = res
     })
+    if(this.listaGeneral.length==0){
+      this.listaVacia = true
+    }
   }
 
   ngOnInit(): void {

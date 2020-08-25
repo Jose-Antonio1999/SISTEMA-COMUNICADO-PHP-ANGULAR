@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PeticionService } from '../Service/peticion.service';
+import { Alumnado } from '../class/Alumnado';
 
 @Component({
   selector: 'app-panel-control',
@@ -6,28 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./panel-control.component.css']
 })
 export class PanelControlComponent implements OnInit {
-  listaAlumnos = Array<number>();
-  constructor() {
-    this.listaAlumnos.push(1)
-    this.listaAlumnos.push(1)
-    this.listaAlumnos.push(1)
-    this.listaAlumnos.push(1)
-    this.listaAlumnos.push(1)
-    this.listaAlumnos.push(1)
-    this.listaAlumnos.push(1)
-    this.listaAlumnos.push(1)
-    this.listaAlumnos.push(1)
-    this.listaAlumnos.push(1)
-    this.listaAlumnos.push(1)
-    this.listaAlumnos.push(1)
-    this.listaAlumnos.push(1)
-    this.listaAlumnos.push(1)
-    this.listaAlumnos.push(1)
-    this.listaAlumnos.push(1)
-    this.listaAlumnos.push(1)
-    this.listaAlumnos.push(1)
-    this.listaAlumnos.push(1)
-    this.listaAlumnos.push(1)
+  ListaAlumnos = Array<Alumnado>();
+  data:String
+  constructor(private inject:PeticionService) {
+    this.data = localStorage.getItem('correoDocente')
+    this.inject.ListaAlumnosDocente(this.data).subscribe((res)=>{
+      this.ListaAlumnos = res
+    })
+
   }
   ngOnInit(): void {
   }

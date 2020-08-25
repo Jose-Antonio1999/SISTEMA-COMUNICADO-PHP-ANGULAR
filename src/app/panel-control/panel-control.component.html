@@ -21,17 +21,17 @@
 
 <div class="conteedorLista">
   <div class="row">
-    <div class="col-sm-6" *ngFor="let item of listaAlumnos">
+    <div class="col-sm-6" *ngFor="let data of ListaAlumnos">
       <div class="card mb-3">
         <div class="card-body">
-            <h3 ><i class="fas fa-user-graduate"></i> Rojas Carrasco Irineo</h3>
+            <h3 ><i class="fas fa-user-graduate"></i> {{data.nombre_alumno}} {{data.apellidoPaterno_alumno}} {{data.apellidoMaterno_alumno}}</h3>
             <h5 class="text-center" id="titleP">Apoderado(a) <i class="fas fa-user-tie" style="font-size: 24px;"></i></h5>
-            <div><i id="icon" class="far fa-id-card"></i> Quispe Vargas Ronal</div>
-            <div><i id="icon" class="fas fa-envelope"></i> QuispeRonal@gmail.com</div>
-            <div><i id="icon" class="fas fa-mobile-alt"></i> 932347569</div>
+            <div><i id="icon" class="far fa-id-card"></i> {{data.nombre_apoderado}} {{data.apellidoPaterno_apoderado}} {{data.apellidoMaterno_apoderado}}</div>
+            <div><i id="icon" class="fas fa-envelope"></i> {{data.email_apoderado}}</div>
+            <div><i id="icon" class="fas fa-mobile-alt"></i> {{data.celular_apoderado}}</div>
             <div class="mt-3">
-              <a href="#" class="btn btn-dark">Llamar atención <i class="fas fa-phone-square"></i></a>
-              <a href="#" class="btn btn-success ml-1">Enviar <i class="fas fa-comment-alt"></i></a>
+              <a class="btn btn-dark">Llamar atención <i class="fas fa-phone-square"></i></a>
+              <a class="btn btn-success ml-1">Enviar <i class="fas fa-comment-alt"></i></a>
             </div>
         </div>
       </div>

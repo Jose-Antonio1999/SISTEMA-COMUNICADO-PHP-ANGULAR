@@ -26,6 +26,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { ListaPersonalComponent } from './lista-personal/lista-personal.component';
 import { ListaDocentesTutoresComponent } from './lista-docentes-tutores/lista-docentes-tutores.component';
 import { RegistroDocenteComponent } from './registro-docente/registro-docente.component';
+import { MostrarListaVaciaComponent } from './mostrar-lista-vacia/mostrar-lista-vacia.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { RegistroDocenteComponent } from './registro-docente/registro-docente.co
     RegistroPersonalComponent,
     ListaPersonalComponent,
     ListaDocentesTutoresComponent,
-    RegistroDocenteComponent
+    RegistroDocenteComponent,
+    MostrarListaVaciaComponent
   ],
   imports: [
     BrowserModule,

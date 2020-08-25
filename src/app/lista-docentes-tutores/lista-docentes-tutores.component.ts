@@ -8,10 +8,10 @@ import { PeticionService } from '../Service/peticion.service';
   styleUrls: ['./lista-docentes-tutores.component.css']
 })
 export class ListaDocentesTutoresComponent implements OnInit {
-  listaGeneral = new Array<Alumnado>();
+  listaTutores = new Array<Alumnado>();
   constructor(private inject:PeticionService) {
-    this.inject.PeticionGeneral().subscribe((res)=>{
-      this.listaGeneral = res
+    this.inject.ListaTutores().subscribe((res)=>{
+      this.listaTutores = res
     })
   }
 

@@ -40,8 +40,17 @@ export class PeticionService {
   PeticionGeneral():Observable<any>{
     return this.http.get<any>(this.URL+'/listaGeneral.php');
   }
+  ListaTutores():Observable<any>{
+    return this.http.get<any>(this.URL+'/ListaTutores.php');
+  }
   ListaPersonal():Observable<any>{
     return this.http.get<any>(this.URL+'/listaPersonal.php');
+  }
+  ListaAlumnosDocente(data:any):Observable<any>{
+    return this.http.post<any>(this.URL+'/IngresoDocente.php',JSON.stringify(data));
+  }
+  listaPorGradoSeccion(data:any):Observable<any>{
+    return this.http.post<any>(this.URL+'/ListaPorGradoSeccion.php',JSON.stringify(data));
   }
 
 }

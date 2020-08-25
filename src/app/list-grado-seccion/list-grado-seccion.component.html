@@ -1,22 +1,30 @@
-<div class="container">
-  <div style="padding: 15px; border-radius: 10px;" >
-    <h3 style="font-size: 18px; margin-top: 10px;"><i class="fas fa-chalkboard-teacher"></i>  Tutores por grado y sección</h3>
-    <div class="row"*ngFor="let item of listatutores; let i=index">
-      <div class="col-md-2" style=" margin-top: 15px;">{{i+1}} ro</div>
-      <div class="col-md-4">
+<div [ngSwitch]="listaTablaBgradoSeccion">
+<div *ngSwitchCase="true">
+    <div class="container">
+      <div style="padding: 15px; border-radius: 10px;" >
+        <h3 style="font-size: 18px; margin-top: 10px;"><i class="fas fa-chalkboard-teacher"></i>  Tutores por grado y sección</h3>
+        <div class="row" *ngFor="let grado of listaGrado; let i=index">
+          <div class="col-md-2" style=" margin-top: 15px;">{{grado}} ro</div>
+          <div class="col-md-4">
 
-        <mat-form-field class="inputSeccion" appearance="fill">
-          <mat-label>Sección</mat-label>
-          <mat-select>
-            <div *ngFor="let item of tipoComunicado">
-              <mat-option value="option1">{{item}}</mat-option>
-            </div>
-          </mat-select>
-        </mat-form-field>
+            <mat-form-field class="inputSeccion">
+              <mat-label>Sección</mat-label>
+              <mat-select>
+                <div *ngFor="let seccion of listaSeccion">
+                  <mat-option (click)="ObtenerSeccion(seccion)"  value="{{seccion}}" >{{seccion}}</mat-option>
+                </div>
+              </mat-select>
+            </mat-form-field>
 
+          </div>
+          <div class="col-md-3" style="margin-top: 15px;"><button class="btn btn-dark" (click)="enviarGradoSeccion(grado)">Mostrar grado sección</button></div>
+          <div class="col-md-3" style="margin-top: 15px; font-size: 18px;"></div>
+        </div>
       </div>
-      <div class="col-md-4" style="margin-top: 15px; font-size: 18px;"><i class="fas fa-user-tie"></i> José Antonio Rojas Cusi</div>
-      <div class="col-md-2" style="margin-top: 15px;"><button class="btn btn-dark">Ir</button></div>
     </div>
-  </div>
+</div>
+<div *ngSwitchCase="false">
+  <app-alumnado></app-alumnado>
+</div>
+
 </div>

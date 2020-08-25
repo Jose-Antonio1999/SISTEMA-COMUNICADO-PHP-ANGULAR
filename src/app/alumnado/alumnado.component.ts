@@ -10,18 +10,9 @@ export class AlumnadoComponent implements OnInit {
   escogeOption:String = "listaAlumno"
   listatutores = new Array<number>();
   tipoComunicado = new Array<string>();
+  vistaAlumnos:boolean = true
   constructor() {
-    this.listatutores.push(1)
-    this.listatutores.push(1)
-    this.listatutores.push(1)
-    this.listatutores.push(1)
-    this.listatutores.push(1)
 
-    this.tipoComunicado.push("A")
-    this.tipoComunicado.push("B")
-    this.tipoComunicado.push("C")
-    this.tipoComunicado.push("D")
-    this.tipoComunicado.push("E")
   }
 
   ngOnInit(): void {
@@ -37,6 +28,9 @@ export class AlumnadoComponent implements OnInit {
     this.escogeOption = "AddAlumnos"
   }
 
+  volverListaGradoSeccion(){
+    this.vistaAlumnos = false
+  }
 
 
 }

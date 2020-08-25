@@ -9,9 +9,12 @@ import { Alumnado } from '../class/Alumnado';
 })
 export class ListaPadresComponent implements OnInit {
   listaPadres = new Array<Alumnado>();
+  listaGeneral = new Array<Alumnado>();
+  gradoSeccion = new Array<String>();
   constructor(private inject:PeticionService) {
-
-    this.inject.PeticionGeneral().subscribe((resp)=>{
+    this.gradoSeccion.push(localStorage.getItem('seccionAlumno'))
+    this.gradoSeccion.push(localStorage.getItem('gradoAlumno'))
+    this.inject.listaPorGradoSeccion(this.gradoSeccion).subscribe((resp)=>{
       this.listaPadres = resp
     })
 

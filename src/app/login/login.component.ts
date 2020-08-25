@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
           this.ingreso = false
           this.snackBar.open("Datos incorrectos, Intente nuevamente", "", {
             duration: 2000,
-            horizontalPosition: "center",
+            horizontalPosition: "right",
             verticalPosition: "bottom",
           });
         }else{
@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
           }
           if(res[0].Perfil==2){
             localStorage.setItem('user',this.FormularioCreado.value.usuario);
-            console.log(res[0].Correo)
+            localStorage.setItem('correoDocente',res[0].Correo)
             this.ruta.navigateByUrl('Panel-Docente')
             this.ingreso = true
           }
