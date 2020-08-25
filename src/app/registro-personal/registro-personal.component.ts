@@ -4,6 +4,7 @@ import { GradoSeccion } from '../class/grados';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Consulta } from '../class/Consulta';
 import { Router } from '@angular/router';
+import { ServiceMensajeService } from '../Service/service-mensaje.service';
 
 @Component({
   selector: 'app-registro-personal',
@@ -20,7 +21,7 @@ export class RegistroPersonalComponent implements OnInit {
   obtenerDNI:String
   crearFormulario: FormGroup
   primerRegistro:boolean
-  constructor(private inject:PeticionService, private formbuilder:FormBuilder, private ruta:Router) {
+  constructor(private inject:PeticionService, private formbuilder:FormBuilder, private ruta:Router, private men:ServiceMensajeService) {
       this.crearFormulario = this.formbuilder.group({
         grado:['',Validators.required],
         seccion:['',Validators.required],
@@ -79,14 +80,9 @@ export class RegistroPersonalComponent implements OnInit {
     }
   }
   GuardarDatos(){
-
     this.inject.insertarPersonal(this.crearFormulario.value).subscribe((res)=>{
       console.log(res)
       this.crearFormulario.reset()
     })
-/*
-    this.inject.verPersonalInicio().subscribe((res)=>{
-        this.primerRegistro = true
-    })*/
   }
 }

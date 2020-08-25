@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ServiceMensajeService } from '../Service/service-mensaje.service';
 
 @Component({
   selector: 'app-menu',
@@ -10,7 +11,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class MenuComponent implements OnInit {
 
-  constructor(public dialog: MatDialog, private ruta:Router,private spinner: NgxSpinnerService) {
+  constructor(public dialog: MatDialog, private ruta:Router,private spinner: NgxSpinnerService,private me:ServiceMensajeService) {
 
   }
   openDialog() {
@@ -25,6 +26,9 @@ export class MenuComponent implements OnInit {
         localStorage.removeItem('user');
         this.ruta.navigateByUrl('')
       }, 2000);
+  }
+  sal(){
+    this.me.mensaje("gdfgdf")
   }
 
 }

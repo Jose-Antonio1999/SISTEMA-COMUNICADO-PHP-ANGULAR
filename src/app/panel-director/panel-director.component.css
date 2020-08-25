@@ -5,9 +5,10 @@
   height: 83vh;
   background: #FFFF;
   border-radius: 5px;
+  overflow: hidden;
 }
 #contenCuerpo{
-  height: 80vh;
+  height: 83vh;
   background: #FFF;
   overflow-y: scroll;
 }
@@ -24,6 +25,11 @@
 }
 #menu{
   cursor: pointer;
+}
+#contenG{
+  margin-right: 30px;
+  margin-left: 30px;
+  margin-top: 0px;
 }
 h3{
   margin-top: 23px;
@@ -47,6 +53,9 @@ h3 i{
 
 @media (max-width:990px){
   #menuItems{
+    display: none;
+  }
+  #contenCuerpo::-webkit-scrollbar{
     display: none;
   }
 }

@@ -10,3 +10,7 @@
   font-size: 22px;
   cursor: pointer;
 }
+.mat-form-field {
+  margin-right: 8px;
+}
+

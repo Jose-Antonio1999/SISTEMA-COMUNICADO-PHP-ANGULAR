@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Personal } from '../class/personal'
 import { GradoSeccion } from '../class/grados'
 import { Consulta } from '../class/Consulta'
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'

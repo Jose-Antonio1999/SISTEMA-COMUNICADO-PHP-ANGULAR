@@ -2,115 +2,121 @@
 <div  class="container">
 <div class="contenedorForm">
 
-    <form class="formulario">
+    <form [formGroup]="crearFormulario" class="formulario">
       <div class="row">
       <div class="col-md-6">
         <div>
           <h2><i class="fas fa-graduation-cap"></i> Registro alumnado</h2>
         </div>
+        <div class="form-inline">
 
-        <div class="form-group">
-          <mat-form-field class="modelInput">
-            <span matPrefix><i class="fas fa-address-card"></i> &nbsp;</span>
-            <mat-label>Dni Apoderado</mat-label>
-            <input  matInput autocomplete="off">
+          <mat-form-field class="inputOption">
+              <mat-label>Grado Estudiante </mat-label>
+              <mat-select formControlName="grado">
+                <div *ngFor="let grado of listaGrado">
+                  <mat-option value="{{grado}}">{{grado}}</mat-option>
+                </div>
+              </mat-select>
           </mat-form-field>
-        </div>
 
-        <div class="form-group">
-          <mat-form-field class="modelInput">
-            <mat-label>Nombre apoderado</mat-label>
-            <input  matInput autocomplete="off">
-            <mat-icon matSuffix><i class="fas fa-user-tie"></i></mat-icon>
+          <mat-form-field class="inputOption">
+            <mat-label>Sección Estudiante</mat-label>
+            <mat-select formControlName="seccion">
+              <div *ngFor="let seccion of listaSeccion">
+                <mat-option value="{{seccion}}">{{seccion}}</mat-option>
+              </div>
+            </mat-select>
           </mat-form-field>
+
         </div>
 
-        <div class="form-inline" id="contenLastname">
-
-            <mat-form-field class="lastName">
-              <mat-label>Apellido paterno</mat-label>
-              <input  matInput autocomplete="off">
-                <mat-icon matSuffix>portrait</mat-icon>
-            </mat-form-field>
-
-            <mat-form-field class="lastName">
-              <mat-label>Apellido materno</mat-label>
-              <input  matInput autocomplete="off">
-                <mat-icon matSuffix>portrait</mat-icon>
-            </mat-form-field>
-        </div>
-
-        <div class="form-group">
-          <mat-form-field class="modelInput">
-            <mat-label>Correo</mat-label>
-            <input  matInput autocomplete="off">
-              <mat-icon matSuffix>mail</mat-icon>
-          </mat-form-field>
-        </div>
-
-        <div class="form-group">
-          <mat-form-field class="modelInput">
-            <mat-label>Celular</mat-label>
-
-            <input type="tel" matInput>
-            <mat-icon matSuffix><span class="material-icons">stay_current_portrait</span></mat-icon>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="col-md-6" id="dataStudent">
-        <div class="form-group">
           <mat-form-field class="modelInput">
             <span matPrefix><i class="fas fa-address-card"></i> &nbsp;</span>
             <mat-label>Dni estudiante</mat-label>
-            <input  matInput autocomplete="off">
+            <input  matInput autocomplete="off" formControlName="dni_estudiante">
           </mat-form-field>
-        </div>
 
-        <div class="form-group">
           <mat-form-field class="modelInput">
             <mat-label>Nombre estudiante</mat-label>
-            <input  matInput autocomplete="off">
+            <input  matInput autocomplete="off" formControlName="nombre_estudiante">
             <mat-icon matSuffix><i class="fas fa-user-graduate"></i></mat-icon>
           </mat-form-field>
-        </div>
 
         <div class="form-inline" id="contenLastname">
-
             <mat-form-field class="lastName">
               <mat-label>Apellido paterno</mat-label>
-              <input  matInput autocomplete="off">
+              <input  matInput autocomplete="off" formControlName="apellidoP_estudiante">
                 <mat-icon matSuffix>portrait</mat-icon>
             </mat-form-field>
 
             <mat-form-field class="lastName">
               <mat-label>Apellido materno</mat-label>
-              <input  matInput autocomplete="off">
+              <input  matInput autocomplete="off" formControlName="apellidoM_estudiante">
                 <mat-icon matSuffix>portrait</mat-icon>
             </mat-form-field>
         </div>
 
-        <div class="form-group">
+        <mat-form-field class="modelInput">
+            <mat-label>Correo</mat-label>
+            <input  matInput autocomplete="off" formControlName="correo_estudiante">
+              <mat-icon matSuffix>mail</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="modelInput">
+            <mat-label>Celular</mat-label>
+            <input type="tel" matInput formControlName="celular_estudiante">
+            <mat-icon matSuffix><span class="material-icons">stay_current_portrait</span></mat-icon>
+        </mat-form-field>
+
+      </div>
+      <div class="col-md-6" id="dataStudent">
+
+          <mat-form-field class="modelInput">
+            <span matPrefix><i class="fas fa-address-card"></i> &nbsp;</span>
+            <mat-label>Dni Apoderado</mat-label>
+            <input  matInput autocomplete="off" formControlName="dni_apoderado">
+          </mat-form-field>
+
+        <mat-form-field class="modelInput">
+            <mat-label>Nombre apoderado</mat-label>
+            <input  matInput autocomplete="off" formControlName="nombre_apoderado">
+            <mat-icon matSuffix><i class="fas fa-user-tie"></i></mat-icon>
+        </mat-form-field>
+
+        <div class="form-inline" id="contenLastname">
+
+            <mat-form-field class="lastName">
+              <mat-label>Apellido paterno</mat-label>
+              <input  matInput autocomplete="off" formControlName="apellidoP_apoderado">
+                <mat-icon matSuffix>portrait</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field class="lastName">
+              <mat-label>Apellido materno</mat-label>
+              <input  matInput autocomplete="off" formControlName="apellidoM_apoderado">
+                <mat-icon matSuffix>portrait</mat-icon>
+            </mat-form-field>
+        </div>
+
           <mat-form-field class="modelInput">
             <mat-label>Correo</mat-label>
-            <input  matInput autocomplete="off">
+            <input  matInput autocomplete="off" formControlName="correo_apoderado">
               <mat-icon matSuffix>mail</mat-icon>
           </mat-form-field>
-        </div>
 
-        <div class="form-group">
           <mat-form-field class="modelInput">
             <mat-label>Celular</mat-label>
-
-            <input type="tel" matInput>
+            <input type="tel" matInput formControlName="celular_apoderado">
             <mat-icon matSuffix><span class="material-icons">stay_current_portrait</span></mat-icon>
           </mat-form-field>
-        </div>
-      </div>
-    </div>
 
-    <div class="form-inline" id="bottonRegisters">
-      <button type="button" class="btn btn-dark mr-0">Guargar datos</button>
-      <button type="button" class="btn btn-danger ml-2">Cancelar</button>
+
+        <div class="form-inline" id="bottonRegisters">
+          <button type="button" class="btn btn-dark mr-0" (click)="registrar()">Guargar datos</button>
+          <button type="button" class="btn btn-danger ml-2">Cancelar</button>
+        </div>
+
+      </div>
     </div>
 
     </form>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ServiceMensajeService } from '../Service/service-mensaje.service';
 
 @Component({
   selector: 'app-bandeja-entrada',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BandejaEntradaComponent implements OnInit {
   listaMensajesEntrada = new Array<number>();
-  constructor() {
+  constructor(private snackBar: MatSnackBar, private inject:ServiceMensajeService) {
     this.listaMensajesEntrada.push(1)
     this.listaMensajesEntrada.push(1)
     this.listaMensajesEntrada.push(1)

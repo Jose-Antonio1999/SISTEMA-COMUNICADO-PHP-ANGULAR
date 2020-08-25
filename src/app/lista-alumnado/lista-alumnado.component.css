@@ -16,3 +16,12 @@
   margin-right: 10px;
   margin-top: 5px;
 }
+
+@media (max-width:760px){
+  #contenedorAlumnos::-webkit-scrollbar{
+    display: none;
+  }
+  .card{
+    width: 100%;
+  }
+}
