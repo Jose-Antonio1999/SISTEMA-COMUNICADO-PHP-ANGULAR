@@ -1,0 +1,10 @@
+#contenIcon{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  cursor: pointer;
+}
+#icono{
+  font-size: 25px;
+  margin-top: 12px;
+}

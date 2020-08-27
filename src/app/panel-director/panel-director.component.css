@@ -1,12 +1,4 @@
-#menuItems{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 83vh;
-  background: #FFFF;
-  border-radius: 5px;
-  overflow: hidden;
-}
+
 #contenCuerpo{
   height: 83vh;
   background: #FFF;
@@ -24,6 +16,7 @@
   margin-left: 15px;
 }
 #menu{
+  margin-bottom: -12px;
   cursor: pointer;
   color: #FFF;
 }
@@ -33,22 +26,11 @@
   margin-top: 10px;
 }
 h3{
-  margin-top: 23px;
   margin-left: 35px;
-  font-size: 17px;
+  font-size: 15px;
 }
 h3 i{
   font-size: 22px;
-}
-.bandejaEntrada, .bandejaSalida, .alumnos, .docentes, .Redactar, .borradores{
-  height: 70px;
-  width: 90%;
-  background:#FFF;
-  margin: 0 auto;
-  margin-top: 15px;
-  cursor: pointer;
-  border-radius: 10px;
-  border:1px solid #1C5890;
 }
 
 @media (max-width:990px){
@@ -57,5 +39,8 @@ h3 i{
   }
   #contenCuerpo::-webkit-scrollbar{
     display: none;
+  }
+  #menu{
+    margin: 5px;
   }
 }

@@ -18,11 +18,11 @@ export class LoginComponent implements OnInit {
   ingreso:boolean
   existeUsuario:boolean
   data = new Array<Data>()
+  mfaild:boolean = false
   constructor(formBuilder:FormBuilder,
     private inject:PeticionService,
     private ruta:Router,
-    private spinner: NgxSpinnerService,
-    private snackBar: MatSnackBar) {
+    private spinner: NgxSpinnerService,) {
 
     this.inject.verPersonalInicio().subscribe((res)=>{
         if(res == ""){
@@ -48,12 +48,10 @@ export class LoginComponent implements OnInit {
       this.spinner.show();
       setTimeout(() => {
         if(res==0 || res == null || res ==""){
-          this.ingreso = false
-          this.snackBar.open("Datos incorrectos, Intente nuevamente", "", {
-            duration: 2000,
-            horizontalPosition: "right",
-            verticalPosition: "bottom",
-          });
+          this.mfaild = true
+          setTimeout(() => {
+            this.mfaild = false
+          }, 2000);
         }else{
           if(res[0].Perfil==1){
             localStorage.setItem('user',this.FormularioCreado.value.usuario);

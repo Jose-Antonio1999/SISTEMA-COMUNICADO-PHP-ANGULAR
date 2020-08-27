@@ -1,11 +1,15 @@
 <form [formGroup]="crearFormulario" class="formulario">
   <div class="container">
+
+    <div *ngIf="Mcorrecto" class="alert alert-success" role="alert">
+      Docente registrado correctamente !!
+    </div>
+
     <div class="row">
       <div class="col-md-6">
         <div>
           <h2><i class="fas fa-graduation-cap"></i> Registro Personal</h2>
         </div>
-
         <div class="option mb-2">
           <h3>¿Es tutor?</h3>
           <div (click)="Tutor()" class="form-check form-check-inline">
@@ -18,7 +22,6 @@
             <label id="radio" class="form-check-label" for="inlineRadio2">No</label>
           </div>
         </div>
-
         <div *ngIf="estutor">
           <mat-form-field class="inputOption">
             <mat-label>Grado </mat-label>

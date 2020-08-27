@@ -25,6 +25,9 @@ export class PanelDirectorComponent implements OnInit {
   Rcomunicado(){
     this.opcionEscogida = "Rcomunicado"
   }
+  ListaPadres(){
+    this.opcionEscogida = "Rpadres"
+  }
 
   salir(){
     this.spinner.show();

@@ -44,3 +44,68 @@
 .inputOption{
   width: 50%;
 }
+
+.inputRedactar{
+  width: 100%;
+}
+#formComunicado{
+  background:#FFF;
+  border-radius: 10px;
+}
+.previewComunicado{
+  height: 65vh;
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #000;
+  border-radius: 10px;
+  text-align: justify;
+}
+.logo{
+  display: flex;
+  height: 50px;
+  justify-content: center;
+}
+.logo p{
+  font-family: Garamond;
+  font-size: 25px;
+}
+.logo img{
+  height: 50px;
+  width: 50px;
+}
+.titulo{
+  margin-top: 10px;
+  font-size: 20px;
+}
+.tipo{
+  height: 60px;
+  width: 98%;
+  margin: 0 auto;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background:#007DF9;
+}
+.tipo p{
+  margin-top: 7px;
+  font-size: 27px;
+  font-family: fantasy;
+  color: #FFF;
+}
+.cuerpo{
+  padding: 10px;
+}
+
+.fecha{
+  margin-left: 10px;
+  font-family: fantasy;
+}
+.texto{
+  font-family: fantasy;
+  padding: 10px;
+}
+
+
+

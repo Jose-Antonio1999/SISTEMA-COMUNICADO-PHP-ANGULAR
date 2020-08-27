@@ -22,6 +22,9 @@
       <div id="menu"  (click)="Lalumnos()">
         <h3><i class="fas fa-user-graduate"></i> Alumnos</h3>
       </div>
+      <div id="menu"  (click)="ListaPadres()">
+        <h3><i class="fas fa-users"></i> Padres</h3>
+      </div>
       <div id="menu"  (click)="Ldocentes()">
         <h3><i class="fas fa-chalkboard-teacher"></i> Docentes</h3>
       </div>
@@ -58,6 +61,9 @@
         </div>
         <div *ngSwitchCase="'Rcomunicado'">
           <app-redactar-comunicado></app-redactar-comunicado>
+        </div>
+        <div *ngSwitchCase="'Rpadres'">
+          <app-padres-general></app-padres-general>
         </div>
       </div>
 

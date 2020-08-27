@@ -14,10 +14,16 @@ export class RegistroEstudianteComponent implements OnInit {
   listaSeccion = new Array<string>();
   listaGrado = new Array<string>();
   GradoSeccion = new Array<GradoSeccion>()
+
+  Mgrado:String
+  Mseccion:String
+  Mcorrecto:boolean = false
   constructor(private formBuilder:FormBuilder,private inject:PeticionService,private snackBar: MatSnackBar) {
+    this.Mgrado = localStorage.getItem('gradoAlumno')
+    this.Mseccion = localStorage.getItem('seccionAlumno')
     this.crearFormulario = formBuilder.group({
-      grado:['',Validators.required],
-      seccion:['',Validators.required],
+      grado:[this.Mgrado,Validators.required],
+      seccion:[this.Mseccion,Validators.required],
       dni_apoderado:['',Validators.required],
       nombre_apoderado:['',Validators.required],
       apellidoP_apoderado:['',Validators.required],
@@ -58,13 +64,12 @@ export class RegistroEstudianteComponent implements OnInit {
   registrar(){
     this.inject.insertarEstudiante(this.crearFormulario.value).subscribe((res)=>{
       console.log(res)
-      this.crearFormulario.reset()
-      this.snackBar.open("Registro guardado con éxito", "", {
-        duration: 3000,
-        horizontalPosition: "right",
-        verticalPosition: "bottom",
-      });
+      this.Mcorrecto = true
+      setTimeout(() => {
+        this.Mcorrecto = false
+      }, 2500);
     })
+    this.crearFormulario.reset()
   }
 
 }

@@ -30,6 +30,8 @@ export class RegistroDocenteComponent implements OnInit {
   listaGeneral = new Array<Alumnado>();
   listaPersonal = new Array<Personal>();
   anio:number
+
+  Mcorrecto:boolean = false
   constructor(private inject:PeticionService,
     private formbuilder:FormBuilder,
     private ruta:Router,
@@ -89,11 +91,10 @@ export class RegistroDocenteComponent implements OnInit {
     this.inject.insertarPersonal(this.crearFormulario.value).subscribe((res)=>{
       console.log(res)
       this.crearFormulario.reset()
-      this.snackBar.open("Datos registrados correctamente", "", {
-        duration: 2000,
-        horizontalPosition: "right",
-        verticalPosition: "bottom",
-      });
+      this.Mcorrecto = true
+      setTimeout(() => {
+        this.Mcorrecto = false
+      }, 2000);
     })
   }
   opNuevoDocente(){

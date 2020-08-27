@@ -1,6 +1,5 @@
 
 #contenedor{
-  margin:0 auto;
   height: 100vh;
   width: 100%;
   display: flex;
@@ -14,7 +13,7 @@
   border-radius: 5px;
 }
 .formulario{
-  width: 75%;
+  width: 70%;
   margin:0 auto;
 }
 .correo{
@@ -26,14 +25,15 @@
   margin: 0 auto;
 }
 .imgDecore{
-  height: 500px;
-  width: 105%;
+  width: 100%;
+  height: 100%;
   margin-left: -15px;
 }
 h2{
-  margin:30px;
+  margin:25px;
 }
 #conten-form{
+  height: auto;
   background:#FFFF;
   border-radius: 0px 5px 5px 0px;
 }

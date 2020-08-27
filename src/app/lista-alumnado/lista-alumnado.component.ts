@@ -16,10 +16,10 @@ export class ListaAlumnadoComponent implements OnInit {
     this.gradoSeccion.push(localStorage.getItem('gradoAlumno'))
     this.inject.listaPorGradoSeccion(this.gradoSeccion).subscribe((res)=>{
       this.listaGeneral = res
+      if(this.listaGeneral.length==0){
+        this.listaVacia = true
+      }
     })
-    if(this.listaGeneral.length==0){
-      this.listaVacia = true
-    }
   }
 
   ngOnInit(): void {

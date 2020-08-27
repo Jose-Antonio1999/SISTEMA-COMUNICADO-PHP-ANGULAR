@@ -5,13 +5,15 @@ import { PanelDirectorComponent } from './panel-director/panel-director.componen
 import { RegistroPersonalComponent } from './registro-personal/registro-personal.component';
 import { PanelControlComponent } from './panel-control/panel-control.component';
 import { MenuComponent } from './menu/menu.component';
+import { RedactarComunicadoComponent } from './redactar-comunicado/redactar-comunicado.component';
 
 const routes: Routes = [
   { path:"",component:LoginComponent},
   { path:"Panel-Director",component:PanelDirectorComponent},
   { path:"Login",component:LoginComponent},
   { path:"Panel-Docente",component:MenuComponent},
-  { path:"Registro-Personal",component:RegistroPersonalComponent}
+  { path:"Registro-Personal",component:RegistroPersonalComponent},
+  { path:"Redactar",component:RedactarComunicadoComponent}
 
 ];
 

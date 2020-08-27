@@ -1,5 +1,8 @@
 <div  class="container">
   <div id="contenedorAlumnos">
+    <div *ngIf="listaVacia">
+      <app-mostrar-lista-vacia></app-mostrar-lista-vacia>
+    </div>
     <div class="row">
       <div class="col-md-6" *ngFor="let dato of listaGeneral">
         <div class="card">
@@ -18,9 +21,6 @@
           </div>
         </div>
       </div>
-    <div *ngIf="listaVacia==true">
-        <!--<app-mostrar-lista-vacia></app-mostrar-lista-vacia>-->
-    </div>
     </div>
   </div>
 </div>

@@ -27,6 +27,7 @@ import { ListaPersonalComponent } from './lista-personal/lista-personal.componen
 import { ListaDocentesTutoresComponent } from './lista-docentes-tutores/lista-docentes-tutores.component';
 import { RegistroDocenteComponent } from './registro-docente/registro-docente.component';
 import { MostrarListaVaciaComponent } from './mostrar-lista-vacia/mostrar-lista-vacia.component';
+import { PadresGeneralComponent } from './padres-general/padres-general.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { MostrarListaVaciaComponent } from './mostrar-lista-vacia/mostrar-lista-
     ListaPersonalComponent,
     ListaDocentesTutoresComponent,
     RegistroDocenteComponent,
-    MostrarListaVaciaComponent
+    MostrarListaVaciaComponent,
+    PadresGeneralComponent
   ],
   imports: [
     BrowserModule,
