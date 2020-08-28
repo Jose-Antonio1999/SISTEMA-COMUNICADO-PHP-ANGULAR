@@ -55,6 +55,7 @@ export class LoginComponent implements OnInit {
         }else{
           if(res[0].Perfil==1){
             localStorage.setItem('user',this.FormularioCreado.value.usuario);
+            localStorage.setItem('correoDirector',res[0].Correo)
             this.ruta.navigateByUrl('Panel-Director')
             this.ingreso = true
           }

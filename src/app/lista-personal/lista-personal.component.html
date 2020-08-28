@@ -1,6 +1,6 @@
 <div class="row">
-  <div class="col-md-2">
-    <a  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" ><i class="fas fa-comment-alt"> nuevo</i></a>
+  <div class="col-md-3">
+    <a (click)="PrepararMensajeMasivo()"  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" ><i class="fas fa-comment-alt"> mensaje a docentes</i></a>
   </div>
   <div class="col-md-5">
     <mat-form-field style="width: 80%;" class="example-full-width">
@@ -12,7 +12,7 @@
   <div class="col-md-2">
 
   </div>
-  <div class="col-md-3">
+  <div class="col-md-1">
 
   </div>
 </div>
@@ -39,7 +39,7 @@
         <div><i id="icon" class="fas fa-envelope"></i> {{data.email_personal}}</div>
         <div><i id="icon" class="fas fa-mobile-alt"></i> {{data.celular_personal}}</div>
         <div class="mt-3">
-          <a class="btn btn-success ml-1" data-toggle="modal" data-target="#exampleModal">nuevo <i class="fas fa-comment-dots"></i></a>
+          <a (click)="prepararMensajeDocente(data.email_personal)" class="btn btn-success ml-1" data-toggle="modal" data-target="#exampleModal">nuevo <i class="fas fa-comment-dots"></i></a>
         </div>
       </div>
     </div>
@@ -56,31 +56,29 @@
         <div style="font-size:25px;margin-top: 5px;">
           <i class="fas fa-pen-square"></i> Redactar Comunicado
         </div>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button (click)="cancelar()" type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <div class="container">
 
+          <div *ngIf="mostrarMensajeSucces" class="alert alert-success" role="alert">
+            Mensaje enviado correctamente ..!!
+          </div>
+          <div *ngIf="mostrarMensajeDanger" class="alert alert-danger" role="alert">
+            Mensaje no enviado, Algo salió mal, intentelo nuevamente ..!!
+          </div>
+
           <div class="row">
             <div id="formComunicado" class="col-md-4">
 
               <form class="formulario" [formGroup]="crearFormularioMensaje">
 
-                <div class="form-group">
-                  <mat-form-field class="inputRedactar">
-                    <mat-label>Tipo Comunicado</mat-label>
-                    <input  matInput autocomplete="off"  formControlName="tipo">
-                  </mat-form-field>
-                </div>
-
-                <div class="form-group">
-                  <mat-form-field class="inputRedactar">
-                    <mat-label>Para</mat-label>
-                    <input  matInput autocomplete="off" formControlName="para">
-                  </mat-form-field>
-                </div>
+                <mat-form-field class="example-full-width" class="inputRedactar">
+                  <mat-label>Para</mat-label>
+                  <input matInput formControlName="para">
+                </mat-form-field>
 
                 <mat-form-field class="inputRedactar">
                   <mat-label>Asunto</mat-label>
@@ -88,13 +86,25 @@
                 </mat-form-field>
 
                 <mat-form-field class="inputRedactar">
-                  <mat-label>Cuerpo del Comunicado</mat-label>
-                  <textarea rows="10" matInput formControlName="cuerpo" ></textarea>
+                    <mat-label>Tipo Comunicado</mat-label>
+                    <input  matInput autocomplete="off"  formControlName="tipo">
                 </mat-form-field>
+
+
+                <mat-form-field class="inputRedactar">
+                  <mat-label>Cuerpo del Comunicado</mat-label>
+                  <textarea rows="10" matInput formControlName="cuerpo" maxlength="730"></textarea>
+                </mat-form-field>
+
+                <mat-form-field class="inputRedactar">
+                  <mat-label>Contraseña de su cuenta de Gmail</mat-label>
+                  <input  matInput autocomplete="off" type="password" formControlName="pass">
+                </mat-form-field>
+
                 <div class="form-inline">
-                  <button type="button" class="btn btn-primary m-1">Enviar</button>
+                  <button (click)="enviarMensaje()" type="button" class="btn btn-primary m-1" [disabled]="crearFormularioMensaje.invalid" style="background: #1C5890;"> Enviar </button>
                   <button type="button" class="btn btn-success m-1">Guardar borrador</button>
-                  <button type="button" class="btn btn-dark m-1">Cancelar</button>
+                  <button type="button" class="btn btn-dark m-1" (click)="cancelar()" data-dismiss="modal">Cancelar</button>
                 </div>
               </form>
             </div>
@@ -113,9 +123,10 @@
                   <div class="fecha">
                     fecha 22/08/2020
                   </div>
-                  <div class="texto">
+                  <div class="texto text-center">
                     Atentamente: Josen Antonio Rojas Cusi
                   </div>
+                  <div *ngIf="mostrarCargando" class="spin text-center"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>
                 </div>
               </div>
             </div>

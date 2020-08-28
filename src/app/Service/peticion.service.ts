@@ -52,5 +52,11 @@ export class PeticionService {
   listaPorGradoSeccion(data:any):Observable<any>{
     return this.http.post<any>(this.URL+'/ListaPorGradoSeccion.php',JSON.stringify(data));
   }
+  DatosUsuarioActual(data:any):Observable<any>{
+    return this.http.post<any>(this.URL+'/UsuarioActual.php',JSON.stringify(data));
+  }
+  EnvioMensaje(data:any):Observable<any>{
+    return this.http.post<any>(this.URL+'/EnviodeMensaje.php',JSON.stringify(data));
+  }
 
 }
