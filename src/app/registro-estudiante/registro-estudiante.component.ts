@@ -38,6 +38,7 @@ export class RegistroEstudianteComponent implements OnInit {
       correo_estudiante:[''],
       celular_estudiante:['']
     })
+
     this.inject.listaGrados().subscribe((res)=>{
       this.GradoSeccion = res
       this.filtrarSeccion()
@@ -63,13 +64,25 @@ export class RegistroEstudianteComponent implements OnInit {
 
   registrar(){
     this.inject.insertarEstudiante(this.crearFormulario.value).subscribe((res)=>{
-      console.log(res)
-      this.Mcorrecto = true
-      setTimeout(() => {
-        this.Mcorrecto = false
-      }, 2500);
-    })
-    this.crearFormulario.reset()
-  }
 
+      if(res==1){
+        this.Mcorrecto = true
+        setTimeout(() => {
+          this.Mcorrecto = false
+        }, 2500);
+        this.crearFormulario.reset()
+        this.crearFormulario.controls['grado'].setValue(this.Mgrado)
+        this.crearFormulario.controls['seccion'].setValue(this.Mseccion)
+      }else{
+        console.log(res)
+      }
+    })
+    this.crearFormulario.controls['grado'].setValue(this.Mgrado)
+    this.crearFormulario.controls['seccion'].setValue(this.Mseccion)
+  }
 }
+
+/*
+        this.crearFormulario.controls['grado'].setValue(this.Mgrado)
+        this.crearFormulario.controls['seccion'].setValue(this.Mseccion)
+*/

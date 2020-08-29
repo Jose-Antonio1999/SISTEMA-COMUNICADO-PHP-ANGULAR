@@ -1,0 +1,30 @@
+<div class="container mt-2">
+  <div class="row">
+    <div class="col-md-2">Lista de Borradores</div>
+    <div class="col-md-4">
+      <mat-form-field style="width: 80%; margin-top: -10px;" class="example-full-width">
+        <mat-label>Buscar</mat-label>
+        <input matInput placeholder="Buscar">
+        <mat-icon matSuffix><span class="material-icons">
+          search
+          </span></mat-icon>
+      </mat-form-field>
+    </div>
+    <div class="col-md-3">1</div>
+    <div class="col-md-3">1</div>
+  </div>
+</div>
+
+<div class="container" id="contendorBR">
+  <div class="card mt-2" *ngFor="let item of listaBorradores">
+    <div class="card-header" style="border-radius: 20px;">
+      <i class="fas fa-user-circle"></i> José Antonio Rojas
+    </div>
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+        <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+      </blockquote>
+    </div>
+  </div>
+</div>

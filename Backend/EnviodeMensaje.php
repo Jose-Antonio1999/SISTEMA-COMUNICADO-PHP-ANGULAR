@@ -38,17 +38,56 @@
       $listaCorreos = $DATA[2];
 
       //Codigo de envio de gmail
-
+      $fechaActual = date('Y-m-d');
+      $HoraActual = date('H:i:s');
       //datos
-      $usuario = utf8_decode("Jose");
-
+      $Asunto = utf8_decode($asunto);
+      $nombre_personal_iso = utf8_decode($nombre_personal);
       // Instantiation and passing `true` enables exceptions
       $mail = new PHPMailer(true);
-      $codigo = "<div style='background:#528BFF; height:auto; width: 100%; border-radius: 10px; margin-top:10px;'>
-      <h3 style='color:#FFFF;text-align: center;'>INSTITUCIÓN EDUCATIVA BELEN DE OSMA</h3>
-      <p style='color: #FFFF; text-align: justify; margin: 10px;'>Hola 👽 $cuerpo 😎
-      </p>
-      </div>";
+      $codigo = "<!DOCTYPE html>
+      <html lang='es'>
+      <head>
+          <meta charset='utf-8'>
+          <title>Comunicado</title>
+      </head>
+      <body>
+      <table style='max-width: 600px; padding: 10px; margin:0 auto; border: 1px solid #1A70B3;'>
+          <tr>
+              <td style='text-align: center; padding: 0; display: flex; justify-content: space-between'>
+                  <img width='90%' style='margin: 1.5% auto; text-align: left' src='https://i.postimg.cc/ZKJ9xQH3/belen3.png'>
+              </td>
+          </tr>
+
+          <tr>
+              <td style='font-family: Times, serif;'>
+                  <h2 style='text-align: center; text-decoration: underline;'>$tipo</h2>
+              </td>
+          </tr>
+          <tr>
+              <td>
+                  <div style=' text-align: justify;'>
+                      <p style='margin: 2px; font-size: 18px; font-family: 'Times New Roman', Times, serif;'>
+                        $cuerpo
+                      </p>
+                  </div>
+              </td>
+          </tr>
+          <tr>
+              <td>
+                  <p style='float: right;font-size: 18px'>Fecha:, $fechaActual</p>
+              </td>
+          </tr>
+          <tr>
+              <td>
+                  <p style='text-align: center; font-size: 18px; '>Atentamente:</p>
+                  <p style='text-align: center; font-size: 18px; margin-top: 0'>I.E Belén Osma y Pardo - Andahuaylas</p>
+                  <hr style='width: 40%; border: 1px solid; text-align: center'>
+              </td>
+          </tr>
+      </table>
+      </body>
+      </html>";
 
       try {
           //Server settings
@@ -61,27 +100,35 @@
           $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
           $mail->Port       = 587;                                // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
           //Recipients
-          $mail->setFrom($email_personal, $usuario);
+          $mail->setFrom($email_personal, $nombre_personal_iso);
           //asignamos un for para el envio de datos
           if(sizeof($listaCorreos)==0){
 
-            $mail->addAddress($para, 'Usted');
+            $mail->addAddress($para, 'Usuario');
 
           }else{
 
             for($i = 0; $i < sizeof($listaCorreos); $i++){
-              $mail->addAddress($listaCorreos[$i], 'Usted');     // Add a recipient
+              $mail->addAddress($listaCorreos[$i], 'Usuario');     // Add a recipient
             }
 
           }
 
           $mail->isHTML(true);                                  // Set email format to HTML
-          $mail->Subject = $asunto;
+          $mail->Subject = $Asunto;
           $mail->Body    = $codigo;
           $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
           $mail->send();
-          echo json_encode('1');
+
+          //Insertando comunicado a la BD
+          $sql = "INSERT INTO comunicado VALUES (NULL,'$asunto', '$fechaActual','$cuerpo','$HoraActual','enviado','$tipo','$id_personal'); ";
+          $querys = mysqli_query($conexion,$sql);
+          if(!$querys){
+            echo json_encode('0');
+          }else{
+            echo json_encode('1');
+          }
           } catch (Exception $e) {
               //echo json_encode("Message could not be sent. Mailer Error: {$mail->ErrorInfo}");
               echo json_encode('0');

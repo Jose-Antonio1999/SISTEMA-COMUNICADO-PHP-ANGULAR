@@ -1,0 +1,16 @@
+.card{
+  border-radius: 20px;
+}
+#contendorBR{
+  height: 76vh;
+  overflow-y: scroll;
+}
+
+#contenedorBR::-webkit-scrollbar{
+  height: 7px;
+  width: 7px;
+}
+#contenedorBR::-webkit-scrollbar-thumb{
+  border-radius: 10px;
+  background: #0C1E2E;
+}

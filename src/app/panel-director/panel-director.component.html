@@ -28,10 +28,7 @@
       <div id="menu"  (click)="Ldocentes()">
         <h3><i class="fas fa-chalkboard-teacher"></i> Docentes</h3>
       </div>
-      <div (click)="Rcomunicado()" id="menu"  >
-        <h3><i class="fas fa-pen-square"></i> Redactar</h3>
-      </div>
-      <div id="menu" >
+      <div (click)="ListaBorradorres()" id="menu" >
         <h3><i class="fas fa-eraser"></i> Borradores</h3>
       </div>
     </ul>
@@ -59,12 +56,13 @@
         <div *ngSwitchCase="'Ldocentes'">
           <app-lista-docentes></app-lista-docentes>
         </div>
-        <div *ngSwitchCase="'Rcomunicado'">
-          <app-redactar-comunicado></app-redactar-comunicado>
-        </div>
         <div *ngSwitchCase="'Rpadres'">
           <app-padres-general></app-padres-general>
         </div>
+        <div *ngSwitchCase="'Lborradores'">
+          <app-lista-borradores></app-lista-borradores>
+        </div>
+
       </div>
 
     </div>

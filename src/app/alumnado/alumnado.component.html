@@ -7,28 +7,21 @@
             <i id="icono" class="fas fa-arrow-alt-circle-left"></i>
           </div>
           <div class="col-md-5">
-            <mat-form-field style="width: 80%;" class="example-full-width">
-              <mat-label>Buscar</mat-label>
-              <input matInput placeholder="Buscar">
-              <mat-icon matSuffix><span class="material-icons">
-                search
-                </span></mat-icon>
-            </mat-form-field>
+            Datos de los alumnos del {{grado}} {{seccion}}
           </div>
-          <div (click)="optionAlumnos()" id="contenIcon" class="col-md-1" style="background: yellowgreen;">
+          <div id="contenIcon"  class="col-md-1">
+          </div>
+          <div (click)="optionAlumnos()" id="contenIcon" class="col-md-1">
             <i id="icono" class="fas fa-graduation-cap"></i>
           </div>
           <div (click)="optionPadres()" id="contenIcon" class="col-md-1">
             <span id="icono" class="material-icons">supervised_user_circle</span>
           </div>
-          <div class="col-md-2">
-
-          </div>
           <div (click)="optionAddAlumno()" id="contenIcon" class="col-md-1">
             <i id="icono" class="fas fa-user-plus"></i>
           </div>
-          <div id="contenIcon"  class="col-md-1">
-            <i id="icono" class="fas fa-comment-dots"></i>
+          <div class="col-md-2">
+
           </div>
         </div>
       </div>

@@ -20,6 +20,7 @@ export class ListaPadresComponent implements OnInit {
       this.listaPadres = resp
       if(this.listaPadres.length==0){
         this.listaVacia = true
+        console.log(this.listaPadres)
       }
     })
 

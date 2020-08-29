@@ -29,11 +29,11 @@ export class PanelDirectorComponent implements OnInit {
   Ldocentes(){
     this.opcionEscogida = "Ldocentes"
   }
-  Rcomunicado(){
-    this.opcionEscogida = "Rcomunicado"
-  }
   ListaPadres(){
     this.opcionEscogida = "Rpadres"
+  }
+  ListaBorradorres(){
+    this.opcionEscogida = "Lborradores"
   }
 
   salir(){

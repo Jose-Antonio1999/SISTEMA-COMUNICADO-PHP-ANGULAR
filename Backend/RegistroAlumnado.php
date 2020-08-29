@@ -40,20 +40,21 @@ if(isset($data)){
     $idApoderado = $fila['id_apoderado'];
   }
 
-  $sql2 = "SELECT id_grado_seccion FROM gradoseccion WHERE grado='$grado' and seccion='$seccion' ";
+  $sql2 = "SELECT id_grado_seccion FROM gradoseccion WHERE grado='$grado' and seccion='$seccion'; ";
   $query2 = mysqli_query($conexion,$sql2);
 
   while($filas2 = mysqli_fetch_array($query2)){
     $idGradoSeccion = $filas2['id_grado_seccion'];
   }
+
   $anio = date("Y") + 5;
-  $sql3 = "INSERT INTO alumno VALUES(NULL,'$dni_estudiante','$nombre_estudiante','$apellidoP_estudiante','$apellidoM_estudiante','$anio','1','$idGradoSeccion','$idApoderado') ";
+  $sql3 = "INSERT INTO alumno VALUES(NULL,'$dni_estudiante','$nombre_estudiante','$apellidoP_estudiante','$apellidoM_estudiante','$anio','1','$idGradoSeccion','$idApoderado'); ";
   $query3 = mysqli_query($conexion,$sql3);
 
   if(!$sql3){
-    echo json_encode("Algo salió mal");
+    echo json_encode("0");
   }else{
-    echo json_encode("Registro exitoso");
+    echo json_encode("1");
   }
 
 }

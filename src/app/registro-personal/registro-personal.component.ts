@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Consulta } from '../class/Consulta';
 import { Router } from '@angular/router';
 import { ServiceMensajeService } from '../Service/service-mensaje.service';
+import { Personal } from '../class/personal';
 
 @Component({
   selector: 'app-registro-personal',
@@ -12,7 +13,6 @@ import { ServiceMensajeService } from '../Service/service-mensaje.service';
   styleUrls: ['./registro-personal.component.css']
 })
 export class RegistroPersonalComponent implements OnInit {
-  estutor:boolean = false
   GradoSeccion = new Array<GradoSeccion>()
   newGradoSeccion = new Array<GradoSeccion>()
   listaSeccion = new Array<string>();
@@ -21,6 +21,9 @@ export class RegistroPersonalComponent implements OnInit {
   obtenerDNI:String
   crearFormulario: FormGroup
   primerRegistro:boolean
+  estutor:boolean = false
+
+  personal:Personal
   constructor(private inject:PeticionService, private formbuilder:FormBuilder, private ruta:Router, private men:ServiceMensajeService) {
       this.crearFormulario = this.formbuilder.group({
         grado:['',Validators.required],
@@ -36,7 +39,6 @@ export class RegistroPersonalComponent implements OnInit {
       this.inject.listaGrados().subscribe((res)=>{
         this.GradoSeccion = res
       })
-
   }
 
   ngOnInit(): void {

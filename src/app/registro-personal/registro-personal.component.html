@@ -25,6 +25,7 @@
 
 
         <div *ngIf="estutor">
+
           <mat-form-field class="inputOption">
             <mat-label>Grado </mat-label>
             <mat-select formControlName="grado">
@@ -32,7 +33,7 @@
                 <mat-option value="{{grado}}">{{grado}}</mat-option>
               </div>
             </mat-select>
-        </mat-form-field>
+          </mat-form-field>
 
           <mat-form-field class="inputOption">
             <mat-label>Sección</mat-label>
@@ -42,6 +43,7 @@
               </div>
             </mat-select>
           </mat-form-field>
+
         </div>
 
         <mat-form-field style="width: 100%;">
@@ -55,21 +57,17 @@
           </mat-select>
         </mat-form-field>
 
-        <div class="form-group">
-          <mat-form-field class="modelInput">
+        <mat-form-field class="modelInput">
             <span matPrefix><i class="fas fa-address-card"></i> &nbsp;</span>
             <mat-label>Dni personal</mat-label>
-            <input  matInput autocomplete="off" formControlName="dni">
-          </mat-form-field>
-        </div>
+            <input  matInput autocomplete="off" formControlName="dni" maxlength="8">
+        </mat-form-field>
 
-        <div class="form-group">
-          <mat-form-field class="modelInput">
+        <mat-form-field class="modelInput">
             <mat-label>Nombres</mat-label>
             <input  matInput autocomplete="off" matInput formControlName="nombre">
             <mat-icon matSuffix><i class="fas fa-user-tie"></i></mat-icon>
-          </mat-form-field>
-        </div>
+        </mat-form-field>
 
         <div class="form-inline" id="contenLastname">
 
@@ -86,28 +84,24 @@
             </mat-form-field>
         </div>
 
-        <div class="form-group">
-          <mat-form-field class="modelInput">
+        <mat-form-field class="modelInput">
             <mat-label>Correo</mat-label>
             <input type="email"  matInput autocomplete="off" formControlName="correo">
               <mat-icon matSuffix>mail</mat-icon>
-          </mat-form-field>
-        </div>
+        </mat-form-field>
 
-        <div class="form-group">
-          <mat-form-field class="modelInput">
+        <mat-form-field class="modelInput">
             <mat-label>Celular</mat-label>
-
-            <input type="tel" matInput formControlName="celular">
+            <input type="tel" matInput formControlName="celular" maxlength="9">
             <mat-icon matSuffix><span class="material-icons">stay_current_portrait</span></mat-icon>
-          </mat-form-field>
-        </div>
+        </mat-form-field>
+
       </div>
 
     </div>
 
     <div class="form-inline" id="bottonRegisters">
-      <button type="button" class="btn btn-dark mr-0" (click)="GuardarDatos()">Guargar datos</button>
+      <button type="button" class="btn btn-dark mr-0" (click)="GuardarDatos()" [disabled]="crearFormulario.invalid">Guargar datos</button>
       <button type="button" class="btn btn-danger ml-2">Cancelar</button>
     </div>
 

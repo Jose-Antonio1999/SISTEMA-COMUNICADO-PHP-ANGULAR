@@ -6,10 +6,9 @@
         <h3 style="margin-top: 10px;">Lista de padres en general</h3>
       </div>
       <div id="contenIcon" class="col-md-1" >
-        <i id="icono" class="fas fa-graduation-cap"></i>
+        <i id="icono" class="fas fa-comment-alt"></i>
       </div>
       <div id="contenIcon" class="col-md-1" >
-        <i id="icono" class="fas fa-comment-alt"></i>
       </div>
       <div id="contenIcon" class="col-md-1" >
       </div>
@@ -23,7 +22,7 @@
     <div *ngIf="Mvacio">
       <app-mostrar-lista-vacia></app-mostrar-lista-vacia>
     </div>
-    <div class="container">
+    <div *ngIf="!Mvacio" class="container">
       <table class="table table-striped">
         <thead>
           <tr>
@@ -31,7 +30,7 @@
             <th scope="col">Apoderado</th>
             <th scope="col">DNI</th>
             <th scope="col">email</th>
-            <th scope="col">Celularr</th>
+            <th scope="col">Celular</th>
           </tr>
         </thead>
         <tbody>

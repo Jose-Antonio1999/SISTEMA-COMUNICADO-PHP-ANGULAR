@@ -1,8 +1,9 @@
 #contenedorAlumnos{
-  height: 65vh;
+  height: 68vh;
   width: 100%;
   overflow: hidden;
   overflow-y: scroll;
+  margin-top: -10px;
 }
 #contenedorAlumnos::-webkit-scrollbar{
   height: 7px;
@@ -16,6 +17,145 @@
   margin-right: 10px;
   margin-top: 5px;
 }
+#contenIcon{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  cursor: pointer;
+}
+#icono{
+  font-size: 25px;
+  margin-top: 12px;
+}
+.modelInput{
+  width: 100%;
+}
+.inputOption{
+  width: 50%;
+}
+
+.inputRedactar{
+  width: 100%;
+}
+#formComunicado{
+  background:#FFF;
+  border-radius: 10px;
+}
+.previewComunicado{
+  height: 65vh;
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #000;
+  border-radius: 10px;
+  text-align: justify;
+}
+.logo{
+  display: flex;
+  height: 50px;
+  justify-content: center;
+}
+.logo p{
+  font-family: Garamond;
+  font-size: 25px;
+}
+.logo img{
+  height: 50px;
+  width: 50px;
+}
+.titulo{
+  margin-top: 10px;
+  font-size: 20px;
+}
+.tipo{
+  height: 60px;
+  width: 98%;
+  margin: 0 auto;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background:#007DF9;
+}
+.tipo p{
+  margin-top: 7px;
+  font-size: 27px;
+  font-family: fantasy;
+  color: #FFF;
+}
+.cuerpo{
+  padding: 10px;
+}
+
+.fecha{
+  margin-left: 10px;
+  font-family: fantasy;
+}
+.texto{
+  font-family: fantasy;
+  padding: 10px;
+}
+.spin{
+  z-index: 1000;
+  margin: 0 auto;
+}
+/*CSS para mostrar la carga*/
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ellipsis div {
+  position: absolute;
+  top: 33px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #0C1E2E;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+  left: 8px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+  left: 32px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: 56px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
+}
+
 
 @media (max-width:760px){
   #contenedorAlumnos::-webkit-scrollbar{

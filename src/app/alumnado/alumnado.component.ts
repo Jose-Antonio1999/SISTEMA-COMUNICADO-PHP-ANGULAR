@@ -11,8 +11,11 @@ export class AlumnadoComponent implements OnInit {
   listatutores = new Array<number>();
   tipoComunicado = new Array<string>();
   vistaAlumnos:boolean = true
+  grado:String
+  seccion:String
   constructor() {
-
+    this.seccion = localStorage.getItem('seccionAlumno')
+    this.grado = localStorage.getItem('gradoAlumno')
   }
 
   ngOnInit(): void {

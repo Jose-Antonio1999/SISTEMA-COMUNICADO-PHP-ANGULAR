@@ -58,5 +58,12 @@ export class PeticionService {
   EnvioMensaje(data:any):Observable<any>{
     return this.http.post<any>(this.URL+'/EnviodeMensaje.php',JSON.stringify(data));
   }
+  ListaComunicados():Observable<any>{
+    return this.http.get<any>(this.URL+'/listaMensajesEnviados.php');
+  }
+  //Actualizar Datos
+  ActualizarPersonal(data:any):Observable<any>{
+    return this.http.put<any>(this.URL+'/actualizarPersonal.php',JSON.stringify(data));
+  }
 
 }

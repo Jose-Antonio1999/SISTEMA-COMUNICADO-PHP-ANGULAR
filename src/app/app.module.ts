@@ -28,6 +28,7 @@ import { ListaDocentesTutoresComponent } from './lista-docentes-tutores/lista-do
 import { RegistroDocenteComponent } from './registro-docente/registro-docente.component';
 import { MostrarListaVaciaComponent } from './mostrar-lista-vacia/mostrar-lista-vacia.component';
 import { PadresGeneralComponent } from './padres-general/padres-general.component';
+import { ListaBorradoresComponent } from './lista-borradores/lista-borradores.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { PadresGeneralComponent } from './padres-general/padres-general.componen
     ListaDocentesTutoresComponent,
     RegistroDocenteComponent,
     MostrarListaVaciaComponent,
-    PadresGeneralComponent
+    PadresGeneralComponent,
+    ListaBorradoresComponent
   ],
   imports: [
     BrowserModule,
