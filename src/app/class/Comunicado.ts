@@ -7,6 +7,7 @@ export class Comunicado{
   hora
   estado
   tipo_comunicado
+  Destino
   id_personal
 
   constructor(){
@@ -17,6 +18,7 @@ export class Comunicado{
     this.hora = this.hora
     this.estado = this.estado
     this.tipo_comunicado = this.tipo_comunicado
+    this.Destino = this.Destino
     this.id_personal = this.id_personal
   }
 }

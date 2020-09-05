@@ -27,6 +27,8 @@ export class ListaDocentesComponent implements OnInit {
   listaGeneral = new Array<Alumnado>();
   listaPersonal = new Array<Personal>();
   anio:number
+  titleTutor:String
+  esconderTittle:boolean = true
   constructor(private inject:PeticionService,
     private formbuilder:FormBuilder,
     private ruta:Router) {
@@ -83,12 +85,17 @@ export class ListaDocentesComponent implements OnInit {
     })
   }
   opNuevoDocente(){
+    this.esconderTittle = false
     this.nuevoRegistro = "nuevoDocente"
   }
   opListaDocente(){
+    this.esconderTittle = true
+    this.titleTutor = ""
     this.nuevoRegistro = "listaDocentes"
   }
   opListaTutor(){
+    this.esconderTittle = true
+    this.titleTutor = "tutores"
     this.nuevoRegistro = "listaDocentesTutores"
   }
 

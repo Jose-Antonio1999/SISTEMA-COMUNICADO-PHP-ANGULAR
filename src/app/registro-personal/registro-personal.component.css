@@ -5,9 +5,9 @@
   padding: 25px;
   background:#FFFF;
   border-radius: 8px;
-  -webkit-box-shadow: 0px 2px 5px 2px rgba(173,173,173,1);
-  -moz-box-shadow: 0px 2px 5px 2px rgba(173,173,173,1);
-  box-shadow: 0px 2px 5px 2px rgba(173,173,173,1);
+  -webkit-box-shadow: 0px 5px 5px -1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 5px 5px -1px rgba(0,0,0,0.75);
+  box-shadow: 0px 5px 5px -1px rgba(0,0,0,0.75);
 }
 .modelInput{
   width: 100%;

@@ -26,15 +26,16 @@
 
           <div class="form-group">
             <mat-form-field class="correo">
-              <mat-label>Correo</mat-label>
-              <input  matInput autocomplete="off" formControlName="user">
+              <mat-label>Usuario</mat-label>
+              <input  matInput autocomplete="off" maxlength="8" formControlName="user">
             </mat-form-field>
           </div>
           <div class="form-group">
             <mat-form-field class="contrasenia" appearance="legacy">
               <mat-label>Contraseña</mat-label>
-              <input type="password" matInput formControlName="pass">
-              <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+              <input #passw type="password" matInput formControlName="pass">
+              <mat-icon *ngIf="!verPass" style="cursor: pointer;" (click)="verPassw()" matSuffix><span class="material-icons">visibility</span></mat-icon>
+              <mat-icon *ngIf="verPass"  style="cursor: pointer;" (click)="noPassw()" matSuffix><span class="material-icons">visibility_off</span></mat-icon>
             </mat-form-field>
           </div>
           <div *ngIf="mfaild" class="alert alert-danger" role="alert">
@@ -45,7 +46,7 @@
             <label class="form-check-label" for="exampleCheck1">Recuerdamelo</label>
           </div>
           <div class="form-inline">
-            <button type="button" class="btn btn-dark mb-3" (click)="Ingresar()">Ingresar</button>
+            <button type="button" class="btn btn-dark mb-3" (click)="Ingresar()" [disabled]="FormularioCreado.invalid">Ingresar</button>
             <p class="ml-5 mt-3 mb-3"><a href="#">Olvide mi password</a></p>
           </div>
         </form>

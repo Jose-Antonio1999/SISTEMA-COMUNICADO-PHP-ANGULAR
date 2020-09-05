@@ -6,6 +6,7 @@ import { Consulta } from '../class/Consulta';
 import { Router } from '@angular/router';
 import { ServiceMensajeService } from '../Service/service-mensaje.service';
 import { Personal } from '../class/personal';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-registro-personal',
@@ -24,16 +25,21 @@ export class RegistroPersonalComponent implements OnInit {
   estutor:boolean = false
 
   personal:Personal
-  constructor(private inject:PeticionService, private formbuilder:FormBuilder, private ruta:Router, private men:ServiceMensajeService) {
+  mMensaje:boolean = false
+  constructor(private inject:PeticionService,
+    private formbuilder:FormBuilder,
+    private ruta:Router,
+    private men:ServiceMensajeService,
+    private spinner: NgxSpinnerService) {
       this.crearFormulario = this.formbuilder.group({
-        grado:['',Validators.required],
-        seccion:['',Validators.required],
+        grado:[''],
+        seccion:[''],
         tipoPersonal:['',Validators.required],
-        dni:['',Validators.required],
+        dni:['',[Validators.required,Validators.maxLength(8)]],
         nombre:['',Validators.required],
         apellidoP:['',Validators.required],
         apellidoM:['',Validators.required],
-        correo:['',Validators.required],
+        correo:['',[Validators.required,Validators.email]],
         celular:['',Validators.required]
       })
       this.inject.listaGrados().subscribe((res)=>{
@@ -63,28 +69,21 @@ export class RegistroPersonalComponent implements OnInit {
     }
     this.listaGrado = Array.from(new Set(this.listaGrado))
   }
-  llenarDatos(){
-    if(this.crearFormulario.value.dni.length == 8){
-      this.inject.leerUsuarioDni(this.crearFormulario.value.dni).subscribe((res)=>{
-        this.datosPersonales.push(res)
-        this.crearFormulario = this.formbuilder.group({
-          grado:[this.crearFormulario.value.grado,Validators.required],
-          seccion:[this.crearFormulario.value.seccion,Validators.required],
-          tipoPersonal:[this.crearFormulario.value.tipoPersonal,Validators.required],
-          dni:[this.datosPersonales[0].dni,Validators.required],
-          nombre:[this.datosPersonales[0].nombres,Validators.required],
-          apellidoP:[this.datosPersonales[0].apellidoPaterno,Validators.required],
-          apellidoM:[this.datosPersonales[0].apellidoMaterno,Validators.required],
-          correo:['',Validators.required],
-          celular:['',Validators.required]
-        })
-      })
-    }
-  }
   GuardarDatos(){
     this.inject.insertarPersonal(this.crearFormulario.value).subscribe((res)=>{
-      console.log(res)
-      this.crearFormulario.reset()
+      this.spinner.show();
+      setTimeout(() => {
+        if(res==1){
+          this.crearFormulario.reset()
+          this.ruta.navigateByUrl('Login');
+        }else{
+          this.mMensaje = true
+        }
+        this.spinner.hide();
+      }, 2000);
     })
+  }
+  cancelar(){
+    this.crearFormulario.reset()
   }
 }

@@ -23,6 +23,8 @@ if(!$query){
     $lista[$i]['estado'] = $filas['estado'];
     $lista[$i]['tipo_comunicado'] = $filas['tipo_comunicado'];
     $lista[$i]['id_personal'] = $filas['id_personal'];
+    $lista[$i]['Destino'] = $filas['Destino'];
+    $lista[$i]['visible'] = true;
     $i++;
   }
   echo json_encode($lista);

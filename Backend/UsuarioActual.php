@@ -8,12 +8,12 @@ require('conexion.php');
 
 // Get obtenemos los datos
 $data = file_get_contents("php://input");
-$correo = json_decode($data);
+$dni = json_decode($data);
 
 if(isset($data)){
   $lista = [];
   $sql = "SELECT DISTINCT* FROM personal INNER JOIN tipopersonal on tipopersonal.id_tipo_personal=personal.id_tipo_personal
-          WHERE email_personal = '$correo' ";
+          WHERE DNI_personal = '$dni' ";
   $i = 0;
   $query = mysqli_query($conexion,$sql);
 

@@ -1,16 +1,115 @@
-.card{
-  border-radius: 20px;
-}
+
 #contendorBR{
   height: 76vh;
   overflow-y: scroll;
 }
 
-#contenedorBR::-webkit-scrollbar{
+#contendorBR::-webkit-scrollbar{
   height: 7px;
   width: 7px;
 }
-#contenedorBR::-webkit-scrollbar-thumb{
+#contendorBR::-webkit-scrollbar-thumb{
   border-radius: 10px;
   background: #0C1E2E;
+}
+#iconEditar:hover{
+  background:#0E7ECD;
+}
+#iconDelete{
+  background:#E81123;
+}
+.lastName{
+  width: 50%;
+}
+.card{
+  margin-right: 10px;
+  margin-top: 5px;
+}
+.menuOption{
+  display: flex;
+  justify-content: flex-end;
+}
+.iconoOption{
+  margin-top: 2px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.modelInput{
+  width: 100%;
+}
+.inputOption{
+  width: 50%;
+}
+
+.inputRedactar{
+  width: 100%;
+}
+#formComunicado{
+  background:#FFF;
+  border-radius: 10px;
+}
+.previewComunicado{
+  height: 65vh;
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #000;
+  border-radius: 10px;
+  text-align: justify;
+}
+.logo{
+  display: flex;
+  height: 50px;
+  justify-content: center;
+}
+.logo p{
+  font-family: Garamond;
+  font-size: 25px;
+}
+.logo img{
+  height: 50px;
+  width: 50px;
+}
+.titulo{
+  margin-top: 10px;
+  font-size: 20px;
+}
+.tipo{
+  height: 60px;
+  width: 98%;
+  margin: 0 auto;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background:#007DF9;
+}
+table{
+  border-collapse:separate;
+  border-spacing: 10;
+  border-radius:10px;
+  -moz-border-radius:10px;
+  -webkit-border-radius: 10px;
+}
+.tipo p{
+  margin-top: 7px;
+  font-size: 27px;
+  font-family: fantasy;
+  color: #FFF;
+}
+.cuerpo{
+  padding: 10px;
+}
+
+.fecha{
+  margin-left: 10px;
+  font-family: fantasy;
+}
+.texto{
+  font-family: fantasy;
+  padding: 10px;
+}
+.titleCB{
+  margin-top: 13px;
+  font-size: 18px;
 }

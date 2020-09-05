@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ServiceMensajeService } from '../Service/service-mensaje.service';
+import { PeticionService } from '../Service/peticion.service';
+import { Personal } from '../class/personal';
 
 @Component({
   selector: 'app-menu',
@@ -10,9 +12,19 @@ import { ServiceMensajeService } from '../Service/service-mensaje.service';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-
-  constructor(public dialog: MatDialog, private ruta:Router,private spinner: NgxSpinnerService,private me:ServiceMensajeService) {
-
+  PerfilCurrect:Personal
+  NombreUserCurrent:String
+  data:String
+  constructor(
+    public dialog: MatDialog,
+    private ruta:Router,
+    private spinner: NgxSpinnerService,
+    private me:ServiceMensajeService,
+    private inject:PeticionService) {
+      this.data = localStorage.getItem('DNIDocente')
+      this.inject.DatosUsuarioActual(this.data).subscribe((res)=>{
+        console.log(res)
+      })
   }
   openDialog() {
     this.dialog.open(DialogElementsExampleDialog);
@@ -28,7 +40,7 @@ export class MenuComponent implements OnInit {
       }, 2000);
   }
   sal(){
-    this.me.mensaje("gdfgdf")
+    this.me.mensaje("Estamos en matenimiento")
   }
 
 }

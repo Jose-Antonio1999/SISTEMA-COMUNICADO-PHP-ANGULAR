@@ -7,7 +7,12 @@ header("Access-Control-Allow-Headers: *");
 require('conexion.php');
 
 $lista = [];
-$sql = "SELECT DISTINCT* FROM personal INNER JOIN tipopersonal on tipopersonal.id_tipo_personal=personal.id_tipo_personal";
+$sql = "SELECT DISTINCT personal.id_personal, DNI_personal, nombre_personal, apellidoPaterno_personal,
+apellidoMaterno_personal, email_personal, celular_personal, tipoPersonal.id_tipo_personal,
+tipoPersonal, estadoPersonal, id_Tutor, anio, grado, seccion, gradoseccion.id_grado_seccion
+FROM tipopersonal LEFT JOIN personal ON tipopersonal.id_tipo_personal = personal.id_tipo_personal
+                                            LEFT JOIN tutor on personal.id_personal=tutor.id_personal
+                                            LEFT JOIN gradoseccion on tutor.id_grado_seccion=gradoseccion.id_grado_seccion";
 $i = 0;
 $query = mysqli_query($conexion,$sql);
 
@@ -24,6 +29,14 @@ if(!$query){
     $lista[$i]['celular_personal'] = $filas['celular_personal'];
     $lista[$i]['id_tipo_personal'] = $filas['id_tipo_personal'];
     $lista[$i]['tipoPersonal'] = $filas['tipoPersonal'];
+
+    $lista[$i]['estadoPersonal'] = $filas['estadoPersonal'];
+    $lista[$i]['id_Tutor'] = $filas['id_Tutor'];
+    $lista[$i]['anio'] = $filas['anio'];
+    $lista[$i]['grado'] = $filas['grado'];
+    $lista[$i]['seccion'] = $filas['seccion'];
+    $lista[$i]['id_grado_seccion'] = $filas['id_grado_seccion'];
+
     $i++;
   }
   echo json_encode($lista);

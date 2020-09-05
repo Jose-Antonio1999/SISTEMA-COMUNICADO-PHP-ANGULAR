@@ -27,8 +27,6 @@ if(isset($data)){
   $nombre_estudiante = mysqli_real_escape_string($conexion,$Alumnado->nombre_estudiante);
   $apellidoP_estudiante = mysqli_real_escape_string($conexion,$Alumnado->apellidoP_estudiante);
   $apellidoM_estudiante = mysqli_real_escape_string($conexion,$Alumnado->apellidoM_estudiante);
-  $correo_estudiante = mysqli_real_escape_string($conexion,$Alumnado->correo_estudiante);
-  $celular_estudiante = mysqli_real_escape_string($conexion,$Alumnado->celular_estudiante);
 
   $sql = "INSERT INTO apoderado VALUES(NULL,'$dni_apoderado','$nombre_apoderado','$apellidoP_apoderado','$apellidoM_apoderado','$correo_apoderado','$celular_apoderado');";
   $query = mysqli_query($conexion,$sql);

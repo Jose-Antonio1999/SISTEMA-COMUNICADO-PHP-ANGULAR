@@ -7,22 +7,25 @@
       <div class="row">
       <div class="col-md-12">
         <div>
-          <h2><i class="fas fa-graduation-cap"></i> Registro Personal</h2>
+          <h2><i class="fas fa-graduation-cap"></i> Registro de acceso al sistema</h2>
         </div>
 
-        <div class="option mb-2">
+        <div *ngIf="mMensaje" class="alert alert-danger" role="alert">
+          Error al registrarte, intentelo nuevamente ..!
+        </div>
+
+        <div class="option mb-2" *ngIf="false">
           <h3>¿Es tutor?</h3>
-          <div (click)="Tutor()" class="form-check form-check-inline">
-            <input id="radio" class="form-check-input" name="tutor" type="radio"id="inlineRadio1" value="option1">
+          <div class="form-check form-check-inline">
+            <input (click)="Tutor()" id="radio" class="form-check-input" name="tutor" type="radio"id="inlineRadio1" value="option1">
             <label id="radio" class="form-check-label" for="inlineRadio1">Si</label>
           </div>
 
-          <div (click)="NoTutor()" class="form-check form-check-inline">
-            <input id="radio" class="form-check-input" name="tutor" type="radio" id="inlineRadio2" value="option2" checked>
+          <div class="form-check form-check-inline">
+            <input (click)="NoTutor()" id="radio" class="form-check-input" name="tutor" type="radio" id="inlineRadio2" value="option2" checked>
             <label id="radio" class="form-check-label" for="inlineRadio2">No</label>
           </div>
         </div>
-
 
         <div *ngIf="estutor">
 
@@ -51,8 +54,6 @@
           <mat-select formControlName="tipoPersonal">
             <div>
               <mat-option value="1">Director</mat-option>
-              <mat-option value="2">Docente</mat-option>
-              <mat-option value="3">Secretaria</mat-option>
             </div>
           </mat-select>
         </mat-form-field>
@@ -68,7 +69,6 @@
             <input  matInput autocomplete="off" matInput formControlName="nombre">
             <mat-icon matSuffix><i class="fas fa-user-tie"></i></mat-icon>
         </mat-form-field>
-
         <div class="form-inline" id="contenLastname">
 
             <mat-form-field class="lastName">
@@ -102,10 +102,11 @@
 
     <div class="form-inline" id="bottonRegisters">
       <button type="button" class="btn btn-dark mr-0" (click)="GuardarDatos()" [disabled]="crearFormulario.invalid">Guargar datos</button>
-      <button type="button" class="btn btn-danger ml-2">Cancelar</button>
+      <button type="button" class="btn btn-danger ml-2" (click)="cancelar()">Cancelar</button>
     </div>
 
     </form>
-
 </div>
 </div>
+<!--muestra de registro-->
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#1c5890" type = "ball-clip-rotate-multiple" [fullScreen] = "true"><p style="color: white" > Registrando Director </p></ngx-spinner>

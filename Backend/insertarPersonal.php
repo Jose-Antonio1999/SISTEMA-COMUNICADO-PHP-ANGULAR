@@ -27,7 +27,7 @@ if(isset($data)){
 
   //query
   $sql = "INSERT INTO Personal VALUES(NULL,'$DNI_personal','$nombre_personal','$apellidoPaterno_personal','$apellidoMaterno_personal','$email_personal','$celular_personal','1','$tipoPersonal')";
-  $sql2 = "INSERT INTO usuario VALUES(NULL,'$tipoPersonal','$email_personal','$DNI_personal')";
+  $sql2 = "INSERT INTO usuario VALUES(NULL,'$tipoPersonal','$DNI_personal','$DNI_personal')";
   $query = mysqli_query($conexion,$sql);
   $query2 = mysqli_query($conexion,$sql2);
 
@@ -56,8 +56,8 @@ if(isset($data)){
 }
 
 if(!$query){
-  echo json_encode('ERROR: al insertar los datos');
+  echo json_encode('0');
 }else{
-  echo json_encode('SUCCESSFULL: insertado correctamente');
+  echo json_encode('1');
 }
 

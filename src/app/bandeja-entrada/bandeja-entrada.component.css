@@ -10,7 +10,19 @@
   font-size: 22px;
   cursor: pointer;
 }
+#delete:hover{
+  color: red;
+}
 .mat-form-field {
   margin-right: 8px;
 }
-
+.card-body span:hover{
+  background: rebeccapurple;
+}
+table{
+  border-collapse:separate;
+  border-spacing: 10;
+  border-radius:10px;
+  -moz-border-radius:10px;
+  -webkit-border-radius: 10px;
+}

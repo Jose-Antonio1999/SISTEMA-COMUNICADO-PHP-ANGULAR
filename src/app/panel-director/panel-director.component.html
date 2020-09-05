@@ -3,39 +3,32 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="navbar-brand">
-    <div class="dropdown">
-      <h3 style="cursor: pointer;" data-toggle="dropdown"><i class="fas fa-user-circle"></i> Emerson</h3>
-      <div class="dropdown-menu">
-        <button (click)="salir()" class="dropdown-item" type="button"><i class="fas fa-power-off"></i> Cerrar sesión </button>
-        <button class="dropdown-item" type="button"><i class="fas fa-cog"></i> Configuración</button>
-        <button class="dropdown-item" type="button"><i class="fas fa-id-badge"></i> Perfil</button>
-      </div>
-    </div>
+      <h3 (click)="Perfil()" style="cursor: pointer;margin-top: 10px; color:#FFF"><i class="fas fa-user-circle"></i> {{NombreUserCurrent}}</h3>
   </div>
 
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
 
-      <div id="menu" (click)="BanSalida()">
+      <div id="menu" (click)="BanSalida()" title="Bandeja de salida">
         <h3><i class="fas fa-file-upload"></i> Bandeja de salida</h3>
       </div>
-      <div id="menu"  (click)="Lalumnos()">
+      <div id="menu"  (click)="Lalumnos()" title="Lista alumnos">
         <h3><i class="fas fa-user-graduate"></i> Alumnos</h3>
       </div>
-      <div id="menu"  (click)="ListaPadres()">
+      <div id="menu"  (click)="ListaPadres()" title="Lista padres">
         <h3><i class="fas fa-users"></i> Padres</h3>
       </div>
-      <div id="menu"  (click)="Ldocentes()">
+      <div id="menu"  (click)="Ldocentes()" title="Lista docentes">
         <h3><i class="fas fa-chalkboard-teacher"></i> Docentes</h3>
       </div>
-      <div (click)="ListaBorradorres()" id="menu" >
+      <div (click)="ListaBorradorres()" id="menu" title="Lista borradores">
         <h3><i class="fas fa-eraser"></i> Borradores</h3>
       </div>
     </ul>
     <span class="navbar-text">
       <div>
-        <mat-icon style="color:#FFF" matBadge="10" matBadgeColor="warn">notifications</mat-icon>
-        <span style="color:#FFF"  id="imgBell" class="material-icons">settings</span>
+        <!--<mat-icon style="color:#FFF" matBadge="10" matBadgeColor="warn">notifications</mat-icon>-->
+        <i style="color:#FFF; cursor: pointer;font-size: 18px;" id="imgBell" class="fas fa-sign-in-alt" (click)="salir()"></i>
       </div>
     </span>
   </div>
@@ -62,7 +55,9 @@
         <div *ngSwitchCase="'Lborradores'">
           <app-lista-borradores></app-lista-borradores>
         </div>
-
+        <div *ngSwitchCase="'Perfil'">
+          <app-perfil></app-perfil>
+        </div>
       </div>
 
     </div>

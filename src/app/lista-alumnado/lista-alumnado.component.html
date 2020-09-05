@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row mb-1">
     <div class="col-md-3">
-      <a  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="PrepararMensajeMasivo()" ><i class="fas fa-pen-square"></i> Redactar Comunicado</a>
+      <button  class="btn btn-dark" [disabled]="listaVacia" data-toggle="modal" data-target="#exampleModal" (click)="PrepararMensajeMasivo()" ><i class="fas fa-pen-square"></i> Comunicado</button>
     </div>
     <div class="col-md-5">
       <mat-form-field style="width: 80%; margin-top: -10px;" class="example-full-width">
         <mat-label>Buscar</mat-label>
-        <input matInput placeholder="Buscar">
+        <input matInput placeholder="Buscar" (ngModelChange)="buscarEstudiante()" [(ngModel)]="valorBusqueda">
         <mat-icon matSuffix><span class="material-icons">
           search
           </span></mat-icon>
@@ -18,22 +18,29 @@
 </div>
 <div  class="container">
   <div id="contenedorAlumnos">
-    <div *ngIf="listaVacia">
+    <div *ngIf="mVacio">
       <app-mostrar-lista-vacia></app-mostrar-lista-vacia>
     </div>
     <div class="row">
-      <div class="col-md-6" *ngFor="let dato of listaGeneral">
+      <div class="col-md-6" *ngFor="let dato of listaGeneral; let i=index">
         <div class="card">
-          <div class="card-header">
-            <i class="fas fa-user-graduate"></i> {{dato.nombre_alumno}} {{dato.apellidoPaterno_alumno}} {{dato.apellidoMaterno_alumno}} | {{dato.grado}} ro {{dato.seccion}}
+          <div class="card-header" style="display: flex;justify-content: space-between;">
+            <b><i class="fas fa-user-graduate"></i> {{dato.nombre_alumno}} {{dato.apellidoPaterno_alumno}} {{dato.apellidoMaterno_alumno}} | {{dato.grado}} ro {{dato.seccion}}</b>
+            <div class="btn-group dropleft">
+              <i class="fas fa-caret-down" style="cursor: pointer;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+              <div class="dropdown-menu">
+                <p class="m-2" style="cursor: pointer;" data-toggle="modal" data-target="#actualizarEstudiante" (click)="CargaractualizarDatosAlumno(i)"><i class="fas fa-pen-alt"></i> Actualizar</p>
+                <p class="m-2" style="cursor: pointer;" (click)="eliminarEstudent(i,dato.id_apoderado)"><i class="fas fa-trash"></i> Eliminar</p>
+              </div>
+            </div>
           </div>
           <div class="card-body">
-            <h3 class="text-center" id="titleP">Apoderado(a) <i class="fas fa-user-tie" style="font-size: 24px;"></i></h3>
+            <h3 class="text-center" id="titleP"><b>Apoderado(a) <i class="fas fa-user-tie" style="font-size: 24px;"></i></b></h3>
             <div><i id="icon" class="far fa-id-card"></i> {{dato.nombre_apoderado}} {{dato.apellidoPaterno_apoderado}} {{dato.apellidoMaterno_apoderado}}</div>
             <div><i id="icon" class="fas fa-envelope"></i> {{dato.email_apoderado}}</div>
             <div><i id="icon" class="fas fa-mobile-alt"></i> {{dato.celular_apoderado}}</div>
             <div class="mt-3">
-              <a class="btn btn-dark">Llamada</a>
+              <a href="tel:+51{{dato.celular_apoderado}}" class="btn btn-dark">Llamada</a>
               <a class="btn btn-success ml-1" data-toggle="modal" data-target="#exampleModal" (click)="prepararMensajePadre(dato.email_apoderado)">nuevo <i class="fas fa-comment-dots"></i></a>
             </div>
           </div>
@@ -49,22 +56,14 @@
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <div style="font-size:25px;margin-top: 5px;">
+        <div style="font-size:18px;margin-top: 5px;">
           <i class="fas fa-pen-square"></i> Redactar Comunicado
         </div>
         <button (click)="cancelar()" type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        <div class="container">
-
-          <div *ngIf="mostrarMensajeSucces" class="alert alert-success" role="alert">
-            Mensaje enviado correctamente ..!!
-          </div>
-          <div *ngIf="mostrarMensajeDanger" class="alert alert-danger" role="alert">
-            Mensaje no enviado, Algo salió mal, intentelo nuevamente ..!!
-          </div>
+      <div class="modal-body m-3">
 
           <div class="row">
             <div id="formComunicado" class="col-md-4">
@@ -93,42 +92,269 @@
                 </mat-form-field>
 
                 <mat-form-field class="inputRedactar">
-                  <mat-label>Contraseña de su cuenta de Gmail</mat-label>
-                  <input  matInput autocomplete="off" type="password" formControlName="pass">
+                  <mat-label>Contraseña de su cuenta de Gmail registrada</mat-label>
+                  <input #passw  matInput autocomplete="off" type="password" formControlName="pass">
+                  <mat-icon *ngIf="!verPass" style="cursor: pointer;" (click)="verPassw()" matSuffix><span class="material-icons">visibility</span></mat-icon>
+                  <mat-icon *ngIf="verPass"  style="cursor: pointer;" (click)="noPassw()" matSuffix><span class="material-icons">visibility_off</span></mat-icon>
                 </mat-form-field>
 
                 <div class="form-inline">
-                  <button (click)="enviarMensaje()" type="button" class="btn btn-primary m-1" [disabled]="crearFormularioMensaje.invalid" style="background: #1C5890;"> Enviar </button>
-                  <button type="button" class="btn btn-success m-1">Guardar borrador</button>
-                  <button type="button" class="btn btn-dark m-1" (click)="cancelar()" data-dismiss="modal">Cancelar</button>
+                  <button (click)="enviarMensaje()" type="button" class="btn btn-dark m-1" [disabled]="crearFormularioMensaje.invalid"><i class="fas fa-paper-plane"></i> Enviar <div *ngIf="mostrarCargando" class="spinner-border text-ligth spinner-border-sm" role="status"><span class="sr-only">Loading...</span></div> </button>
+                  <button *ngIf="guardarBorrador" (click)="guardarMensajeBorrador()" data-dismiss="modal" type="button" class="btn btn-dark m-1"><i class="fas fa-save"></i> Guardar</button>
+                  <button type="button" class="btn btn-danger m-1" (click)="cancelar()" data-dismiss="modal">Cancelar</button>
                 </div>
               </form>
             </div>
             <div class="col-md-8">
               <div class="container">
-                <div class="previewComunicado">
-                  <div class="logo">
-                    <p class="titulo">Colegio Belén de Osma y Pardo</p>
-                  </div>
-                  <div class="tipo text-center">
-                    <p>{{this.crearFormularioMensaje.value.tipo}}</p>
-                  </div>
-                  <div class="cuerpo">
-                    {{this.crearFormularioMensaje.value.cuerpo}}
-                  </div>
-                  <div class="fecha">
-                    fecha 22/08/2020
-                  </div>
-                  <div class="texto text-center">
-                    Atentamente: Josen Antonio Rojas Cusi
-                  </div>
-                  <div *ngIf="mostrarCargando" class="spin text-center"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>
-                </div>
+                <table style="max-width: 670px; padding: 10px; height: 100%; margin:0 auto; border: 1px solid #1A70B3; border-radius: 5px;">
+                  <tr>
+                      <td style="text-align: center; padding: 0; display: flex; justify-content: space-between">
+                          <img width="90%" style="margin: 1.5% auto; text-align: left" src="https://i.postimg.cc/ZKJ9xQH3/belen3.png">
+                      </td>
+                  </tr>
+
+                  <tr>
+                      <td style="font-family: Times, serif;">
+                          <h2 style="text-align: center; text-decoration: underline;">{{this.crearFormularioMensaje.value.tipo}}</h2>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>
+                          <div style="text-align: justify;">
+                              <p style="margin: 2px; font-size: 18px; padding: 13px; font-family: 'Times New Roman', Times, serif;">
+                                {{this.crearFormularioMensaje.value.cuerpo}}
+                              </p>
+                          </div>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>
+                          <p  style="float: right; font-size:14px; padding: 13px; ">Fecha: {{fechaActual}}</p>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>
+                          <b><p style="text-align: center; font-size: 15px; ">Atentamente:</p></b>
+                          <p style="text-align: center; font-size: 15px; margin-top: 0">I.E Belén Osma y Pardo - Andahuaylas</p>
+                          <hr style="width: 40%; border: 1px solid; text-align: center">
+                      </td>
+                  </tr>
+                </table>
               </div>
             </div>
           </div>
-        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
+<!-- Modal actualizar estudiante -->
+<div class="modal fade" id="actualizarEstudiante" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h2><i class="fas fa-graduation-cap"></i> Actualizar datos alumno</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div  class="container">
+          <div class="contenedorForm">
+              <form [formGroup]="crearFormulario" class="formulario">
+                <div class="row">
+                <div class="col-md-6">
+                  <div class="form-inline">
+
+                    <div *ngIf="false">
+                      <input type="number" formControlName="id_alumno">
+                      <input type="number" formControlName="id_apoderado">
+                    </div>
+
+                    <div class="form-group" style="width: 50%;">
+                      <small style="color: #979797;">grado</small>
+                      <select class="form-control" formControlName="grado" id="SelectControlg">
+                        <option *ngFor="let grado of listaGrado" value="{{grado}}">{{grado}}</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group" style="width: 50%">
+                      <small style="color: #979797;">sección</small>
+                      <select class="form-control" formControlName="seccion" id="SelectControls">
+                        <option *ngFor="let seccion of listaSeccion" value="{{seccion}}">{{seccion}}</option>
+                      </select>
+                    </div>
+
+                  </div>
+
+                    <mat-form-field class="modelInput mt-3">
+                      <span matPrefix><i class="fas fa-address-card"></i> &nbsp;</span>
+                      <mat-label>Dni estudiante</mat-label>
+                      <input  matInput autocomplete="off" formControlName="dni_estudiante" maxlength="8">
+                    </mat-form-field>
+                    <div style="margin-top: -13px; color: red;" *ngIf="crearFormulario.controls['dni_estudiante'].dirty && crearFormulario.controls['dni_estudiante'].invalid">
+                      <div *ngIf="crearFormulario.controls['dni_estudiante'].errors.pattern">
+                        <small>Por favor digite el número de dni</small>
+                      </div>
+                      <div *ngIf="crearFormulario.controls['dni_estudiante'].errors.required">
+                        <small>Complete el campo dni</small>
+                      </div>
+                      <div *ngIf="crearFormulario.controls['dni_estudiante'].errors.maxlength">
+                        <small>Cantidad de dígitos inválidos</small>
+                      </div>
+                    </div>
+
+                    <mat-form-field class="modelInput">
+                      <mat-label>Nombre estudiante</mat-label>
+                      <input  matInput autocomplete="off" formControlName="nombre_estudiante">
+                      <mat-icon matSuffix><i class="fas fa-user-graduate"></i></mat-icon>
+                    </mat-form-field>
+                    <div style="margin-top: -13px; color: red;" *ngIf="crearFormulario.controls['nombre_estudiante'].dirty && crearFormulario.controls['nombre_estudiante'].invalid">
+                      <div *ngIf="crearFormulario.controls['nombre_estudiante'].errors.pattern">
+                        <small>Nombres inválidos</small>
+                      </div>
+                      <div *ngIf="crearFormulario.controls['nombre_estudiante'].errors.required">
+                        <small>Complete el campo nombres del estudiante</small>
+                      </div>
+                    </div>
+
+                  <div class="form-inline" id="contenLastname">
+                      <div style="width: 50%;">
+                        <mat-form-field class="lastName">
+                          <mat-label>Apellido paterno</mat-label>
+                          <input  matInput autocomplete="off" formControlName="apellidoP_estudiante">
+                        </mat-form-field>
+                        <div style="margin-top: -13px; color: red;" *ngIf="crearFormulario.controls['apellidoP_estudiante'].dirty && crearFormulario.controls['apellidoP_estudiante'].invalid">
+                          <div *ngIf="crearFormulario.controls['apellidoP_estudiante'].errors.pattern">
+                            <small>Apellidos inválidos</small>
+                          </div>
+                          <div *ngIf="crearFormulario.controls['apellidoP_estudiante'].errors.required">
+                            <small>Complete el campo apellidos</small>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div style="width: 50%;">
+                        <mat-form-field class="lastName">
+                          <mat-label>Apellido materno</mat-label>
+                          <input  matInput autocomplete="off" formControlName="apellidoM_estudiante">
+                        </mat-form-field>
+                        <div style="margin-top: -13px; color: red;" *ngIf="crearFormulario.controls['apellidoM_estudiante'].dirty && crearFormulario.controls['apellidoM_estudiante'].invalid">
+                          <div *ngIf="crearFormulario.controls['apellidoM_estudiante'].errors.pattern">
+                            <small>Apellidos inválidos</small>
+                          </div>
+                          <div *ngIf="crearFormulario.controls['apellidoM_estudiante'].errors.required">
+                            <small>Complete el campo apellidos</small>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+
+                  <mat-form-field class="modelInput">
+                    <span matPrefix><i class="fas fa-address-card"></i> &nbsp;</span>
+                    <mat-label>Dni Apoderado</mat-label>
+                    <input  matInput autocomplete="off" formControlName="dni_apoderado" maxlength="8">
+                  </mat-form-field>
+                  <div style="margin-top: -13px; color: red;" *ngIf="crearFormulario.controls['dni_apoderado'].dirty && crearFormulario.controls['dni_apoderado'].invalid">
+                    <div *ngIf="crearFormulario.controls['dni_apoderado'].errors.pattern">
+                      <small>Por favor digite el número de dni</small>
+                    </div>
+                    <div *ngIf="crearFormulario.controls['dni_apoderado'].errors.required">
+                      <small>Complete el campo dni apoderado</small>
+                    </div>
+                  </div>
+
+                  <mat-form-field class="modelInput">
+                      <mat-label>Nombre apoderado</mat-label>
+                      <input type="text"  matInput autocomplete="off" formControlName="nombre_apoderado">
+                      <mat-icon matSuffix><i class="fas fa-user-tie"></i></mat-icon>
+                  </mat-form-field>
+                  <div style="margin-top: -13px; color: red;" *ngIf="crearFormulario.controls['nombre_apoderado'].dirty && crearFormulario.controls['nombre_apoderado'].invalid">
+                    <div *ngIf="crearFormulario.controls['nombre_apoderado'].errors.pattern">
+                      <small>Nombres inválidos</small>
+                    </div>
+                    <div *ngIf="crearFormulario.controls['nombre_apoderado'].errors.required">
+                      <small>Complete el campo nombres apoderado</small>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="col-md-6 mt-3" id="dataStudent">
+
+                  <div class="form-inline" id="contenLastname">
+
+                      <div style="width: 50%;">
+                        <mat-form-field class="lastName">
+                          <mat-label>Apellido paterno apoderado</mat-label>
+                          <input type="text"  matInput autocomplete="off" formControlName="apellidoP_apoderado">
+                        </mat-form-field>
+                        <div style="margin-top: -13px; color: red;" *ngIf="crearFormulario.controls['apellidoP_apoderado'].dirty && crearFormulario.controls['apellidoP_apoderado'].invalid">
+                          <div *ngIf="crearFormulario.controls['apellidoP_apoderado'].errors.pattern">
+                            <small>Apellidos inválidos</small>
+                          </div>
+                          <div *ngIf="crearFormulario.controls['apellidoP_apoderado'].errors.required">
+                            <small>Complete el campo apellidos</small>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div style="width: 50%;">
+                        <mat-form-field class="lastName">
+                          <mat-label>Apellido materno apoderado</mat-label>
+                          <input type="text"  matInput autocomplete="off" formControlName="apellidoM_apoderado">
+                        </mat-form-field>
+                        <div style="margin-top: -13px; color: red;" *ngIf="crearFormulario.controls['apellidoM_apoderado'].dirty && crearFormulario.controls['apellidoM_apoderado'].invalid">
+                          <div *ngIf="crearFormulario.controls['apellidoM_apoderado'].errors.pattern">
+                            <small>Apellidos inválidos</small>
+                          </div>
+                          <div *ngIf="crearFormulario.controls['apellidoM_apoderado'].errors.required">
+                            <small>Complete el campo apellidos</small>
+                          </div>
+                        </div>
+                      </div>
+
+                  </div>
+
+                    <mat-form-field class="modelInput">
+                      <mat-label>Correo</mat-label>
+                      <input type="email"  matInput autocomplete="off" formControlName="correo_apoderado">
+                        <mat-icon matSuffix>mail</mat-icon>
+                    </mat-form-field>
+                    <div style="margin-top: -13px; color: red;" *ngIf="crearFormulario.controls['correo_apoderado'].dirty && crearFormulario.controls['correo_apoderado'].invalid">
+                      <div *ngIf="crearFormulario.controls['correo_apoderado'].errors.invalid">
+                        <small>correo inválidos hasta el momento</small>
+                      </div>
+                      <div *ngIf="crearFormulario.controls['correo_apoderado'].errors.required">
+                        <small>Complete el campo correo</small>
+                      </div>
+                    </div>
+
+                    <mat-form-field class="modelInput">
+                      <mat-label>Celular</mat-label>
+                      <input matInput formControlName="celular_apoderado" autocomplete="off" maxlength="9">
+                      <mat-icon matSuffix><span class="material-icons">stay_current_portrait</span></mat-icon>
+                    </mat-form-field>
+                    <div style="margin-top: -13px; color: red;" *ngIf="crearFormulario.controls['celular_apoderado'].dirty && crearFormulario.controls['celular_apoderado'].invalid">
+                      <div *ngIf="crearFormulario.controls['celular_apoderado'].errors.pattern">
+                        <small>número de celular inválido</small>
+                      </div>
+                      <div *ngIf="crearFormulario.controls['celular_apoderado'].errors.required">
+                        <small>Complete el campo celular</small>
+                      </div>
+                    </div>
+
+                  <div class="form-inline" id="bottonRegisters">
+                    <button type="button" class="btn btn-dark mr-0"  [disabled]="crearFormulario.invalid" (click)="updateEstudiante()" data-dismiss="modal">Actualizar datos</button>
+                    <button type="button" class="btn btn-danger ml-2" data-dismiss="modal" >Cancelar</button>
+                  </div>
+
+                </div>
+              </div>
+
+              </form>
+          </div>
+          </div>
       </div>
     </div>
   </div>

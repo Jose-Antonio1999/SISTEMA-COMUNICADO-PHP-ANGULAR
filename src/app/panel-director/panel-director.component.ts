@@ -12,10 +12,15 @@ import { Personal } from '../class/personal';
 export class PanelDirectorComponent implements OnInit {
   opcionEscogida:string = "Bsalida"
   DatosUsuario = new Array<Personal>()
+  NombreUserCurrent:String
+  PerfilCurrect:Personal
+  nombreUser:String
   constructor(private ruta:Router,private spinner: NgxSpinnerService, private inject:PeticionService) {
-    this.inject.DatosUsuarioActual(localStorage.getItem('correoDirector')).subscribe((respuesta)=>{
-      //Obtenemos los datos del usuario de ingreso
+    this.inject.DatosUsuarioActual(localStorage.getItem('DNID')).subscribe((respuesta)=>{
+      this.PerfilCurrect = respuesta[0]
+      this.NombreUserCurrent = this.PerfilCurrect.nombre_personal
     })
+
   }
 
   ngOnInit(): void {
@@ -34,6 +39,9 @@ export class PanelDirectorComponent implements OnInit {
   }
   ListaBorradorres(){
     this.opcionEscogida = "Lborradores"
+  }
+  Perfil(){
+    this.opcionEscogida = "Perfil"
   }
 
   salir(){

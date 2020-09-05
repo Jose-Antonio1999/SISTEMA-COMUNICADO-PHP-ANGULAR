@@ -1,0 +1,48 @@
+<div class="container">
+  <div id="contenUser" class="card w-75">
+    <div id="imgUser" class="text-center">
+      <i class="fas fa-user-circle"></i>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title text-center"><b>USUARIO</b></h5>
+      <p class="card-text"><b><i class="fas fa-address-card"></i> </b> {{Perfil.DNI_personal}}</p>
+      <p class="card-text"><b><i class="far fa-grin"></i> </b> {{Perfil.nombre_personal}} {{Perfil.apellidoPaterno_personal}} {{Perfil.apellidoMaterno_personal}} </p>
+      <p class="card-text"><b><i class="fas fa-mobile"></i> </b> {{Perfil.celular_personal}}</p>
+      <p class="card-text"><b><i class="fas fa-envelope"></i> </b> {{Perfil.email_personal}}</p>
+      <p class="card-text"><b><i class="fas fa-street-view"></i> </b> {{Perfil.tipoPersonal}}</p>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="editarDatos" tabindex="-1" data-backdrop="static" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form [formGroup]="formulario">
+          <div class="form-inline">
+            <mat-form-field class="modelInput">
+              <span matPrefix><i class="fas fa-address-card"></i> &nbsp;</span>
+              <mat-label>Celular</mat-label>
+              <input  matInput autocomplete="off" formControlName="celular" maxlength="9">
+            </mat-form-field>
+
+            <mat-form-field class="modelInput">
+              <mat-label>Email</mat-label>
+              <input  matInput autocomplete="off" formControlName="email">
+              <mat-icon matSuffix><i class="fas fa-envelope"></i></mat-icon>
+            </mat-form-field>
+          </div>
+
+          <div class="form-inline">
+            <button type="button" class="btn btn-dark mr-2" [disabled]="formulario.invalid">Guardar</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">cancelar</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

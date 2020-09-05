@@ -44,3 +44,119 @@
 .inputOption{
   width: 50%;
 }
+
+#contenIcon{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  cursor: pointer;
+}
+#icono{
+  font-size: 25px;
+  margin-top: 12px;
+}
+#contenedorDocentes{
+  height: 65vh;
+  width: 100%;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+#contenedorDocentes::-webkit-scrollbar{
+  height: 7px;
+  width: 7px;
+}
+#contenedorDocentes::-webkit-scrollbar-thumb{
+  background: gray;
+  border-radius: 10px;
+}
+.lastName{
+  width: 50%;
+}
+.card{
+  margin-right: 10px;
+  margin-top: 5px;
+}
+.menuOption{
+  display: flex;
+  justify-content: flex-end;
+}
+.iconoOption{
+  margin-top: 2px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.modelInput{
+  width: 100%;
+}
+.inputOption{
+  width: 50%;
+}
+
+.inputRedactar{
+  width: 100%;
+}
+#formComunicado{
+  background:#FFF;
+  border-radius: 10px;
+}
+.previewComunicado{
+  height: 65vh;
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #000;
+  border-radius: 10px;
+  text-align: justify;
+}
+.logo{
+  display: flex;
+  height: 50px;
+  justify-content: center;
+}
+.logo p{
+  font-family: Garamond;
+  font-size: 25px;
+}
+.logo img{
+  height: 50px;
+  width: 50px;
+}
+.titulo{
+  margin-top: 10px;
+  font-size: 20px;
+}
+.tipo{
+  height: 60px;
+  width: 98%;
+  margin: 0 auto;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background:#007DF9;
+}
+.tipo p{
+  margin-top: 7px;
+  font-size: 27px;
+  font-family: fantasy;
+  color: #FFF;
+}
+.cuerpo{
+  padding: 10px;
+}
+
+.fecha{
+  margin-left: 10px;
+  font-family: fantasy;
+}
+.texto{
+  font-family: fantasy;
+  padding: 10px;
+}
+#tg table{
+  border-collapse:separate;
+  border-spacing: 10;
+  border-radius:10px;
+  -moz-border-radius:10px;
+  -webkit-border-radius: 10px;
+}

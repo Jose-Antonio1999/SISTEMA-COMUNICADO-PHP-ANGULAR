@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PeticionService } from '../Service/peticion.service';
 import { Router, Data } from '@angular/router';
@@ -14,10 +14,14 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 export class LoginComponent implements OnInit {
 
+  @ViewChild('passw',{static:true}) passw:ElementRef
+
   FormularioCreado:FormGroup
   ingreso:boolean
   existeUsuario:boolean
   data = new Array<Data>()
+
+  verPass:boolean = false
   mfaild:boolean = false
   constructor(formBuilder:FormBuilder,
     private inject:PeticionService,
@@ -28,7 +32,6 @@ export class LoginComponent implements OnInit {
         if(res == ""){
           this.ruta.navigateByUrl('Registro-Personal')
         }
-
         if(localStorage.getItem('user')!=null){
           this.ruta.navigateByUrl('Panel-Director');
         }
@@ -55,13 +58,14 @@ export class LoginComponent implements OnInit {
         }else{
           if(res[0].Perfil==1){
             localStorage.setItem('user',this.FormularioCreado.value.usuario);
-            localStorage.setItem('correoDirector',res[0].Correo)
+            localStorage.setItem('DNID',res[0].Correo) //DNI
             this.ruta.navigateByUrl('Panel-Director')
             this.ingreso = true
           }
           if(res[0].Perfil==2){
             localStorage.setItem('user',this.FormularioCreado.value.usuario);
-            localStorage.setItem('correoDocente',res[0].Correo)
+            localStorage.setItem('DNIDocente',res[0].Correo) //DNI
+            console.log(localStorage.getItem('DNIDocente'))
             this.ruta.navigateByUrl('Panel-Docente')
             this.ingreso = true
           }
@@ -73,6 +77,14 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+  verPassw(){
+    this.passw.nativeElement.type = "text"
+    this.verPass = true
+  }
+  noPassw(){
+    this.passw.nativeElement.type = "password"
+    this.verPass = false
   }
 
 }

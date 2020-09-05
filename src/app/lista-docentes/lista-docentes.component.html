@@ -1,17 +1,17 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-6">
-      <h3 style="margin-top: 10px;">Lista de Docentes</h3>
+    <div  class="col-md-6 mt-3" style="font-size: 19px;">
+      <div *ngIf="esconderTittle"><i class="fas fa-chalkboard-teacher"></i> Lista de Docentes {{titleTutor}}</div>
     </div>
-    <div (click)="opListaDocente()" id="contenIcon" class="col-md-1" >
-      <i id="icono" class="fas fa-clipboard-list"></i>
+    <div (click)="opListaDocente()" id="contenIcon" class="col-md-1" title="Lista docentes" >
+      <i id="icono" class="fas fa-clipboard-list"></i> <p class="titleTeachers">Docentes</p>
     </div>
-    <div (click)="opListaTutor()" id="contenIcon" class="col-md-1" >
-      <span id="icono" class="material-icons">contacts</span>
+    <div (click)="opListaTutor()" id="contenIcon" class="col-md-1" title="Lista docentes tutores">
+      <span id="icono" class="material-icons">contacts</span> <p class="titleTeachers">Tutores</p>
     </div>
-    <div (click)="opNuevoDocente()"  id="contenIcon" class="col-md-1" >
-      <i id="icono" class="fas fa-user-plus"></i>
+    <div (click)="opNuevoDocente()"  id="contenIcon" class="col-md-1" title="Agregar nuevo docente">
+      <i id="icono" class="fas fa-user-plus"></i> <p class="titleTeachers">Nuevo</p>
     </div>
     <div id="contenIcon" class="col-md-1" >
     </div>
@@ -23,7 +23,7 @@
 
 <br>
 
-<div  class="container">
+<div  class="container" id="contenmain">
   <div id="contenedorDocentes">
     <div [ngSwitch]="nuevoRegistro">
       <div *ngSwitchCase="'listaDocentes'">

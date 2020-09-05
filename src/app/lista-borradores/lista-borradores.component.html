@@ -1,30 +1,142 @@
-<div class="container mt-2">
+<div class="container mt-3">
   <div class="row">
-    <div class="col-md-2">Lista de Borradores</div>
-    <div class="col-md-4">
+    <div class="col-md-2"><p class="titleCB">Lista de Borradores</p></div>
+    <div class="col-md-6">
       <mat-form-field style="width: 80%; margin-top: -10px;" class="example-full-width">
         <mat-label>Buscar</mat-label>
-        <input matInput placeholder="Buscar">
+        <input matInput placeholder="Buscar" (ngModelChange)="buscarMensajeDos()" [(ngModel)]="valorBusqueda">
         <mat-icon matSuffix><span class="material-icons">
           search
           </span></mat-icon>
       </mat-form-field>
     </div>
-    <div class="col-md-3">1</div>
-    <div class="col-md-3">1</div>
+    <div class="col-md-1"></div>
+    <div class="col-md-3"></div>
   </div>
 </div>
 
 <div class="container" id="contendorBR">
-  <div class="card mt-2" *ngFor="let item of listaBorradores">
-    <div class="card-header" style="border-radius: 20px;">
-      <i class="fas fa-user-circle"></i> José Antonio Rojas
+  <div class="row">
+    <div *ngIf="Mmensaje" class="container">
+      <app-mostrar-lista-vacia></app-mostrar-lista-vacia>
+      </div>
+    <div class="col-md-6" *ngFor="let data of listaBorradores; let i=index">
+      <div class="card mt-2">
+        <div class="text-center mt-3" style="font-size: 16px;">
+          <b><i class="far fa-envelope"></i> Tipo: {{data.tipo_comunicado}}</b>
+        </div>
+        <div class="card-body">
+          <h4 class="card-title"><b>Asunto:</b> {{data.asunto}}</h4>
+          <h4><b><i class="fas fa-user-circle"></i> Para:</b>  {{data.Destino}}</h4>
+          <p class="card-text" style="text-align: justify;">{{recortarMensaje(data.contenido)}} ...
+          <span (click)="cargarDatos(i)" id="iconEditar" style="cursor: pointer;" class="badge badge-success" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit"></i> Editar</span>
+          <span (click)="eliminarMensaje(i)" id="iconDelete" style="cursor: pointer;" class="badge badge-danger ml-1"><i class="fas fa-trash"></i> Eliminar</span></p>
+        </div>
+        <div class="card-footer">
+          <b>Fecha de guardado:</b> {{data.fecha}}
+        </div>
+      </div>
     </div>
-    <div class="card-body">
-      <blockquote class="blockquote mb-0">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-        <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-      </blockquote>
+  </div>
+</div>
+
+<!-- Modal editar-->
+<div class="modal fade" id="exampleModal" data-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div style="font-size:18px;margin-top: 5px;">
+          <i class="far fa-edit"></i> Editando Comunicado
+        </div>
+        <button (click)="cancelar()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+
+          <div class="row">
+            <div id="formComunicado" class="col-md-4">
+
+              <form class="formulario" [formGroup]="crearFormularioMensaje">
+
+                <input *ngIf="false" type="number" formControlName="idEnvio">
+
+                <mat-form-field class="example-full-width" class="inputRedactar">
+                  <mat-label>Para</mat-label>
+                  <input matInput formControlName="para">
+                </mat-form-field>
+
+                <mat-form-field class="inputRedactar">
+                  <mat-label>Asunto</mat-label>
+                  <input matInput  formControlName="asunto">
+                </mat-form-field>
+
+                <mat-form-field class="inputRedactar">
+                    <mat-label>Tipo Comunicado</mat-label>
+                    <input  matInput autocomplete="off"  formControlName="tipo">
+                </mat-form-field>
+
+
+                <mat-form-field class="inputRedactar">
+                  <mat-label>Cuerpo del Comunicado</mat-label>
+                  <textarea rows="10" matInput formControlName="cuerpo" maxlength="730"></textarea>
+                </mat-form-field>
+
+                <mat-form-field class="inputRedactar">
+                  <mat-label>Contraseña de la cuenta de Gmail registrado</mat-label>
+                  <input #viewpass  matInput autocomplete="off" type="password" formControlName="pass">
+                  <mat-icon *ngIf="!verPass" style="cursor: pointer;" (click)="verPassw()" matSuffix><span class="material-icons">visibility</span></mat-icon>
+                  <mat-icon *ngIf="verPass"  style="cursor: pointer;" (click)="noPassw()" matSuffix><span class="material-icons">visibility_off</span></mat-icon>
+                </mat-form-field>
+
+                <div class="form-inline mb-3">
+                <div *ngIf="mostrarCargando"  class="spin text-center"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>
+                  <button (click)="enviarMensaje()" type="button" class="btn btn-dark m-1" [disabled]="crearFormularioMensaje.invalid" ><i class="fas fa-paper-plane"></i> Enviar  <div *ngIf="mostrarCargando" class="spinner-border text-ligth spinner-border-sm" role="status"><span class="sr-only">Loading...</span></div> </button>
+                  <button data-dismiss="modal" (click)="guardarMessage()" type="button" class="btn btn-dark m-1"><i class="fas fa-save"></i> Guardar </button>
+                  <button type="button" class="btn btn-danger m-1" (click)="cancelar()" data-dismiss="modal">Cancelar</button>
+                </div>
+              </form>
+            </div>
+            <div class="col-md-8">
+                <table style="max-width: 680px; padding: 10px; height: 100%; margin:0 auto; border: 1px solid #1A70B3; border-radius: 5px;">
+                  <tr>
+                      <td style="text-align: center; padding: 0; display: flex; justify-content: space-between">
+                          <img width="85%" style="margin: 1.5% auto; text-align: left" src="https://i.postimg.cc/ZKJ9xQH3/belen3.png">
+                      </td>
+                  </tr>
+
+                  <tr>
+                      <td style="font-family: Times, serif;">
+                          <h2 style="text-align: center; text-decoration: underline;">{{this.crearFormularioMensaje.value.tipo}}</h2>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>
+                          <div style="text-align: justify;">
+                              <p style="margin: 2px; font-size: 18px; padding: 13px; font-family: 'Times New Roman', Times, serif;">
+                                {{this.crearFormularioMensaje.value.cuerpo}}
+                              </p>
+                          </div>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>
+                          <p  style="float: right; font-size:14px; padding: 13px; ">Fecha: {{fechaActual}}</p>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>
+                          <b><p style="text-align: center; font-size: 15px; ">Atentamente:</p></b>
+                          <p style="text-align: center; font-size: 15px; margin-top: 0">I.E Belén Osma y Pardo - Andahuaylas</p>
+                          <hr style="width: 40%; border: 1px solid; text-align: center">
+                      </td>
+                  </tr>
+                </table>
+              </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -8,19 +8,17 @@
   font-size: 25px;
   margin-top: 12px;
 }
+#contenmain{
+  margin-top: -10px;
+  height: 76vh;
+}
 #contenedorDocentes{
-  height: 65vh;
+  height: 75vh;
   width: 100%;
-  overflow: hidden;
-  overflow-y: scroll;
 }
-#contenedorDocentes::-webkit-scrollbar{
-  height: 7px;
-  width: 7px;
-}
-#contenedorDocentes::-webkit-scrollbar-thumb{
-  background: gray;
-  border-radius: 10px;
+.titleTeachers{
+  margin-top: 18px;
+  margin-left: 3px;
 }
 .lastName{
   width: 50%;

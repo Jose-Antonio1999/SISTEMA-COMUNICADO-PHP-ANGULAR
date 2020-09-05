@@ -45,7 +45,7 @@ export class ListGradoSeccionComponent implements OnInit {
   }
 
   enviarGradoSeccion(grado:String){
-    if(this.seccionElejido!=null){
+    if(this.seccionElejido!=null && grado!=null){
       localStorage.setItem("gradoAlumno",stringify(grado))
       localStorage.setItem("seccionAlumno",stringify(this.seccionElejido))
       this.listaTablaBgradoSeccion = false

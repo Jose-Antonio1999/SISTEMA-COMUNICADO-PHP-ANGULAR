@@ -18,7 +18,7 @@ if(isset($data)){
                                         INNER JOIN gradoseccion on tutor.id_grado_seccion=gradoseccion.id_grado_seccion
                                         INNER JOIN alumno on gradoseccion.id_grado_seccion=alumno.id_grado_seccion
                                         INNER JOIN apoderado on alumno.id_apoderado=apoderado.id_apoderado
-          WHERE email_personal='$Data'";
+          WHERE DNI_personal='$Data'";
 
   $query = mysqli_query($conexion,$sql);
 

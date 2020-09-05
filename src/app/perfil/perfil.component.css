@@ -1,0 +1,17 @@
+#contenUser{
+  margin: 0 auto;
+  margin-top: 38px;
+}
+#imgUser{
+  font-size: 40px;
+  margin-top: -20px;
+  z-index: 100;
+}
+.modelInput{
+  width: 100%;
+}
+@media (max-width:760px){
+  #contenUser{
+    width: 100%;
+  }
+}

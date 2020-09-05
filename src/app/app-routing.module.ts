@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { PanelDirectorComponent } from './panel-director/panel-director.component';
 import { RegistroPersonalComponent } from './registro-personal/registro-personal.component';
-import { PanelControlComponent } from './panel-control/panel-control.component';
 import { MenuComponent } from './menu/menu.component';
 import { RedactarComunicadoComponent } from './redactar-comunicado/redactar-comunicado.component';
 

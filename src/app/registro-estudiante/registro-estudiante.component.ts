@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { GradoSeccion } from '../class/grados';
 import { PeticionService } from '../Service/peticion.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-registro-estudiante',
@@ -24,19 +25,17 @@ export class RegistroEstudianteComponent implements OnInit {
     this.crearFormulario = formBuilder.group({
       grado:[this.Mgrado,Validators.required],
       seccion:[this.Mseccion,Validators.required],
-      dni_apoderado:['',Validators.required],
-      nombre_apoderado:['',Validators.required],
-      apellidoP_apoderado:['',Validators.required],
-      apellidoM_apoderado:['',Validators.required],
-      correo_apoderado:['',Validators.required],
-      celular_apoderado:['',Validators.required],
+      dni_apoderado:['',[Validators.required,Validators.pattern(/^([0-9])*$/)]],
+      nombre_apoderado:['',[Validators.required,Validators.pattern(/^([a-z ñáéíóú]{2,60})$/i)]],
+      apellidoP_apoderado:['',[Validators.required,Validators.pattern(/^([a-z ñáéíóú]{2,60})$/i)]],
+      apellidoM_apoderado:['',[Validators.required,Validators.pattern(/^([a-z ñáéíóú]{2,60})$/i)]],
+      correo_apoderado:['',[Validators.required,Validators.email]],
+      celular_apoderado:['',[Validators.required,Validators.maxLength(9),Validators.pattern(/^([0-9])*$/)]],
 
-      dni_estudiante:['',Validators.required],
-      nombre_estudiante:['',Validators.required],
-      apellidoP_estudiante:['',Validators.required],
-      apellidoM_estudiante:['',Validators.required],
-      correo_estudiante:[''],
-      celular_estudiante:['']
+      dni_estudiante:['',[Validators.required,Validators.maxLength(8),Validators.pattern(/^([0-9])*$/)]],
+      nombre_estudiante:['',[Validators.required,Validators.pattern(/^([a-z ñáéíóú]{2,60})$/i)]],
+      apellidoP_estudiante:['',[Validators.required,Validators.pattern(/^([a-z ñáéíóú]{2,60})$/i)]],
+      apellidoM_estudiante:['',[Validators.required,Validators.pattern(/^([a-z ñáéíóú]{2,60})$/i)]],
     })
 
     this.inject.listaGrados().subscribe((res)=>{
@@ -66,19 +65,28 @@ export class RegistroEstudianteComponent implements OnInit {
     this.inject.insertarEstudiante(this.crearFormulario.value).subscribe((res)=>{
 
       if(res==1){
-        this.Mcorrecto = true
-        setTimeout(() => {
-          this.Mcorrecto = false
-        }, 2500);
+        this.mostrarMensaje('success','Estudiante registrado correctamente')
         this.crearFormulario.reset()
         this.crearFormulario.controls['grado'].setValue(this.Mgrado)
         this.crearFormulario.controls['seccion'].setValue(this.Mseccion)
       }else{
-        console.log(res)
+        this.mostrarMensaje('error','Ocurrio un error estudiante no registrado')
       }
     })
     this.crearFormulario.controls['grado'].setValue(this.Mgrado)
     this.crearFormulario.controls['seccion'].setValue(this.Mseccion)
+  }
+
+  cancelar(){
+    this.crearFormulario.reset()
+  }
+  mostrarMensaje(iconMessaje:any, titleMessaje:any){
+    Swal.fire({
+      icon: iconMessaje,
+      title: titleMessaje,
+      showConfirmButton: false,
+      timer: 2000
+    })
   }
 }
 

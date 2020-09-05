@@ -34,7 +34,7 @@ if(isset($data)){
     $lista[$i]['nombre_alumno'] = $filas['nombre_alumno'];
     $lista[$i]['apellidoPaterno_alumno'] = $filas['apellidoPaterno_alumno'];
     $lista[$i]['apellidoMaterno_alumno'] = $filas['apellidoMaterno_alumno'];
-    $lista[$i]['promocion'] = $filas['grado'];
+    $lista[$i]['promocion'] = $filas['promocion'];
 
     $lista[$i]['id_apoderado'] = $filas['id_apoderado'];
     $lista[$i]['DNI_apoderado'] = $filas['DNI_apoderado'];

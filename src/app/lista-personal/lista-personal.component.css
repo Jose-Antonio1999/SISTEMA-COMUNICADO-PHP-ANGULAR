@@ -8,8 +8,15 @@
   font-size: 25px;
   margin-top: 12px;
 }
+table{
+  border-collapse:separate;
+  border-spacing: 10;
+  border-radius:10px;
+  -moz-border-radius:10px;
+  -webkit-border-radius: 10px;
+}
 #contenedorDocentes{
-  height: 65vh;
+  height: 67vh;
   width: 100%;
   overflow: hidden;
   overflow-y: scroll;
@@ -19,7 +26,7 @@
   width: 7px;
 }
 #contenedorDocentes::-webkit-scrollbar-thumb{
-  background: gray;
+  background: #0B619E;
   border-radius: 10px;
 }
 .lastName{
