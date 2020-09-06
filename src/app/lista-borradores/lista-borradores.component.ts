@@ -33,13 +33,17 @@ export class ListaBorradoresComponent implements OnInit {
     this.inject.DatosUsuarioActual(localStorage.getItem('DNID')).subscribe((respuesta)=>{
       this.PerfilCurrect = respuesta[0]
       this.idDirector = this.PerfilCurrect.id_personal
-    })
 
-    this.inject.ListaComunicadosBorradores(this.idDirector).subscribe((res)=>{
-      this.listaBorradores = res
-      if(res.length==0){
-        this.Mmensaje = true
-      }
+      this.inject.ListaComunicadosBorradores(this.idDirector).subscribe((res)=>{
+
+        if(res.length==0){
+          this.Mmensaje = true
+        }else{
+          this.listaBorradores = res
+          this.Mmensaje = false
+        }
+      })
+
     })
 
     this.crearFormularioMensaje = formBuil.group({
@@ -89,6 +93,7 @@ export class ListaBorradoresComponent implements OnInit {
           this.inject.EliminarMensaje(this.listaBorradores[this.cargarId].id_Comunicado).subscribe((respuesta)=>{
             //eliminar comunicado del array
             this.listaBorradores.splice(this.cargarId,1);
+            this.Mmensaje = true
           })
           this.mostrarMensaje('success','Mensaje enviado correctamente')
         }else{
@@ -137,6 +142,7 @@ export class ListaBorradoresComponent implements OnInit {
         this.inject.EliminarMensaje(this.listaBorradores[i].id_Comunicado).subscribe((respuesta)=>{
           //eliminar comunicado del array
           this.listaBorradores.splice(i,1);
+          this.Mmensaje = true
         })
 
         swalWithBootstrapButtons.fire(

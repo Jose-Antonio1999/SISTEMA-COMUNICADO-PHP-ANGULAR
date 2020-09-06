@@ -10,6 +10,55 @@
       <p class="card-text"><b><i class="fas fa-mobile"></i> </b> {{Perfil.celular_personal}}</p>
       <p class="card-text"><b><i class="fas fa-envelope"></i> </b> {{Perfil.email_personal}}</p>
       <p class="card-text"><b><i class="fas fa-street-view"></i> </b> {{Perfil.tipoPersonal}}</p>
+
+      <a (click)="editPass()" class="btn btn-link"><i class="fas fa-pencil-alt"></i> Editar contraseña</a> <a class="btn btn-link" (click)="editData()"><i class="fas fa-pencil-alt"></i> Editar datos</a>
+              <div *ngIf="editpass">
+                <form [formGroup]="crearFormularioPass">
+                      <div class="row mt-2">
+                          <div class="col">
+                            <input type="password" class="form-control" placeholder="Contraseña nueva" formControlName="primero">
+                            <div style="color: red;" *ngIf="crearFormularioPass.controls['primero'].dirty && crearFormularioPass.controls['primero'].invalid">
+                              <div *ngIf="crearFormularioPass.controls['primero'].errors">
+                                <small>mín 8 carácteres máx 20 carácteres</small>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col">
+                            <input type="password" class="form-control" placeholder="Confirmar contraseña"  formControlName="segundo">
+                            <div style="color: red;" *ngIf="crearFormularioPass.controls['primero'].dirty && crearFormularioPass.controls['segundo'].invalid">
+                              <div *ngIf="crearFormularioPass.controls['segundo'].errors">
+                                <small>mín 8 carácteres máx 20 carácteres</small>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                      <button type="submit" class="btn btn-primary mt-2" (click)="guardarPass()" [disabled]="crearFormularioPass.invalid">Cambiar contraseña</button>
+                </form>
+              </div>
+
+              <div *ngIf="editdata">
+                <form [formGroup]="crearFormularioDatos">
+                  <div class="row mt-2">
+                      <div class="col-md-4">
+                        <input type="text" class="form-control" placeholder="Celular" formControlName="celular">
+                        <div style="color: red;" *ngIf="crearFormularioDatos.controls['celular'].dirty && crearFormularioDatos.controls['celular'].invalid">
+                          <div *ngIf="crearFormularioDatos.controls['celular'].errors.pattern">
+                            <small>Digite números</small>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-8">
+                        <input type="text" class="form-control" placeholder="Correo" formControlName="email">
+                        <div style="color: red;" *ngIf="crearFormularioDatos.controls['email'].dirty && crearFormularioDatos.controls['email'].invalid">
+                          <div *ngIf="crearFormularioDatos.controls['email'].invalid">
+                            <small>Correo inválido</small>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  <button type="button" class="btn btn-primary mt-2" (click)="guardarDatos()" [disabled]="crearFormularioDatos.invalid" >Guardar Datos</button>
+                </form>
+              </div>
     </div>
   </div>
 </div>

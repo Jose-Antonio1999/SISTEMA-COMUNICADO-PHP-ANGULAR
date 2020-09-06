@@ -19,7 +19,8 @@ export class PanelControlComponent implements OnInit {
   @ViewChild('viewpassword',{static:false}) viewpasss:ElementRef
   verPasss:boolean = false
 
-  ListaAlumnos = Array<any>();
+  ListaAlumnos = Array<Alumnado>();
+  ListaAlumnosP = Array<Alumnado>();
   data:String
   op:boolean = true
   listaMensajes = new Array<Comunicado>();
@@ -79,6 +80,7 @@ export class PanelControlComponent implements OnInit {
     this.data = localStorage.getItem('DNIDocente')
     this.inject.ListaAlumnosDocente(this.data).subscribe((res)=>{
       this.ListaAlumnos = res
+      this.ListaAlumnosP = res
       if(res.lenght==0 || res==""){
         this.MostrarMensajeAlumnos = true
       }else{
@@ -89,7 +91,7 @@ export class PanelControlComponent implements OnInit {
   }
 
   funcionObtenerGrado(){
-    this.ListaAlumnos.forEach((data)=>{
+    this.ListaAlumnosP.forEach((data)=>{
       this.Grado = data.grado
       this.Seccion = data.seccion
     })
@@ -204,7 +206,7 @@ export class PanelControlComponent implements OnInit {
   }
 
   buscarEstudiante(){
-    let modeloBusquedaEs = {grados:this.gradoSeccion,nombreBuscar:this.valorBusqueda}
+    let modeloBusquedaEs = {grados:['1','A'],nombreBuscar:this.valorBusqueda}
 
       this.inject.buscarEstudiante(modeloBusquedaEs as any).subscribe((res)=>{
         this.listaAlumnos = res

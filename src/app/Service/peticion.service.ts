@@ -90,6 +90,12 @@ export class PeticionService {
   ActualizarComunicado(data:any){
     return this.http.put<any>(this.URL+'/updateComunicado.php',JSON.stringify(data));
   }
+  cambiarPass(data:any){
+    return this.http.put<any>(this.URL+'/cambiarPassword.php',JSON.stringify(data));
+  }
+  cambiarMiniDatos(data:any){
+    return this.http.put<any>(this.URL+'/cambiarMinidatos.php',JSON.stringify(data));
+  }
   //Eliminar Datos
   EliminarMensaje(code:string):Observable<any>{
     return this.http.delete(this.URL+'/EliminarComunicado.php?idComunicado='+code)

@@ -9,10 +9,9 @@ require('conexion.php');
 $id = file_get_contents("php://input");
 
 if(isset($id)){
-
   $lista = [];
   $i = 0;
-  $sql = "SELECT DISTINCT* FROM comunicado WHERE estado = 'no enviado' and id_personal='$id'";
+  $sql = "SELECT DISTINCT* FROM comunicado WHERE estado = 'no enviado' and id_personal='$id'; ";
   $query = mysqli_query($conexion,$sql);
 
   if(!$query){

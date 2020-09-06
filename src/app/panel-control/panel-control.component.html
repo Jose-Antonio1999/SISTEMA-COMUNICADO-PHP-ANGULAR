@@ -3,7 +3,7 @@
 
 <div class="container mt-3">
   <div class="row">
-    <div class="col-md-4" style="background:brown;">
+    <div class="col-md-4">
       <div class="form-inline" id="izquierdoRow" *ngIf="MostrarBuscador">
         <mat-form-field class="inputBuscar">
           <mat-label>Buscar Estudiante</mat-label>
@@ -12,16 +12,16 @@
         </mat-form-field>
       </div>
     </div>
-    <div (click)="listaAlumnos()" class="col-md-2" style="background: burlywood;">
+    <div (click)="listaAlumnos()" class="col-md-2">
       <a id="buttonRedactar" class="btn btn-dark m-2" >Alumnos <i class="fas fa-user-graduate"></i></a>
     </div>
-    <div class="col-md-2" style="background: coral;">
+    <div class="col-md-2">
         <button [disabled]="MostrarMensajeAlumnos" id="buttonRedactar" class="btn btn-dark m-2" data-toggle="modal" data-target="#enviarMensaje" (click)="PrepararMensajeMasivo()">Redactar <i class="fas fa-comment-alt"></i></button>
     </div>
-    <div (click)="listaEnviados()" class="col-md-2" style="background: cornsilk;">
+    <div (click)="listaEnviados()" class="col-md-2" >
       <a id="buttonRedactar" class="btn btn-dark mt-2">enviados <i class="far fa-paper-plane"></i></a>
     </div>
-    <div (click)="listaBorradores()" class="col-md-2" style="background: crimson;">
+    <div (click)="listaBorradores()" class="col-md-2">
       <a id="buttonRedactar" class="btn btn-dark mt-2">Borradores <i class="fas fa-file-signature"></i></a>
     </div>
   </div>
@@ -29,7 +29,7 @@
 
 <div class="container mt-2">
   <div [ngSwitch]="opcionEscogida">
-    <div *ngSwitchCase="'lAlumnos'" style="background: chocolate;">
+    <div *ngSwitchCase="'lAlumnos'">
       <div class="conteedorLista">
         <div *ngIf="MostrarMensajeAlumnos">
           <app-mostrar-lista-vacia></app-mostrar-lista-vacia>
@@ -54,7 +54,7 @@
       </div>
     </div>
 
-    <div *ngSwitchCase="'lEnviados'" style="background: cornflowerblue;">
+    <div *ngSwitchCase="'lEnviados'" >
       <div class="conteedorLista">
         <div *ngIf="MostrarMensajeEnviado">
           <app-mostrar-lista-vacia></app-mostrar-lista-vacia>
@@ -90,7 +90,7 @@
       </div>
     </div>
 
-    <div *ngSwitchCase="'lBorrador'" style="background: crimson;">
+    <div *ngSwitchCase="'lBorrador'">
       <div class="conteedorLista">
         <div *ngIf="MostrarMensajeborrador">
           <app-mostrar-lista-vacia></app-mostrar-lista-vacia>

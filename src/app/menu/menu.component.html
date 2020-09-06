@@ -3,7 +3,7 @@
     <div class="p-4" style="background:#265B8C;">
       <h5 class="text-white h4">WillanaApp</h5>
       <span style="cursor: pointer;" class="text-muted" data-toggle="modal" data-target="#perfil">Perfil</span>
-      <div>
+      <div class="mt-1">
         <span style="cursor: pointer;" (click)="salir()" class="text-muted">Cerrar Sesión</span>
       </div>
     </div>
@@ -13,7 +13,7 @@
       <button id="buttonMenu" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <i data-toggle="modal" data-target="#perfil" id="imgUser" class="fas fa-user"> <small class="user"> Antonio</small></i>
+      <i data-toggle="modal" data-target="#perfil" id="imgUser" class="fas fa-user"> <small class="user"> {{Perfil.nombre_personal}}</small></i>
       <i data-toggle="modal" data-target="#perfil" id="imgUser" class="fas fa-chalkboard-teacher"> <small class="user"> Tutor del aula</small></i>
     </div>
     <div>
@@ -34,32 +34,71 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h4 class="modal-title" id="exampleModalLabel"><i style="font-size: 20px;" class="fas fa-user-shield"></i> Perfil</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <div class="container">
-          <div id="contenUser" class="card w-75">
-            <div id="imgUser" class="text-center">
-              <i class="fas fa-user-circle"></i>
-            </div>
-            <div class="card-body">
-              <h5 class="card-title text-center"><b>USUARIO</b></h5><!--
+            <div style="margin: 0 auto;">
+              <h5 class="card-title text-center"><b>USUARIO</b></h5>
               <p class="card-text"><b><i class="fas fa-address-card"></i> </b> {{Perfil.DNI_personal}}</p>
               <p class="card-text"><b><i class="far fa-grin"></i> </b> {{Perfil.nombre_personal}} {{Perfil.apellidoPaterno_personal}} {{Perfil.apellidoMaterno_personal}} </p>
               <p class="card-text"><b><i class="fas fa-mobile"></i> </b> {{Perfil.celular_personal}}</p>
               <p class="card-text"><b><i class="fas fa-envelope"></i> </b> {{Perfil.email_personal}}</p>
               <p class="card-text"><b><i class="fas fa-street-view"></i> </b> {{Perfil.tipoPersonal}}</p>
-              <a class="btn btn-link"data-toggle="modal" data-target="#editarDatos" ><i class="fas fa-pencil-alt"></i> Editar</a>-->
+              <a (click)="editPass()" class="btn btn-link"><i class="fas fa-pencil-alt"></i> Editar contraseña</a> <a class="btn btn-link" (click)="editData()"><i class="fas fa-pencil-alt"></i> Editar datos</a>
+              <div *ngIf="editpass">
+                <form [formGroup]="crearFormularioPass">
+                      <div class="row mt-2">
+                          <div class="col">
+                            <input type="password" class="form-control" placeholder="Contraseña nueva" formControlName="primero">
+                            <div style="color: red;" *ngIf="crearFormularioPass.controls['primero'].dirty && crearFormularioPass.controls['primero'].invalid">
+                              <div *ngIf="crearFormularioPass.controls['primero'].errors">
+                                <small>mín 8 carácteres máx 20 carácteres</small>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col">
+                            <input type="password" class="form-control" placeholder="Confirmar contraseña"  formControlName="segundo">
+                            <div style="color: red;" *ngIf="crearFormularioPass.controls['primero'].dirty && crearFormularioPass.controls['segundo'].invalid">
+                              <div *ngIf="crearFormularioPass.controls['segundo'].errors">
+                                <small>mín 8 carácteres máx 20 carácteres</small>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                      <button type="submit" class="btn btn-primary mt-2" (click)="guardarPass()" [disabled]="crearFormularioPass.invalid">Cambiar contraseña</button>
+                </form>
+              </div>
+
+              <div *ngIf="editdata">
+                <form [formGroup]="crearFormularioDatos">
+                  <div class="row mt-2">
+                      <div class="col-md-4">
+                        <input type="text" class="form-control" placeholder="Celular" formControlName="celular">
+                        <div style="color: red;" *ngIf="crearFormularioDatos.controls['celular'].dirty && crearFormularioDatos.controls['celular'].invalid">
+                          <div *ngIf="crearFormularioDatos.controls['celular'].errors.pattern">
+                            <small>Digite números</small>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-8">
+                        <input type="text" class="form-control" placeholder="Correo" formControlName="email">
+                        <div style="color: red;" *ngIf="crearFormularioDatos.controls['email'].dirty && crearFormularioDatos.controls['email'].invalid">
+                          <div *ngIf="crearFormularioDatos.controls['email'].invalid">
+                            <small>Correo inválido</small>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  <button type="button" class="btn btn-primary mt-2" (click)="guardarDatos()" [disabled]="crearFormularioDatos.invalid" >Guardar Datos</button>
+                </form>
+              </div>
+
             </div>
-          </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
