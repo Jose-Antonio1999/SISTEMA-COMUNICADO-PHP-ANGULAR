@@ -4,6 +4,8 @@ import { GradoSeccion } from '../class/grados';
 import { PeticionService } from '../Service/peticion.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import Swal from 'sweetalert2'
+import { Alumnado } from '../class/Alumnado';
+import { Consulta } from '../class/Consulta';
 
 @Component({
   selector: 'app-registro-estudiante',
@@ -15,14 +17,27 @@ export class RegistroEstudianteComponent implements OnInit {
   listaSeccion = new Array<string>();
   listaGrado = new Array<string>();
   GradoSeccion = new Array<GradoSeccion>()
-
+  DataPeople:Consulta
   Mgrado:String
   Mseccion:String
   Mcorrecto:boolean = false
   constructor(private formBuilder:FormBuilder,private inject:PeticionService,private snackBar: MatSnackBar) {
+
+    this.crearFomularioRegistroAlumnado()
+
+    this.inject.listaGrados().subscribe((res)=>{
+      this.GradoSeccion = res
+      this.filtrarSeccion()
+      this.filtrarGrado()
+    })
+  }
+
+  ngOnInit(): void {
+  }
+  crearFomularioRegistroAlumnado(){
     this.Mgrado = localStorage.getItem('gradoAlumno')
     this.Mseccion = localStorage.getItem('seccionAlumno')
-    this.crearFormulario = formBuilder.group({
+    this.crearFormulario = this.formBuilder.group({
       grado:[this.Mgrado,Validators.required],
       seccion:[this.Mseccion,Validators.required],
       dni_apoderado:['',[Validators.required,Validators.pattern(/^([0-9])*$/)]],
@@ -37,15 +52,6 @@ export class RegistroEstudianteComponent implements OnInit {
       apellidoP_estudiante:['',[Validators.required,Validators.pattern(/^([a-z ñáéíóú]{2,60})$/i)]],
       apellidoM_estudiante:['',[Validators.required,Validators.pattern(/^([a-z ñáéíóú]{2,60})$/i)]],
     })
-
-    this.inject.listaGrados().subscribe((res)=>{
-      this.GradoSeccion = res
-      this.filtrarSeccion()
-      this.filtrarGrado()
-    })
-  }
-
-  ngOnInit(): void {
   }
 
   filtrarSeccion(){
@@ -65,12 +71,13 @@ export class RegistroEstudianteComponent implements OnInit {
     this.inject.insertarEstudiante(this.crearFormulario.value).subscribe((res)=>{
 
       if(res==1){
+        this.crearFomularioRegistroAlumnado()
         this.mostrarMensaje('success','Estudiante registrado correctamente')
-        this.crearFormulario.reset()
-        this.crearFormulario.controls['grado'].setValue(this.Mgrado)
-        this.crearFormulario.controls['seccion'].setValue(this.Mseccion)
       }else{
         this.mostrarMensaje('error','Ocurrio un error estudiante no registrado')
+      }
+      if(res==-1){
+        this.mostrarMensaje('warning','El estudiante ya existe')
       }
     })
     this.crearFormulario.controls['grado'].setValue(this.Mgrado)
@@ -80,6 +87,7 @@ export class RegistroEstudianteComponent implements OnInit {
   cancelar(){
     this.crearFormulario.reset()
   }
+
   mostrarMensaje(iconMessaje:any, titleMessaje:any){
     Swal.fire({
       icon: iconMessaje,
@@ -87,6 +95,28 @@ export class RegistroEstudianteComponent implements OnInit {
       showConfirmButton: false,
       timer: 2000
     })
+  }
+
+  completarDatosApoderado(){
+    if(this.crearFormulario.value.dni_apoderado.length==8){
+      this.inject.APIdni(this.crearFormulario.value.dni_apoderado).subscribe((res)=>{
+        this.DataPeople = res
+        this.crearFormulario.controls['nombre_apoderado'].setValue(this.DataPeople.name);
+        this.crearFormulario.controls['apellidoP_apoderado'].setValue(this.DataPeople.first_name);
+        this.crearFormulario.controls['apellidoM_apoderado'].setValue(this.DataPeople.last_name);
+      })
+    }
+  }
+
+  completarDatosEstudiante(){
+    if(this.crearFormulario.value.dni_estudiante.length==8){
+      this.inject.APIdni(this.crearFormulario.value.dni_estudiante).subscribe((res)=>{
+        this.DataPeople = res
+        this.crearFormulario.controls['nombre_estudiante'].setValue(this.DataPeople.name);
+        this.crearFormulario.controls['apellidoP_estudiante'].setValue(this.DataPeople.first_name);
+        this.crearFormulario.controls['apellidoM_estudiante'].setValue(this.DataPeople.last_name);
+      })
+    }
   }
 }
 

@@ -30,16 +30,21 @@ export class MenuComponent implements OnInit {
     private me:ServiceMensajeService,
     private inject:PeticionService,
     private formBuilde:FormBuilder) {
-      this.data = localStorage.getItem('DNIDocente')
-      this.inject.DatosUsuarioActual(this.data).subscribe((res)=>{
-        this.Perfil= res[0]
-      })
+
+      if(localStorage.getItem('userDoc')==null || localStorage.getItem('userDoc')==""){
+        this.ruta.navigateByUrl('Login');
+      }else{
+        this.data = localStorage.getItem('DNIDocente')
+        this.inject.DatosUsuarioActual(this.data).subscribe((res)=>{
+          this.Perfil= res[0] as Personal
+        })
+      }
 
   }
   ngOnInit(): void {
     this.crearFormularioDatos = this.formBuilde.group({
       dni:[this.data],
-      celular:['',Validators.pattern(/^([0-9])*$/)],
+      celular:['',[Validators.pattern(/^([0-9])*$/),Validators.maxLength(9),Validators.minLength(9)]],
       email:['',Validators.email]
     })
     this.crearFormularioPass = this.formBuilde.group({
@@ -54,7 +59,7 @@ export class MenuComponent implements OnInit {
     this.spinner.show();
       setTimeout(() => {
         this.spinner.hide();
-        localStorage.removeItem('user');
+        localStorage.removeItem('userDoc');
         this.ruta.navigateByUrl('')
       }, 2000);
   }
@@ -105,11 +110,22 @@ export class MenuComponent implements OnInit {
   guardarDatos(){
     this.inject.cambiarMiniDatos(this.crearFormularioDatos.value).subscribe((res)=>{
       if(res==1){
+        if(this.crearFormularioDatos.value.email!=""  && this.crearFormularioDatos.value.celular!=""){
+          this.Perfil.celular_personal=this.crearFormularioDatos.value.celular
+          this.Perfil.email_personal=this.crearFormularioDatos.value.email
+        }else{
+          if(this.crearFormularioDatos.value.email!=""){
+            this.Perfil.email_personal= this.crearFormularioDatos.value.email
+          }
+          if(this.crearFormularioDatos.value.celular!=""){
+            this.Perfil.celular_personal = this.crearFormularioDatos.value.celular
+          }
+        }
         this.mostrarMensaje('success','Datos actualizados correctamente')
         this.crearFormularioDatos.reset()
         this.editdata = false
       }else{
-        this.mostrarMensaje('error','Ocurrió un error, datos no actualizados')
+        this.mostrarMensaje('warning','Ocurrió un error, complete los campos')
       }
     })
   }

@@ -31,6 +31,9 @@ import { PadresGeneralComponent } from './padres-general/padres-general.componen
 import { ListaBorradoresComponent } from './lista-borradores/lista-borradores.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { MensajeDelDocenteComponent } from './mensaje-del-docente/mensaje-del-docente.component';
+import { RecoveryPasswordComponent } from './recovery-password/recovery-password.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { jsPDF } from "jspdf";
 
 @NgModule({
   declarations: [
@@ -57,7 +60,9 @@ import { MensajeDelDocenteComponent } from './mensaje-del-docente/mensaje-del-do
     PadresGeneralComponent,
     ListaBorradoresComponent,
     PerfilComponent,
-    MensajeDelDocenteComponent
+    MensajeDelDocenteComponent,
+    RecoveryPasswordComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

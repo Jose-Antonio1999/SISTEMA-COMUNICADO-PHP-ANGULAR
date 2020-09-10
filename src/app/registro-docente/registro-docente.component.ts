@@ -29,23 +29,20 @@ export class RegistroDocenteComponent implements OnInit {
   listaGeneral = new Array<Alumnado>();
   listaPersonal = new Array<Personal>();
   anio:number
-
+  data:String
+  consultaData:Consulta
+  id_tipo_per:any
   Mcorrecto:boolean = false
   constructor(private inject:PeticionService,
     private formbuilder:FormBuilder,
     private ruta:Router,
     private snackBar: MatSnackBar) {
-      this.crearFormulario = this.formbuilder.group({
-        grado:['',],
-        seccion:['',],
-        tipoPersonal:['',Validators.required],
-        dni:['',[Validators.required,Validators.pattern(/^([0-9])*$/)]],
-        nombre:['',[Validators.required,Validators.pattern(/^([a-z ñáéíóú]{2,60})$/i)]],
-        apellidoP:['',[Validators.required,Validators.pattern(/^([a-z ñáéíóú]{2,60})$/i)]],
-        apellidoM:['',[Validators.required,Validators.pattern(/^([a-z ñáéíóú]{2,60})$/i)]],
-        correo:['',[Validators.required,Validators.email]],
-        celular:['',[Validators.required,Validators.pattern(/^([0-9])*$/)]]
+      //obtener el id tipo personal
+      this.data = localStorage.getItem('DNID')
+      this.inject.DatosUsuarioActual(this.data).subscribe((res)=>{
+        this.id_tipo_per = res[0].id_tipo_personal
       })
+      this.crearFormularioRegistro()
       this.inject.listaGrados().subscribe((res)=>{
         this.GradoSeccion = res
       })
@@ -57,6 +54,19 @@ export class RegistroDocenteComponent implements OnInit {
       })
   }
   ngOnInit(): void {
+  }
+  crearFormularioRegistro(){
+    this.crearFormulario = this.formbuilder.group({
+      grado:[''],
+      seccion:[''],
+      tipoPersonal:['',Validators.required],
+      dni:['',[Validators.required,Validators.pattern(/^([0-9])*$/)]],
+      nombre:['',[Validators.required,Validators.pattern(/^([a-z ñáéíóú]{2,60})$/i)]],
+      apellidoP:['',[Validators.required,Validators.pattern(/^([a-z ñáéíóú]{2,60})$/i)]],
+      apellidoM:['',[Validators.required,Validators.pattern(/^([a-z ñáéíóú]{2,60})$/i)]],
+      correo:['',[Validators.required,Validators.email]],
+      celular:['',[Validators.required,Validators.pattern(/^([0-9])*$/)]]
+    })
   }
   Tutor(){
     this.estutor = true
@@ -80,8 +90,13 @@ export class RegistroDocenteComponent implements OnInit {
   }
   GuardarDatos(){
     this.inject.insertarPersonal(this.crearFormulario.value).subscribe((res)=>{
-      this.crearFormulario.reset()
-      this.mostrarMensaje('success','Docente registrado correctamente')
+      if(res==1){
+        this.crearFormularioRegistro()
+        this.mostrarMensaje('success','Docente registrado correctamente')
+      }
+      if(res==-1){
+        this.mostrarMensaje('warning','El Docente ya existe en el registro')
+      }
     })
   }
   opNuevoDocente(){
@@ -105,11 +120,12 @@ export class RegistroDocenteComponent implements OnInit {
     })
   }
   llenarDatos(){
-    if(this.crearFormulario.value.dni.length==8 && this.crearFormulario.controls['dni'].valid){
-      this.inject.leerUsuarioDni(this.crearFormulario.value.dni).subscribe((res)=>{
-        this.crearFormulario.controls['nombre'].setValue(res.nombres);
-        this.crearFormulario.controls['apellidoP'].setValue(res.apellidoPaterno);
-        this.crearFormulario.controls['apellidoM'].setValue(res.apellidoMaterno);
+    if(this.crearFormulario.value.dni.length==8){
+      this.inject.APIdni(this.crearFormulario.value.dni).subscribe((res)=>{
+        this.consultaData = res
+        this.crearFormulario.controls['nombre'].setValue(this.consultaData.name);
+        this.crearFormulario.controls['apellidoP'].setValue(this.consultaData.first_name);
+        this.crearFormulario.controls['apellidoM'].setValue(this.consultaData.last_name);
       })
     }
   }

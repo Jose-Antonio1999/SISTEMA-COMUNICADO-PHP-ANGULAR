@@ -13,7 +13,7 @@ if(isset($dni)){
 
   $sql1 = "SELECT id_personal FROM personal WHERE DNI_personal='$dni' ";
   $query1 = mysqli_query($conexion,$sql1);
-
+  $id = '';
   while($filass = mysqli_fetch_array($query1)){
     $id = $filass['id_personal'];
   }

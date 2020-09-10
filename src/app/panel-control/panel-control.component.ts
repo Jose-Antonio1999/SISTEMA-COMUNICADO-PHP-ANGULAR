@@ -6,6 +6,7 @@ import Swal from 'sweetalert2'
 import { modeloDatosEnvio } from '../lista-alumnado/lista-alumnado.component';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Personal } from '../class/personal';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-panel-control',
@@ -52,25 +53,31 @@ export class PanelControlComponent implements OnInit {
   MostrarBuscador:boolean = true
   Grado:String
   Seccion:String
-  constructor(private inject:PeticionService, private formBuil:FormBuilder) {
+  tituloLEnviados:boolean = false
+  tituloBorradores:boolean = false
+  constructor(private inject:PeticionService, private formBuil:FormBuilder,private ruta:Router) {
 
-    this.cargarDatosAlumnos()
+    if(localStorage.getItem('userDoc')==null || localStorage.getItem('userDoc')==""){
+      this.ruta.navigateByUrl('Login');
+    }else{
+      this.cargarDatosAlumnos()
 
-    this.crearFormularioMensaje = formBuil.group({
-      idEnvio:[''],
-      tipo:['',Validators.required],
-      para:['',Validators.required],
-      asunto:['',Validators.required],
-      cuerpo:['',Validators.required],
-      pass:['',Validators.required]
-    })
+      this.crearFormularioMensaje = formBuil.group({
+        idEnvio:[''],
+        tipo:['',Validators.required],
+        para:['',Validators.required],
+        asunto:['',Validators.required],
+        cuerpo:['',Validators.required],
+        pass:['',Validators.required]
+      })
 
-    this.inject.DatosUsuarioActual(localStorage.getItem('DNIDocente')).subscribe((respuesta)=>{
-      this.PerfilCurrect = respuesta[0]
-      this.idDocente = this.PerfilCurrect.id_personal
-    })
+      this.inject.DatosUsuarioActual(localStorage.getItem('DNIDocente')).subscribe((respuesta)=>{
+        this.PerfilCurrect = respuesta[0]
+        this.idDocente = this.PerfilCurrect.id_personal
+      })
 
-    this.fechaActual = this.fecht.getDate()+"/"+ (this.fecht.getMonth()+1)+"/"+this.fecht.getFullYear()
+      this.fechaActual = this.fecht.getDate()+"/"+ (this.fecht.getMonth()+1)+"/"+this.fecht.getFullYear()
+    }
   }
   ngOnInit(): void {
 
@@ -277,6 +284,9 @@ export class PanelControlComponent implements OnInit {
           this.inject.EliminarMensaje(this.listaMensajesBorradores[this.cargarId].id_Comunicado).subscribe((respuesta)=>{
             //eliminar comunicado del array
             this.listaMensajesBorradores.splice(this.cargarId,1);
+            if(this.listaMensajesBorradores.length==0){
+              this.MostrarMensajeborrador = true
+            }
           })
           this.mostrarMensaje('success','Mensaje enviado correctamente')
         }else{
@@ -315,12 +325,16 @@ export class PanelControlComponent implements OnInit {
     this.cargarDatosAlumnos()
     this.MostrarBuscador = true
     this.opcionEscogida = "lAlumnos"
+    this.tituloLEnviados = false
+    this.tituloBorradores = false
   }
 
   listaEnviados(){
     this.listaMensaje()
     this.MostrarBuscador = false
     this.opcionEscogida = "lEnviados"
+    this.tituloLEnviados = true
+    this.tituloBorradores = false
   }
 
   listaBorradores(){
@@ -334,6 +348,8 @@ export class PanelControlComponent implements OnInit {
       }
     })
     this.opcionEscogida = "lBorrador"
+    this.tituloLEnviados = false
+    this.tituloBorradores = true
   }
 
   GuardarBorradorDocente(){

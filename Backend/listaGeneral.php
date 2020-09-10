@@ -35,6 +35,7 @@ while($filas = mysqli_fetch_array($query)){
   $lista[$i]['email_apoderado'] = $filas['email_apoderado'];
   $lista[$i]['celular_apoderado'] = $filas['celular_apoderado'];
 
+
   $i++;
 }
 

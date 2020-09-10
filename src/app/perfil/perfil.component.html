@@ -40,7 +40,7 @@
                 <form [formGroup]="crearFormularioDatos">
                   <div class="row mt-2">
                       <div class="col-md-4">
-                        <input type="text" class="form-control" placeholder="Celular" formControlName="celular">
+                        <input type="text" class="form-control" placeholder="Celular" formControlName="celular" maxlength="9">
                         <div style="color: red;" *ngIf="crearFormularioDatos.controls['celular'].dirty && crearFormularioDatos.controls['celular'].invalid">
                           <div *ngIf="crearFormularioDatos.controls['celular'].errors.pattern">
                             <small>Digite números</small>

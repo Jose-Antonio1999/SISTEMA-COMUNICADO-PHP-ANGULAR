@@ -36,11 +36,12 @@ export class PeticionService {
   leerUsuarioDni(dni:String):Observable<Consulta>{
     return this.http.get<Consulta>("https://dniruc.apisperu.com/api/v1/dni/"+dni+this.token)
   }
-
   insertarPersonal(tr:Personal):Observable<any>{
     return this.http.post<Personal>(this.URL+'/insertarPersonal.php',JSON.stringify(tr));
   }
-
+  APIdni(dni:String):Observable<Consulta>{
+    return this.http.get<Consulta>(`https://dni.optimizeperu.com/api/persons/${dni}?format=json`)
+  }
   login(usuario:any):Observable<any>{
     return this.http.post<Personal>(this.URL+'/Login.php',JSON.stringify(usuario));
   }
@@ -124,6 +125,10 @@ export class PeticionService {
   }
   manerjarERROR(err:HttpErrorResponse){
     return status;
+  }
+  //actualización de password
+  recoveryPassword(data:any){
+    return this.http.put<any>(this.URL+'/recoveryPassword.php',JSON.stringify(data));
   }
 
 

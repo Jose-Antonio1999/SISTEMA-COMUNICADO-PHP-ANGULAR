@@ -38,8 +38,9 @@
               <p class="card-text" style="text-align: justify;">{{recortarMensaje(data.contenido)}} ...
               <span (click)="verMensaje(i)" style="cursor: pointer;" class="badge badge-pill badge-info" data-toggle="modal" data-target="#mensaje">Ver más</span></p>
             </div>
-            <div class="card-footer">
-              <b>Fecha de envio:</b> {{data.fecha}}
+            <div class="card-footer" id="footerMessage">
+              <div><b>Fecha de envio:</b> {{data.fecha}}</div>
+              <div><h4 class="card-title"><b>Destino:</b> {{data.Destino}}</h4></div>
             </div>
             </div>
         </div>
@@ -48,10 +49,8 @@
 </div>
 
 <!--Modal de muestra de mensaje-->
-
-<!-- Modal -->
 <div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog " role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-mail-bulk"></i> Mensaje enviado</h5>

@@ -5,6 +5,8 @@ import { PanelDirectorComponent } from './panel-director/panel-director.componen
 import { RegistroPersonalComponent } from './registro-personal/registro-personal.component';
 import { MenuComponent } from './menu/menu.component';
 import { RedactarComunicadoComponent } from './redactar-comunicado/redactar-comunicado.component';
+import { RecoveryPasswordComponent } from './recovery-password/recovery-password.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   { path:"",component:LoginComponent},
@@ -12,7 +14,9 @@ const routes: Routes = [
   { path:"Login",component:LoginComponent},
   { path:"Panel-Docente",component:MenuComponent},
   { path:"Registro-Personal",component:RegistroPersonalComponent},
-  { path:"Redactar",component:RedactarComunicadoComponent}
+  { path:"Redactar",component:RedactarComunicadoComponent},
+  { path:"password-recovery", component:RecoveryPasswordComponent},
+  { path:"**", component:NotFoundComponent}
 
 ];
 

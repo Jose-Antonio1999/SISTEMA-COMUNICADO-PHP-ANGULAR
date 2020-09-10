@@ -53,7 +53,15 @@ export class ListaAlumnadoComponent implements OnInit {
   guardarBorrador:boolean
   idDuenioMensaje:number
   valorBusqueda:String = ''
+  id_tipo_per:any
+  data:String
   constructor(private inject:PeticionService, private formBuil:FormBuilder) {
+    //obtener el id tipo personal
+    this.data = localStorage.getItem('DNID')
+    this.inject.DatosUsuarioActual(this.data).subscribe((res)=>{
+      this.id_tipo_per = res[0].id_tipo_personal
+    })
+
     this.gradoSeccion.push(localStorage.getItem('seccionAlumno'))
     this.gradoSeccion.push(localStorage.getItem('gradoAlumno'))
 
@@ -123,7 +131,7 @@ export class ListaAlumnadoComponent implements OnInit {
     this.listaGeneral.forEach((email)=>{
       this.listaCorreosPadres.push(email.email_apoderado)
     })
-    this.crearFormularioMensaje.setValue({idEnvio:'', tipo:'',para:'Docentes en general',asunto:'',cuerpo:'',pass:'' })
+    this.crearFormularioMensaje.setValue({idEnvio:'', tipo:'',para:'Apoderados en general',asunto:'',cuerpo:'',pass:'' })
   }
 
   prepararMensajePadre(correo:String){
@@ -247,6 +255,9 @@ export class ListaAlumnadoComponent implements OnInit {
         this.inject.EliminarEstudiante(id as any).subscribe((res)=>{
           console.log(res)
           this.listaGeneral.splice(i,1);
+          if(this.listaGeneral.length==0){
+            this.listaVacia = true
+          }
         })
         Swal.fire(
           'Estudiante eliminado!',

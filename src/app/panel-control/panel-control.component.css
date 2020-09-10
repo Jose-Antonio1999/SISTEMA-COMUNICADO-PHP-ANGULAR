@@ -73,6 +73,10 @@
   height: 7px;
   width: 7px;
 }
+.titulos{
+  margin-top: 17px;
+  font-size: 19px;
+}
 #contenedorDocentes::-webkit-scrollbar-thumb{
   background: gray;
   border-radius: 10px;
@@ -167,8 +171,14 @@ table{
   font-family: fantasy;
   padding: 10px;
 }
+.modal-lg {
+  max-width: 50% !important;
+}
 @media (max-width:760px){
   #buttonRedactar{
     width: 150px;
+  }
+  .modal-lg {
+    max-width: 100% !important;
   }
 }

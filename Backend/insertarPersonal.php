@@ -25,39 +25,45 @@ if(isset($data)){
   $email_personal = mysqli_real_escape_string($conexion,$personal->correo);
   $celular_personal = mysqli_real_escape_string($conexion,$personal->celular);
 
-  //query
-  $sql = "INSERT INTO Personal VALUES(NULL,'$DNI_personal','$nombre_personal','$apellidoPaterno_personal','$apellidoMaterno_personal','$email_personal','$celular_personal','1','$tipoPersonal')";
-  $sql2 = "INSERT INTO usuario VALUES(NULL,'$tipoPersonal','$DNI_personal','$DNI_personal')";
-  $query = mysqli_query($conexion,$sql);
-  $query2 = mysqli_query($conexion,$sql2);
+  $sqlVD = "SELECT DNI_personal  FROM personal  WHERE DNI_personal = '$DNI_personal'; ";
+  $queryVD = mysqli_query($conexion,$sqlVD);
+  if(mysqli_num_rows($queryVD)==0){
+      //query
+    $sql = "INSERT INTO Personal VALUES(NULL,'$DNI_personal','$nombre_personal','$apellidoPaterno_personal','$apellidoMaterno_personal','$email_personal','$celular_personal','1','$tipoPersonal')";
+    $sql2 = "INSERT INTO usuario VALUES(NULL,'$tipoPersonal','$DNI_personal','$DNI_personal')";
+    $query = mysqli_query($conexion,$sql);
+    $query2 = mysqli_query($conexion,$sql2);
 
-  if($grado != null || $seccion !=null || $grado !="" || $seccion !=""){
-    //Query obtener id
-    $sql3 = "SELECT id_personal FROM Personal WHERE DNI_personal='$DNI_personal' and email_personal='$email_personal' ";
-    $query3 = mysqli_query($conexion,$sql3);
-    $sql4 = "SELECT id_grado_seccion FROM gradoseccion WHERE grado='$grado' and seccion='$seccion' ";
-    $query4 = mysqli_query($conexion,$sql4);
+    if($grado != null || $seccion !=null || $grado !="" || $seccion !=""){
+      //Query obtener id
+      $sql3 = "SELECT id_personal FROM Personal WHERE DNI_personal='$DNI_personal' and email_personal='$email_personal' ";
+      $query3 = mysqli_query($conexion,$sql3);
+      $sql4 = "SELECT id_grado_seccion FROM gradoseccion WHERE grado='$grado' and seccion='$seccion' ";
+      $query4 = mysqli_query($conexion,$sql4);
 
-    while($filaDoc = mysqli_fetch_array($query3)){
-      $idDocente = $filaDoc['id_personal'];
+      while($filaDoc = mysqli_fetch_array($query3)){
+        $idDocente = $filaDoc['id_personal'];
+      }
+      while($filaGrad = mysqli_fetch_array($query4)){
+        $idGrados = $filaGrad['id_grado_seccion'];
+      }
+
+      if($idDocente!="" and $idGrados!=""){
+        $anio = date("Y");
+        $sql5 = "INSERT INTO tutor VALUES(null,'$anio','$idDocente','$idGrados')";
+        $query5 = mysqli_query($conexion,$sql5);
+      }
+
     }
-    while($filaGrad = mysqli_fetch_array($query4)){
-      $idGrados = $filaGrad['id_grado_seccion'];
+    if(!$query){
+      echo json_encode('0');
+    }else{
+      echo json_encode('1');
     }
-
-    if($idDocente!="" and $idGrados!=""){
-      $anio = date("Y");
-      $sql5 = "INSERT INTO tutor VALUES(null,'$anio','$idDocente','$idGrados')";
-      $query5 = mysqli_query($conexion,$sql5);
-    }
-
+  }else{
+    echo json_encode('-1');
   }
 
 }
 
-if(!$query){
-  echo json_encode('0');
-}else{
-  echo json_encode('1');
-}
 

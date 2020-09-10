@@ -1,6 +1,5 @@
 export class Personal{
   id_personal
-  tipo_personal
   DNI_personal
   nombre_personal
   apellidoPaterno_personal
@@ -13,7 +12,6 @@ export class Personal{
 
   constructor(){
     this.id_personal=this.id_personal
-    this.tipo_personal = this.tipo_personal
     this.DNI_personal =this.DNI_personal
     this.nombre_personal = this.nombre_personal
     this.apellidoPaterno_personal = this.apellidoPaterno_personal

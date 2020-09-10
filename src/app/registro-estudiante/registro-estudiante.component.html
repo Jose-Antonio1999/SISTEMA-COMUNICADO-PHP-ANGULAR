@@ -33,7 +33,7 @@
           <mat-form-field class="modelInput">
             <span matPrefix><i class="fas fa-address-card"></i> &nbsp;</span>
             <mat-label>Dni estudiante</mat-label>
-            <input  matInput autocomplete="off" formControlName="dni_estudiante" maxlength="8">
+            <input  matInput autocomplete="off" formControlName="dni_estudiante" maxlength="8" (ngModelChange)="completarDatosEstudiante()">
           </mat-form-field>
           <div style="margin-top: -13px; color: red;" *ngIf="crearFormulario.controls['dni_estudiante'].dirty && crearFormulario.controls['dni_estudiante'].invalid">
             <div *ngIf="crearFormulario.controls['dni_estudiante'].errors.pattern">
@@ -96,7 +96,7 @@
         <mat-form-field class="modelInput">
           <span matPrefix><i class="fas fa-address-card"></i> &nbsp;</span>
           <mat-label>Dni Apoderado</mat-label>
-          <input  matInput autocomplete="off" formControlName="dni_apoderado" maxlength="8">
+          <input  matInput autocomplete="off" formControlName="dni_apoderado" maxlength="8" (ngModelChange)="completarDatosApoderado()">
         </mat-form-field>
         <div style="margin-top: -13px; color: red;" *ngIf="crearFormulario.controls['dni_apoderado'].dirty && crearFormulario.controls['dni_apoderado'].invalid">
           <div *ngIf="crearFormulario.controls['dni_apoderado'].errors.pattern">
@@ -164,8 +164,8 @@
               <mat-icon matSuffix>mail</mat-icon>
           </mat-form-field>
           <div style="margin-top: -13px; color: red;" *ngIf="crearFormulario.controls['correo_apoderado'].dirty && crearFormulario.controls['correo_apoderado'].invalid">
-            <div *ngIf="crearFormulario.controls['correo_apoderado'].errors.invalid">
-              <small>correo inválidos hasta el momento</small>
+            <div *ngIf="crearFormulario.controls['correo_apoderado'].errors.email">
+              <small>Correo inválido hasta el momento</small>
             </div>
             <div *ngIf="crearFormulario.controls['correo_apoderado'].errors.required">
               <small>Complete el campo correo</small>

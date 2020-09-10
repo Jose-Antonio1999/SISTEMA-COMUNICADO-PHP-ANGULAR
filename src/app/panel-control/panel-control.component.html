@@ -7,22 +7,28 @@
       <div class="form-inline" id="izquierdoRow" *ngIf="MostrarBuscador">
         <mat-form-field class="inputBuscar">
           <mat-label>Buscar Estudiante</mat-label>
-          <input  matInput autocomplete="off" (ngModelChange)="buscarEstudiante()" [(ngModel)]="valorBusqueda">
+          <input  matInput autocomplete="off" [(ngModel)]="valorBusqueda">
           <mat-icon matSuffix><span style="font-size:25px;" class="material-icons">search</span></mat-icon>
         </mat-form-field>
       </div>
+      <div *ngIf="tituloLEnviados">
+        <p class="titulos">Lista de mensajes enviados</p>
+      </div>
+      <div *ngIf="tituloBorradores">
+        <p class="titulos">Lista de mensajes borradores</p>
+      </div>
     </div>
     <div (click)="listaAlumnos()" class="col-md-2">
-      <a id="buttonRedactar" class="btn btn-dark m-2" >Alumnos <i class="fas fa-user-graduate"></i></a>
+      <a id="buttonRedactar" class="btn btn-light m-2" >Alumnos <i class="fas fa-user-graduate"></i></a>
     </div>
     <div class="col-md-2">
-        <button [disabled]="MostrarMensajeAlumnos" id="buttonRedactar" class="btn btn-dark m-2" data-toggle="modal" data-target="#enviarMensaje" (click)="PrepararMensajeMasivo()">Redactar <i class="fas fa-comment-alt"></i></button>
+        <button [disabled]="MostrarMensajeAlumnos" id="buttonRedactar" class="btn btn-light m-2" data-toggle="modal" data-target="#enviarMensaje" (click)="PrepararMensajeMasivo()">Redactar <i class="fas fa-comment-alt"></i></button>
     </div>
     <div (click)="listaEnviados()" class="col-md-2" >
-      <a id="buttonRedactar" class="btn btn-dark mt-2">enviados <i class="far fa-paper-plane"></i></a>
+      <a id="buttonRedactar" class="btn btn-light mt-2">enviados <i class="far fa-paper-plane"></i></a>
     </div>
     <div (click)="listaBorradores()" class="col-md-2">
-      <a id="buttonRedactar" class="btn btn-dark mt-2">Borradores <i class="fas fa-file-signature"></i></a>
+      <a id="buttonRedactar" class="btn btn-light mt-2">Borradores <i class="fas fa-file-signature"></i></a>
     </div>
   </div>
 </div>
@@ -39,7 +45,7 @@
             <div class="card mb-3">
               <div class="card-body">
                   <h3 ><i class="fas fa-user-graduate"></i> {{data.nombre_alumno}} {{data.apellidoPaterno_alumno}} {{data.apellidoMaterno_alumno}}</h3>
-                  <h5 class="text-center" id="titleP">Apoderado(a) <i class="fas fa-user-tie" style="font-size: 24px;"></i></h5>
+                  <h4 class="text-center" id="titleP"><b>Apoderado(a) <i class="fas fa-user-tie" style="font-size: 24px;"></i></b></h4>
                   <div><i id="icon" class="far fa-id-card"></i> {{data.nombre_apoderado}} {{data.apellidoPaterno_apoderado}} {{data.apellidoMaterno_apoderado}}</div>
                   <div><i id="icon" class="fas fa-envelope"></i> {{data.email_apoderado}}</div>
                   <div><i id="icon" class="fas fa-mobile-alt"></i> {{data.celular_apoderado}}</div>
@@ -162,13 +168,13 @@
 
                   <mat-form-field class="inputRedactar">
                       <mat-label>Tipo Comunicado</mat-label>
-                      <input  matInput autocomplete="off"  formControlName="tipo">
+                      <input  matInput autocomplete="off"  formControlName="tipo" maxlength="150">
                   </mat-form-field>
 
 
                   <mat-form-field class="inputRedactar">
                     <mat-label>Cuerpo del Comunicado</mat-label>
-                    <textarea rows="10" matInput formControlName="cuerpo" maxlength="730"></textarea>
+                    <textarea rows="10" matInput formControlName="cuerpo" maxlength="1800"></textarea>
                   </mat-form-field>
 
                   <mat-form-field class="inputRedactar">
@@ -179,7 +185,7 @@
                   </mat-form-field>
 
                   <div class="form-inline">
-                    <button (click)="enviarMensaje()" type="button" class="btn btn-primary m-1" [disabled]="crearFormularioMensaje.invalid"><i class="fas fa-paper-plane"></i> Enviar  <div *ngIf="mostrarCargando" class="spinner-border text-ligth spinner-border-sm" role="status"><span class="sr-only">Loading...</span></div></button>
+                    <button (click)="enviarMensaje()" type="button" class="btn btn-dark m-1" [disabled]="crearFormularioMensaje.invalid"><i class="fas fa-paper-plane"></i> Enviar  <div *ngIf="mostrarCargando" class="spinner-border text-ligth spinner-border-sm" role="status"><span class="sr-only">Loading...</span></div></button>
                     <button *ngIf="habilitarGuardar" data-dismiss="modal" (click)="GuardarBorradorDocente()" type="button" class="btn btn-dark m-1"><i class="fas fa-save"></i> Guardar</button>
                     <button type="button" class="btn btn-danger m-1" (click)="cancelar()" data-dismiss="modal">Cancelar</button>
                   </div>
@@ -234,7 +240,7 @@
 
 <!-- Modal ver mensaje-->
 <div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog " role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-mail-bulk"></i> Mensaje enviado</h5>

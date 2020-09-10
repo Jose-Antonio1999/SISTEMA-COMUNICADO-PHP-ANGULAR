@@ -12,7 +12,7 @@ import { Personal } from '../class/personal';
   styleUrls: ['./lista-borradores.component.css']
 })
 export class ListaBorradoresComponent implements OnInit {
-  @ViewChild('passw',{static:true}) passw:ElementRef
+  @ViewChild('viewpass',{static:true}) passw:ElementRef
   verPass:boolean = false
   mostrarCargando:boolean = false
   mostrarMensajeSucces:boolean = false
@@ -142,7 +142,9 @@ export class ListaBorradoresComponent implements OnInit {
         this.inject.EliminarMensaje(this.listaBorradores[i].id_Comunicado).subscribe((respuesta)=>{
           //eliminar comunicado del array
           this.listaBorradores.splice(i,1);
-          this.Mmensaje = true
+          if(this.listaBorradores.length==0){
+            this.Mmensaje=true
+          }
         })
 
         swalWithBootstrapButtons.fire(

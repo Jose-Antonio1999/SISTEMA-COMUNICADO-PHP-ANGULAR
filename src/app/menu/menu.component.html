@@ -1,10 +1,10 @@
 <div class="fixed-top">
   <div class="collapse" id="navbarToggleExternalContent">
-    <div class="p-4" style="background:#265B8C;">
+    <div class="p-4" style="background:#265B8C; color:#FFFF">
       <h5 class="text-white h4">WillanaApp</h5>
-      <span style="cursor: pointer;" class="text-muted" data-toggle="modal" data-target="#perfil">Perfil</span>
+      <span style="cursor: pointer; color:#FFFF" data-toggle="modal" data-target="#perfil">Perfil</span>
       <div class="mt-1">
-        <span style="cursor: pointer;" (click)="salir()" class="text-muted">Cerrar Sesión</span>
+        <span style="cursor: pointer; color:#FFFF" (click)="salir()">Cerrar Sesión</span>
       </div>
     </div>
   </div>
@@ -13,12 +13,12 @@
       <button id="buttonMenu" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <i data-toggle="modal" data-target="#perfil" id="imgUser" class="fas fa-user"> <small class="user"> {{Perfil.nombre_personal}}</small></i>
+      <i data-toggle="modal" data-target="#perfil" id="imgUser" class="fas fa-user"> <small style="font-size: 14px;" class="user"> {{Perfil.nombre_personal}}</small></i>
       <i data-toggle="modal" data-target="#perfil" id="imgUser" class="fas fa-chalkboard-teacher"> <small class="user"> Tutor del aula</small></i>
     </div>
     <div>
       <!--<mat-icon id="imgBell" matBadge="10" matBadgeColor="warn"><span class="material-icons">chat_bubble_outline</span></mat-icon>-->
-      <span id="imgBell" class="material-icons" (click)="sal()">settings</span>
+      <span id="imgBell" class="material-icons" (click)="salir()"><i class="fas fa-sign-in-alt"></i></span>
     </div>
   </nav>
 </div>
@@ -77,15 +77,18 @@
                 <form [formGroup]="crearFormularioDatos">
                   <div class="row mt-2">
                       <div class="col-md-4">
-                        <input type="text" class="form-control" placeholder="Celular" formControlName="celular">
+                        <input type="text" class="form-control" placeholder="Celular" formControlName="celular" maxlength="9">
                         <div style="color: red;" *ngIf="crearFormularioDatos.controls['celular'].dirty && crearFormularioDatos.controls['celular'].invalid">
                           <div *ngIf="crearFormularioDatos.controls['celular'].errors.pattern">
                             <small>Digite números</small>
                           </div>
+                          <div *ngIf="crearFormularioDatos.controls['celular'].errors">
+                            <small>Considere 9 dígitos</small>
+                          </div>
                         </div>
                       </div>
                       <div class="col-md-8">
-                        <input type="text" class="form-control" placeholder="Correo" formControlName="email">
+                        <input type="email" class="form-control" placeholder="Correo" formControlName="email">
                         <div style="color: red;" *ngIf="crearFormularioDatos.controls['email'].dirty && crearFormularioDatos.controls['email'].invalid">
                           <div *ngIf="crearFormularioDatos.controls['email'].invalid">
                             <small>Correo inválido</small>

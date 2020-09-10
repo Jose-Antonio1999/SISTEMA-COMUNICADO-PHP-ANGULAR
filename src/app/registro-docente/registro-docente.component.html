@@ -42,9 +42,9 @@
           <mat-label>Tipo de personal</mat-label>
           <mat-select formControlName="tipoPersonal">
             <div>
-              <mat-option value="1">Director</mat-option>
-              <mat-option value="2">Docente</mat-option>
-              <mat-option value="3">Secretaria</mat-option>
+              <mat-option value="1" *ngIf="id_tipo_per==1">Director</mat-option>
+              <mat-option value="2" >Docente</mat-option>
+              <mat-option value="3" *ngIf="id_tipo_per==1">Secretaria</mat-option>
             </div>
           </mat-select>
         </mat-form-field>

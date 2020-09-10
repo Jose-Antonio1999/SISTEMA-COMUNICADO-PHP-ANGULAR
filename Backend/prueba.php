@@ -1,7 +1,18 @@
 <?php
-  // Obteniendo la fecha actual con hora, minutos y segundos en PHP
-  // Obteniendo la fecha actual del sistema con PHP
-  $fechaActual = date('Y-m-d');
 
-  echo $fechaActual;
+  function generarPassword(){
+    //Carácteres para la contraseña
+    $str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+    $password = "";
+    //Reconstruimos la contraseña segun la longitud que se quiera
+    for($i=0;$i<10;$i++) {
+      //obtenemos un caracter aleatorio escogido de la cadena de caracteres
+      $password .= substr($str,rand(0,62),1);
+    }
+    //Mostramos la contraseña generada
+    return $password;
+  }
+
+  echo generarPassword();
+
 ?>

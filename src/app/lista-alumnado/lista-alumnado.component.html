@@ -18,7 +18,7 @@
 </div>
 <div  class="container">
   <div id="contenedorAlumnos">
-    <div *ngIf="mVacio">
+    <div *ngIf="listaVacia">
       <app-mostrar-lista-vacia></app-mostrar-lista-vacia>
     </div>
     <div class="row">
@@ -29,8 +29,8 @@
             <div class="btn-group dropleft">
               <i class="fas fa-caret-down" style="cursor: pointer;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
               <div class="dropdown-menu">
-                <p class="m-2" style="cursor: pointer;" data-toggle="modal" data-target="#actualizarEstudiante" (click)="CargaractualizarDatosAlumno(i)"><i class="fas fa-pen-alt"></i> Actualizar</p>
-                <p class="m-2" style="cursor: pointer;" (click)="eliminarEstudent(i,dato.id_apoderado)"><i class="fas fa-trash"></i> Eliminar</p>
+                <p id="contenIcon" class="m-2" style="cursor: pointer;" data-toggle="modal" data-target="#actualizarEstudiante" (click)="CargaractualizarDatosAlumno(i)"><i class="fas fa-pen-alt"></i> Actualizar</p>
+                <p id="contenIcon" *ngIf="id_tipo_per==1" class="m-2" style="cursor: pointer;" (click)="eliminarEstudent(i,dato.id_apoderado)"><i class="fas fa-trash"></i> Eliminar</p>
               </div>
             </div>
           </div>
@@ -88,7 +88,7 @@
 
                 <mat-form-field class="inputRedactar">
                   <mat-label>Cuerpo del Comunicado</mat-label>
-                  <textarea rows="10" matInput formControlName="cuerpo" maxlength="730"></textarea>
+                  <textarea rows="10" matInput formControlName="cuerpo" maxlength="1800"></textarea>
                 </mat-form-field>
 
                 <mat-form-field class="inputRedactar">
@@ -322,8 +322,8 @@
                         <mat-icon matSuffix>mail</mat-icon>
                     </mat-form-field>
                     <div style="margin-top: -13px; color: red;" *ngIf="crearFormulario.controls['correo_apoderado'].dirty && crearFormulario.controls['correo_apoderado'].invalid">
-                      <div *ngIf="crearFormulario.controls['correo_apoderado'].errors.invalid">
-                        <small>correo inválidos hasta el momento</small>
+                      <div *ngIf="crearFormulario.controls['correo_apoderado'].errors.email">
+                        <small>Correo inválido hasta el momento</small>
                       </div>
                       <div *ngIf="crearFormulario.controls['correo_apoderado'].errors.required">
                         <small>Complete el campo correo</small>

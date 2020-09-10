@@ -30,7 +30,7 @@
               <i class="fas fa-caret-down" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
               <div class="dropdown-menu">
                 <p class="m-2" data-toggle="modal" data-target="#Editar" (click)="mandaraActualizar(i)"><i class="fas fa-pen-alt"></i> Actualizar</p>
-                <p  (click)="eliminarPersonal(i,data.id_personal)" class="m-2"><i class="fas fa-trash"></i> Eliminar</p>
+                <p *ngIf="id_tipo_per==1"  (click)="eliminarPersonal(i,data.id_personal)" class="m-2"><i class="fas fa-trash"></i> Eliminar</p>
               </div>
             </div>
 
@@ -90,10 +90,9 @@
                       <input  matInput autocomplete="off"  formControlName="tipo">
                   </mat-form-field>
 
-
                   <mat-form-field class="inputRedactar">
                     <mat-label>Cuerpo del Comunicado</mat-label>
-                    <textarea rows="10" matInput formControlName="cuerpo" maxlength="730"></textarea>
+                    <textarea rows="10" matInput formControlName="cuerpo" maxlength="1800"></textarea>
                   </mat-form-field>
 
                   <mat-form-field class="inputRedactar">
@@ -195,9 +194,9 @@
 
                   <div class="form-group" style="width: 100%;">
                     <select class="form-control" formControlName="seccion" formControlName="tipoPersonal">
-                        <option value="1">Director</option>
+                        <option value="1" *ngIf="id_tipo_per==1">Director</option>
                         <option value="2">Docente</option>
-                        <option value="3">Secretaria</option>
+                        <option value="3" *ngIf="id_tipo_per==1">Secretaria</option>
                     </select>
                   </div>
 

@@ -23,7 +23,7 @@ export class RegistroPersonalComponent implements OnInit {
   crearFormulario: FormGroup
   primerRegistro:boolean
   estutor:boolean = false
-
+  consultaData:Consulta
   personal:Personal
   mMensaje:boolean = false
   constructor(private inject:PeticionService,
@@ -35,12 +35,12 @@ export class RegistroPersonalComponent implements OnInit {
         grado:[''],
         seccion:[''],
         tipoPersonal:['',Validators.required],
-        dni:['',[Validators.required,Validators.maxLength(8)]],
-        nombre:['',Validators.required],
-        apellidoP:['',Validators.required],
-        apellidoM:['',Validators.required],
+        dni:['',[Validators.required,Validators.maxLength(8),Validators.pattern(/^([0-9])*$/)]],
+        nombre:['',[Validators.required,Validators.pattern(/^([a-z ñáéíóú]{2,60})$/i)]],
+        apellidoP:['',[Validators.required,Validators.pattern(/^([a-z ñáéíóú]{2,60})$/i)]],
+        apellidoM:['',[Validators.required,Validators.pattern(/^([a-z ñáéíóú]{2,60})$/i)]],
         correo:['',[Validators.required,Validators.email]],
-        celular:['',Validators.required]
+        celular:['',[Validators.required,Validators.pattern(/^([0-9])*$/)]]
       })
       this.inject.listaGrados().subscribe((res)=>{
         this.GradoSeccion = res
@@ -85,5 +85,15 @@ export class RegistroPersonalComponent implements OnInit {
   }
   cancelar(){
     this.crearFormulario.reset()
+  }
+  llenarDatos(){
+    if(this.crearFormulario.value.dni.length==8){
+      this.inject.APIdni(this.crearFormulario.value.dni).subscribe((res)=>{
+        this.consultaData = res
+        this.crearFormulario.controls['nombre'].setValue(this.consultaData.name);
+        this.crearFormulario.controls['apellidoP'].setValue(this.consultaData.first_name);
+        this.crearFormulario.controls['apellidoM'].setValue(this.consultaData.last_name);
+      })
+    }
   }
 }

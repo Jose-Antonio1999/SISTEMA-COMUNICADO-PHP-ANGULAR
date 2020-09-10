@@ -37,13 +37,12 @@
       $tipo = $DATA[1]->tipo;
       //Correo
       $listaCorreos = $DATA[2];
-
       //Codigo de envio de gmail
       $fechaActual = date('Y-m-d');
       $HoraActual = date('H:i:s');
       //datos
       $Asunto = utf8_decode($asunto);
-      $nombre_personal_iso = utf8_decode($nombre_personal);
+      $nombre_personal_iso = utf8_decode('BELÉN DE OSMA Y PARDO');
       // Instantiation and passing `true` enables exceptions
       $mail = new PHPMailer(true);
       $codigo = "<!DOCTYPE html>
@@ -71,24 +70,24 @@
 
           <tr>
               <td style='font-family: Times, serif;'>
-                  <h2 style='text-align: center; text-decoration: underline;'>$tipo</h2>
+                  <h2 style='text-align: center; text-decoration: underline; font-family:Cardana; '>$tipo</h2>
               </td>
           </tr>
           <tr>
               <td>
                   <div style=' text-align: justify;'>
-                      <p style='margin: 2px; font-size: 14px;'>$cuerpo</p>
+                      <p style='margin: 2px; font-size: 14px; font-family:Cardana'>$cuerpo</p>
                   </div>
               </td>
           </tr>
           <tr>
               <td>
-                  <p style='float: right;font-size: 15px'>Fecha: $fechaActual</p>
+                  <p style='float: right;font-size: 15px; font-family:Cardana; '>Fecha: $fechaActual</p>
               </td>
           </tr>
           <tr>
               <td>
-                  <b><p style='text-align: center; font-size: 15px; '>Atentamente:</p></b>
+                  <b><p style='text-align: center; font-size: 15px; '>ATENTAMENTE: $nombre_personal $apellidoPaterno_personal - $tipoPersonal</p></b>
                   <p style='text-align: center; font-size: 15px; margin-top: 0'>I.E Belén Osma y Pardo - Andahuaylas</p>
                   <hr style='width: 40%; border: 1px solid; text-align: center'>
               </td>

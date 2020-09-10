@@ -50,7 +50,15 @@ export class ListaPersonalComponent implements OnInit {
   mostrarButtonGuardarBorrador:boolean
   valorMensaje:String
   valorBusqueda:String = ''
+  data:String
+  id_tipo_per:any
   constructor(private inject:PeticionService, private ruta:Router, private formBuil:FormBuilder) {
+
+    //obtener el id tipo personal
+    this.data = localStorage.getItem('DNID')
+    this.inject.DatosUsuarioActual(this.data).subscribe((res)=>{
+      this.id_tipo_per = res[0].id_tipo_personal
+    })
 
     this.inject.ListaPersonal().subscribe((res)=>{
       this.listaPersonal = res

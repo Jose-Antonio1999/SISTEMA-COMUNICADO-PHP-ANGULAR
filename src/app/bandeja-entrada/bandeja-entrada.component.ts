@@ -21,9 +21,14 @@ export class BandejaEntradaComponent implements OnInit {
   contenido:String
   valorBusqueda:String = ''
   mensajeVisible:boolean = true
+  data:String
+  id_personal:any
   constructor(private snackBar: MatSnackBar, private inject:ServiceMensajeService, private injectM:PeticionService) {
-    this.injectM.ListaComunicados().subscribe((res)=>{
-        if(res==""){
+
+    this.data = localStorage.getItem('DNID')
+    //listamos comunicados por personal de acuerdo al DNI
+    this.injectM.ListaComunicadosDelDocente(this.data).subscribe((res)=>{
+        if(res.length==0){
           this.mVacio = true
         }else{
           this.listaMensajes = res
@@ -74,6 +79,9 @@ export class BandejaEntradaComponent implements OnInit {
         this.injectM.EliminarMensaje(this.listaMensajes[i].id_Comunicado).subscribe((respuesta)=>{
           //eliminar comunicado del array
           this.listaMensajes.splice(i,1);
+          if(this.listaMensajes.length==0){
+            this.mVacio = true
+          }
         })
 
         swalWithBootstrapButtons.fire(

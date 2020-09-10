@@ -3,6 +3,7 @@ import { PeticionService } from '../Service/peticion.service';
 import { Personal } from '../class/personal';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import Swal from 'sweetalert2'
+import { empty } from 'rxjs';
 
 @Component({
   selector: 'app-perfil',
@@ -19,7 +20,9 @@ export class PerfilComponent implements OnInit {
   crearFormularioPass:FormGroup
   constructor(public inject:PeticionService, private Builder:FormBuilder) {
     this.data = localStorage.getItem('DNID')
-    this.Perfil = this.inject.Usuario
+    this.inject.DatosUsuarioActual(this.data).subscribe((respuesta)=>{
+      this.Perfil = respuesta[0] as Personal
+    })
     this.formulario = Builder.group({
       celular:['',[Validators.required,Validators.maxLength(9)]],
       email:['',[Validators.required,Validators.email]]
@@ -67,6 +70,12 @@ export class PerfilComponent implements OnInit {
     this.inject.cambiarMiniDatos(this.crearFormularioDatos.value).subscribe((res)=>{
       if(res==1){
         this.mostrarMensaje('success','Datos actualizados correctamente')
+        if(this.crearFormularioDatos.value.email!=""){
+          this.Perfil.email_personal= this.crearFormularioDatos.value.email
+        }
+        if(this.crearFormularioDatos.value.celular!=""){
+          this.Perfil.celular_personal = this.crearFormularioDatos.value.celular
+        }
         this.crearFormularioDatos.reset()
         this.editdata = false
       }else{
